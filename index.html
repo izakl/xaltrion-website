@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,52 +20,285 @@
       --text: #f0f0f5;
       --muted: #6b7280;
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
-    .container { width: min(1120px, 92vw); margin: 0 auto; }
-    nav { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); background: rgba(10,10,15,.9); }
-    .nav-row { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
-    .logo { color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; }
-    .logo .co { color: var(--muted); font-size: 0.75em; font-weight: 500; letter-spacing: 0; margin-left: 2px; vertical-align: super; }
-    .nav-links { display: flex; gap: 1.2rem; list-style: none; padding: 0; margin: 0; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .95rem; }
-    .nav-links a:hover { color: var(--text); }
-    .cta { display: inline-block; text-decoration: none; border-radius: 10px; padding: .68rem 1rem; font-weight: 700; }
-    .cta-primary { background: var(--accent); color: #fff; }
-    .cta-secondary { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
-    .hero { padding: 5.5rem 0 3rem; text-align: center; }
-    .hero h1 { margin: 0; font-size: clamp(2.1rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -.03em; }
-    .hero p { color: var(--muted); margin: 1rem auto 1.8rem; max-width: 680px; font-size: 1.05rem; }
-    .hero-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
-    .stats { margin-top: 2.6rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .stats-grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); }
-    .stat { text-align: center; }
-    .stat strong { display: block; font-size: 1.25rem; }
-    .stat span { color: var(--muted); font-size: .83rem; }
-    section { padding: 4.2rem 0; }
-    h2 { margin: 0 0 .8rem; font-size: clamp(1.4rem, 3vw, 2.3rem); letter-spacing: -.02em; }
-    .sub { color: var(--muted); margin: 0; }
-    .cards { margin-top: 1.5rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem; }
-    .card h3 { margin: .1rem 0 .4rem; font-size: 1rem; }
-    .card p { margin: 0; color: var(--muted); font-size: .92rem; }
-    .band { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(180deg, rgba(99,102,241,.06), rgba(99,102,241,0)); }
-    .pill-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
-    .pill { border: 1px solid var(--border); background: var(--bg); padding: .45rem .75rem; border-radius: 999px; font-weight: 600; font-size: .9rem; }
-    .steps { margin-top: 1.25rem; display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
-    .step-num { width: 34px; height: 34px; display: inline-grid; place-items: center; border-radius: 999px; color: var(--accent-light); border: 1px solid rgba(99,102,241,.4); background: rgba(99,102,241,.14); font-weight: 700; }
-    .pricing-grid { margin-top: 1.2rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(245px,1fr)); }
-    .price { font-size: 2rem; font-weight: 800; margin: .4rem 0 .2rem; }
-    .price span { font-size: .95rem; color: var(--muted); font-weight: 500; }
-    .featured { box-shadow: 0 0 0 1px var(--accent); }
-    .urgency { margin-top: 1rem; color: #fbbf24; font-weight: 700; }
-    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: .5rem; }
-    .footer-links a { color: var(--accent-light); text-decoration: none; }
-    .muted { color: var(--muted); }
-    @media (max-width: 780px) { .nav-links { display: none; } }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      background: rgba(10, 10, 15, .9);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+    }
+
+    .logo {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -.02em;
+    }
+
+    .logo .co {
+      color: var(--muted);
+      font-size: 0.75em;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin-left: 2px;
+      vertical-align: super;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .cta {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: .68rem 1rem;
+      font-weight: 700;
+    }
+
+    .cta-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .cta-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .hero {
+      padding: 5.5rem 0 3rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin: 1rem auto 1.8rem;
+      max-width: 680px;
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .stats {
+      margin-top: 2.6rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      gap: .8rem;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    section {
+      padding: 4.2rem 0;
+    }
+
+    h2 {
+      margin: 0 0 .8rem;
+      font-size: clamp(1.4rem, 3vw, 2.3rem);
+      letter-spacing: -.02em;
+    }
+
+    .sub {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .cards {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem;
+    }
+
+    .card h3 {
+      margin: .1rem 0 .4rem;
+      font-size: 1rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(99, 102, 241, .06), rgba(99, 102, 241, 0));
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: .45rem .75rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+
+    .steps {
+      margin-top: 1.25rem;
+      display: grid;
+      gap: .9rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      color: var(--accent-light);
+      border: 1px solid rgba(99, 102, 241, .4);
+      background: rgba(99, 102, 241, .14);
+      font-weight: 700;
+    }
+
+    .pricing-grid {
+      margin-top: 1.2rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: .4rem 0 .2rem;
+    }
+
+    .price span {
+      font-size: .95rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .featured {
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .urgency {
+      margin-top: 1rem;
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: .5rem;
+    }
+
+    .footer-links a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    @media (max-width: 780px) {
+      .nav-links {
+        display: none;
+      }
+    }
   </style>
 </head>
+
 <body>
   <nav>
     <div class="container nav-row">
@@ -73,6 +307,7 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#brokers">Brokers</a></li>
         <li><a href="#how">How it works</a></li>
+        <li><a href="docs.html">Docs</a></li>
         <li><a href="pricing.html">Pricing</a></li>
       </ul>
       <a class="cta cta-primary" href="pricing.html">Get started</a>
@@ -81,7 +316,8 @@
 
   <header class="hero container">
     <h1>Your AI trading bot, running 24/7</h1>
-    <p>Run a local-first, AI-guided trading workflow with Claude decisions, Perplexity context, and strict risk controls - built for South African traders.</p>
+    <p>Run a local-first, AI-guided trading workflow with Claude decisions, Perplexity context, and strict risk controls
+      - built for South African traders.</p>
     <div class="hero-actions">
       <a class="cta cta-primary" href="pricing.html">See plans</a>
       <a class="cta cta-secondary" href="download.html">Download app</a>
@@ -100,12 +336,30 @@
     <h2>Platform features</h2>
     <p class="sub">Built for practical automation, local control, and fast execution insight.</p>
     <div class="cards">
-      <article class="card"><h3>Claude AI core</h3><p>Every cycle produces explainable trade rationale using your configured risk profile.</p></article>
-      <article class="card"><h3>Perplexity research</h3><p>Optional symbol-level context enriches decisions without changing your local data model.</p></article>
-      <article class="card"><h3>Multi-broker routing</h3><p>Operate across Alpaca, Luno, Binance, IG SA, Kraken, and cTrader/Pepperstone.</p></article>
-      <article class="card"><h3>Data stays local</h3><p>Keys, journal data, and bot state remain on your machine by design.</p></article>
-      <article class="card"><h3>ZAR-aware context</h3><p>Supports local currency framing and South African market awareness.</p></article>
-      <article class="card"><h3>Portal dashboard</h3><p>Track positions, performance, costs, health, and settings from one localhost interface.</p></article>
+      <article class="card">
+        <h3>Claude AI core</h3>
+        <p>Every cycle produces explainable trade rationale using your configured risk profile.</p>
+      </article>
+      <article class="card">
+        <h3>Perplexity research</h3>
+        <p>Optional symbol-level context enriches decisions without changing your local data model.</p>
+      </article>
+      <article class="card">
+        <h3>Multi-broker routing</h3>
+        <p>Operate across Alpaca, Luno, Binance, IG SA, Kraken, and cTrader/Pepperstone.</p>
+      </article>
+      <article class="card">
+        <h3>Data stays local</h3>
+        <p>Keys, journal data, and bot state remain on your machine by design.</p>
+      </article>
+      <article class="card">
+        <h3>ZAR-aware context</h3>
+        <p>Supports local currency framing and South African market awareness.</p>
+      </article>
+      <article class="card">
+        <h3>Portal dashboard</h3>
+        <p>Track positions, performance, costs, health, and settings from one localhost interface.</p>
+      </article>
     </div>
   </section>
 
@@ -128,10 +382,22 @@
     <h2>How it works</h2>
     <p class="sub">From install to live automation in four straightforward steps.</p>
     <div class="steps">
-      <article class="card"><span class="step-num">1</span><h3>Download</h3><p>Install the Windows package from the latest release.</p></article>
-      <article class="card"><span class="step-num">2</span><h3>Connect</h3><p>Add broker + AI keys in setup and validate connectivity.</p></article>
-      <article class="card"><span class="step-num">3</span><h3>Paper trade</h3><p>Run safely in simulation first with risk guardrails enabled.</p></article>
-      <article class="card"><span class="step-num">4</span><h3>Go live</h3><p>Switch to live mode when confidence and controls are in place.</p></article>
+      <article class="card"><span class="step-num">1</span>
+        <h3>Download</h3>
+        <p>Install the Windows package from the latest release.</p>
+      </article>
+      <article class="card"><span class="step-num">2</span>
+        <h3>Connect</h3>
+        <p>Add broker + AI keys in setup and validate connectivity.</p>
+      </article>
+      <article class="card"><span class="step-num">3</span>
+        <h3>Paper trade</h3>
+        <p>Run safely in simulation first with risk guardrails enabled.</p>
+      </article>
+      <article class="card"><span class="step-num">4</span>
+        <h3>Go live</h3>
+        <p>Switch to live mode when confidence and controls are in place.</p>
+      </article>
     </div>
   </section>
 
@@ -167,6 +433,7 @@
         <a href="index.html">Home</a>
         <a href="pricing.html">Pricing</a>
         <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
         <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
       </div>
       <div class="muted">Built in South Africa 🇿🇦</div>
@@ -174,5 +441,7 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/crisp.js"></script>
 </body>
+
 </html>
