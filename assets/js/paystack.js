@@ -1,24 +1,53 @@
-// Xaltrion AI - paystack.js
-// Handles payment initiation via license API
+// Xaltrion - paystack.js
+// Checkout flow: reads email from #checkout-email input field
 
 var API_BASE = 'https://license.xaltrion.ai';
-// Fallback if custom domain not yet live:
-// var API_BASE = 'https://xaltrion-license-api-dev.azurewebsites.net';
+
+function validateEmail(email) {
+    return email && email.length > 3 && email.indexOf('@') > 0;
+}
+
+function getEmail() {
+    var input = document.getElementById('checkout-email');
+    return input ? input.value.trim() : '';
+}
+
+function showEmailError(show) {
+    var err = document.getElementById('email-error');
+    var input = document.getElementById('checkout-email');
+    if (err) {
+        err.style.display = show ? 'block' : 'none';
+    }
+    if (input) {
+        input.style.borderColor = show ? '#f87171' : '';
+    }
+}
 
 async function startCheckout(tier) {
-    var btnId = 'btn-' + tier;
-    var btn = document.getElementById(btnId);
-    var originalText = btn ? btn.textContent : '';
+    var email = getEmail();
 
-    var email = prompt('Enter your email address to continue:');
-    if (!email || !email.includes('@')) {
-        alert('Please enter a valid email address.');
+    if (!validateEmail(email)) {
+        showEmailError(true);
+        var invalidInput = document.getElementById('checkout-email');
+        if (invalidInput) {
+            invalidInput.focus();
+        }
         return;
     }
+    showEmailError(false);
 
+    var btn = document.getElementById('btn-' + tier);
+    var originalText = btn ? btn.textContent : '';
+    var allBtns = ['btn-monthly', 'btn-annual', 'btn-founders'];
+
+    allBtns.forEach(function (id) {
+        var button = document.getElementById(id);
+        if (button) {
+            button.disabled = true;
+        }
+    });
     if (btn) {
-        btn.textContent = 'Loading...';
-        btn.disabled = true;
+        btn.textContent = 'Redirecting to payment...';
     }
 
     try {
@@ -27,22 +56,50 @@ async function startCheckout(tier) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ tier: tier, email: email })
         });
+
         var data = await res.json();
 
         if (data.url) {
             window.location.href = data.url;
         } else {
-            alert('Something went wrong. Please try again or email support@xaltrion.ai');
+            alert('Payment could not be started. Please try again or contact support@xaltrion.ai');
+            allBtns.forEach(function (id) {
+                var button = document.getElementById(id);
+                if (button) {
+                    button.disabled = false;
+                }
+            });
             if (btn) {
                 btn.textContent = originalText;
-                btn.disabled = false;
             }
         }
     } catch (e) {
-        alert('Connection error. Please try again.');
+        alert('Connection error. Please check your internet connection and try again.');
+        allBtns.forEach(function (id) {
+            var button = document.getElementById(id);
+            if (button) {
+                button.disabled = false;
+            }
+        });
         if (btn) {
             btn.textContent = originalText;
-            btn.disabled = false;
         }
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var input = document.getElementById('checkout-email');
+    if (input) {
+        input.addEventListener('input', function () {
+            showEmailError(false);
+        });
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                var btn = document.getElementById('btn-monthly');
+                if (btn) {
+                    btn.focus();
+                }
+            }
+        });
+    }
+});

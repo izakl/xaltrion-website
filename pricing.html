@@ -35,6 +35,7 @@
     .a { margin:0; color:var(--muted); }
     .guarantee { margin-top:1rem; color:#fbbf24; font-weight:700; }
     footer { margin-top:2rem; border-top:1px solid var(--border); padding:1.5rem 0 2rem; color:var(--muted); }
+    #checkout-email:focus { border-color: var(--accent) !important; }
     @media (max-width:780px){ .links{display:none;} }
   </style>
 </head>
@@ -53,6 +54,57 @@
     <section class="top">
       <h1>Pick your Xaltrion plan</h1>
       <p class="sub">Pay securely via Paystack, then receive your licence key by email.</p>
+
+      <!-- Email capture - above pricing cards -->
+      <div id="email-section" style="
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 1.25rem 1.5rem;
+          margin-bottom: 1.25rem;
+          margin-top: 1.25rem;
+          max-width: 480px;
+      ">
+          <label for="checkout-email" style="
+              display: block;
+              font-size: 0.85rem;
+              font-weight: 600;
+              color: var(--muted);
+              margin-bottom: 0.5rem;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+          ">Your email address</label>
+          <input
+              type="email"
+              id="checkout-email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              style="
+                  width: 100%;
+                  background: var(--bg);
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  color: var(--text);
+                  font-size: 1rem;
+                  font-family: inherit;
+                  padding: 0.75rem 1rem;
+                  outline: none;
+                  box-sizing: border-box;
+                  transition: border-color 0.15s;
+              "
+          />
+          <div id="email-error" style="
+              color: #f87171;
+              font-size: 0.8rem;
+              margin-top: 0.4rem;
+              display: none;
+          ">Please enter a valid email address.</div>
+          <p style="
+              color: var(--muted);
+              font-size: 0.78rem;
+              margin: 0.5rem 0 0;
+          ">Your licence key will be sent to this address after payment.</p>
+      </div>
     </section>
 
     <section class="grid">
@@ -60,7 +112,13 @@
         <h2>Monthly</h2>
         <div class="price">R299 <small>/ month</small></div>
         <p class="sub">Flexible access, cancel any time.</p>
-        <button id="btn-monthly" class="btn btn-secondary" onclick="startCheckout('monthly')">Subscribe - R299/month</button>
+        <button
+          id="btn-monthly"
+          class="btn btn-secondary"
+          onclick="startCheckout('monthly')"
+          style="width:100%;margin-top:1rem;">
+          Subscribe - R299/month
+        </button>
       </article>
 
       <article class="card featured">
@@ -68,14 +126,26 @@
         <h2>Annual</h2>
         <div class="price">R2,499 <small>/ year</small></div>
         <p class="sub">Save vs monthly and lock in your plan.</p>
-        <button id="btn-annual" class="btn btn-primary" onclick="startCheckout('annual')">Subscribe - R2,499/year</button>
+        <button
+          id="btn-annual"
+          class="btn btn-primary"
+          onclick="startCheckout('annual')"
+          style="width:100%;margin-top:1rem;">
+          Subscribe - R2,499/year
+        </button>
       </article>
 
       <article class="card">
         <h2>Founders Edition</h2>
         <div class="price">R2,499 <small>one-time</small></div>
         <p class="sub">One-time founders offer, limited seats.</p>
-        <button id="btn-founders" class="btn btn-secondary" onclick="startCheckout('founders')">Claim Founders seat - R2,499 once</button>
+        <button
+          id="btn-founders"
+          class="btn btn-secondary"
+          onclick="startCheckout('founders')"
+          style="width:100%;margin-top:1rem;">
+          Claim Founders seat - R2,499 once
+        </button>
       </article>
     </section>
 
