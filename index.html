@@ -25,7 +25,7 @@
     nav { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); background: rgba(10,10,15,.9); }
     .nav-row { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
     .logo { color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; }
-    .logo span { color: var(--accent); }
+    .logo .co { color: var(--muted); font-size: 0.75em; font-weight: 500; letter-spacing: 0; margin-left: 2px; vertical-align: super; }
     .nav-links { display: flex; gap: 1.2rem; list-style: none; padding: 0; margin: 0; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: .95rem; }
     .nav-links a:hover { color: var(--text); }
@@ -68,7 +68,7 @@
 <body>
   <nav>
     <div class="container nav-row">
-      <a class="logo" href="index.html">Xaltrion<span>AI</span></a>
+      <a class="logo" href="index.html">Xaltrion<span class="co">AI</span></a>
       <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#brokers">Brokers</a></li>
