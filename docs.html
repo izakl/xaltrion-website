@@ -410,17 +410,46 @@
 
             <section class="section" id="troubleshooting">
                 <h2>Troubleshooting</h2>
-                <h3>Bot not starting</h3>
-                <p>Port 8080 may already be in use by another process. Stop the conflicting process and retry.</p>
-                <h3>Licence key not activating</h3>
-                <p>Check machine binding, internet access, and key format. Activation requires online verification.</p>
-                <h3>SmartScreen warning</h3>
-                <p>Click More info, then Run anyway for beta builds.</p>
-                <h3>Trades not executing</h3>
-                <p>Confirm paper/live mode state, broker key validity, and Settings connection tests.</p>
-                <h3>Support</h3>
-                <p>Email <a href="mailto:support@xaltrion.ai" style="color:var(--accent-light)">support@xaltrion.ai</a>
-                    or use the Crisp chat widget on the site.</p>
+                <h3>Licence shows "Expires soon" after updating expiry</h3>
+                <p>After extending your subscription expiry in the admin portal, the portal may still show "Expires
+                    soon". The JWT token is cached locally with the old expiry date. Fix: Stop Xaltrion. Delete
+                    <strong>state\license_token.json</strong>. Restart - it fetches a fresh token from the server.
+                    Note: restarting alone is not enough, the file must be deleted.
+                </p>
+
+                <h3>Activation rejected - machine already bound</h3>
+                <p>If you reinstall or run on a different machine, activation may fail with a machine binding error.
+                    Each licence key is bound to one machine at a time. Fix: Contact
+                    <a href="mailto:support@xaltrion.ai" style="color:var(--accent-light)">support@xaltrion.ai</a>
+                    with your licence key. We will clear the machine binding. Then re-enter your key.
+                </p>
+
+                <h3>Portal won't start - port already in use</h3>
+                <p>A previous instance may still be running. Fix: Open Task Manager, find XaltrionAI.exe or
+                    python.exe, end those processes, wait 5 seconds, restart Xaltrion. If it persists, restart your
+                    computer.</p>
+
+                <h3>Windows shows a security warning on first run</h3>
+                <p>Windows SmartScreen may show "Windows protected your PC" on first run. This is expected for
+                    software without a code signing certificate. Fix: Click "More info" then "Run anyway". Only
+                    appears on first run or after updates. Code signing will be added in a future release.</p>
+
+                <h3>Licence key not accepted</h3>
+                <p>Check: correct XALT-XXXX-XXXX-XXXX-XXXX format, internet connection active, key not already bound
+                    to another machine, check spam folder for key email. If none apply, contact
+                    <a href="mailto:support@xaltrion.ai" style="color:var(--accent-light)">support@xaltrion.ai</a>
+                    with your order reference.
+                </p>
+
+                <h3>Journal shows no research context</h3>
+                <p>If journal entries show no research, the Perplexity integration may need attention. Fix: Open
+                    Settings -> Research Level. Verify Perplexity API key is entered. Current recommended model:
+                    <strong>sonar</strong>. Check perplexity.ai dashboard to confirm API plan status.
+                </p>
+
+                <h3>Light/dark mode resets after page reload</h3>
+                <p>Browser may be blocking localStorage. Fix: Ensure browser allows localStorage for localhost. Do
+                    not use private/incognito mode - localStorage clears on close in private mode.</p>
             </section>
         </div>
     </main>
