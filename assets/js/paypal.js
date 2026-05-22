@@ -1,5 +1,5 @@
-// Xaltrion - paystack.js
-// Checkout flow: reads email from #checkout-email input field
+// Xaltrion - paypal.js
+// Checkout flow: reads email from #checkout-email (or #email-input fallback)
 
 var API_BASE = 'https://license.xaltrion.ai';
 
@@ -7,14 +7,18 @@ function validateEmail(email) {
     return email && email.length > 3 && email.indexOf('@') > 0;
 }
 
+function getEmailInput() {
+    return document.getElementById('checkout-email') || document.getElementById('email-input');
+}
+
 function getEmail() {
-    var input = document.getElementById('checkout-email');
+    var input = getEmailInput();
     return input ? input.value.trim() : '';
 }
 
 function showEmailError(show) {
     var err = document.getElementById('email-error');
-    var input = document.getElementById('checkout-email');
+    var input = getEmailInput();
     if (err) {
         err.style.display = show ? 'block' : 'none';
     }
@@ -23,12 +27,12 @@ function showEmailError(show) {
     }
 }
 
-async function startCheckout(tier) {
+async function startCheckout(tier, evt) {
     var email = getEmail();
 
     if (!validateEmail(email)) {
         showEmailError(true);
-        var invalidInput = document.getElementById('checkout-email');
+        var invalidInput = getEmailInput();
         if (invalidInput) {
             invalidInput.focus();
         }
@@ -36,7 +40,7 @@ async function startCheckout(tier) {
     }
     showEmailError(false);
 
-    var btn = document.getElementById('btn-' + tier);
+    var btn = (evt && evt.target) ? evt.target : document.getElementById('btn-' + tier);
     var originalText = btn ? btn.textContent : '';
     var allBtns = ['btn-monthly', 'btn-annual', 'btn-founders'];
 
@@ -46,8 +50,9 @@ async function startCheckout(tier) {
             button.disabled = true;
         }
     });
+
     if (btn) {
-        btn.textContent = 'Redirecting to payment...';
+        btn.textContent = 'Redirecting to PayPal...';
     }
 
     try {
@@ -58,48 +63,44 @@ async function startCheckout(tier) {
         });
 
         var data = await res.json();
-
         if (data.url) {
             window.location.href = data.url;
-        } else {
-            alert('Payment could not be started. Please try again or contact support@xaltrion.ai');
-            allBtns.forEach(function (id) {
-                var button = document.getElementById(id);
-                if (button) {
-                    button.disabled = false;
-                }
-            });
-            if (btn) {
-                btn.textContent = originalText;
-            }
+            return;
         }
+
+        throw new Error('No checkout URL returned');
     } catch (e) {
-        alert('Connection error. Please check your internet connection and try again.');
         allBtns.forEach(function (id) {
             var button = document.getElementById(id);
             if (button) {
                 button.disabled = false;
             }
         });
+
         if (btn) {
-            btn.textContent = originalText;
+            btn.textContent = originalText || 'Buy Now';
         }
+
+        alert('Checkout failed. Please try again or contact support@xaltrion.ai');
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var input = document.getElementById('checkout-email');
-    if (input) {
-        input.addEventListener('input', function () {
-            showEmailError(false);
-        });
-        input.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                var btn = document.getElementById('btn-monthly');
-                if (btn) {
-                    btn.focus();
-                }
-            }
-        });
+    var input = getEmailInput();
+    if (!input) {
+        return;
     }
+
+    input.addEventListener('input', function () {
+        showEmailError(false);
+    });
+
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            var btn = document.getElementById('btn-monthly');
+            if (btn) {
+                btn.focus();
+            }
+        }
+    });
 });

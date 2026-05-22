@@ -22,8 +22,8 @@
       --bg: #0a0a0f;
       --surface: #13131a;
       --border: #1e1e2e;
-      --accent: #6366f1;
-      --accent-light: #818cf8;
+      --accent: #3296c8;
+      --accent-light: #4ab0e0;
       --ok: #22c55e;
       --text: #f0f0f5;
       --muted: #6b7280;
@@ -159,8 +159,8 @@
 
     .tag {
       display: inline-block;
-      background: rgba(99, 102, 241, .15);
-      border: 1px solid rgba(99, 102, 241, .4);
+      background: rgba(50, 150, 200, .15);
+      border: 1px solid rgba(50, 150, 200, .4);
       color: var(--accent-light);
       border-radius: 999px;
       padding: .18rem .65rem;
@@ -226,7 +226,8 @@
   <main class="container">
     <section class="top">
       <h1>Pick your Xaltrion plan</h1>
-      <p class="sub">Pay securely via Paystack, then receive your licence key by email.</p>
+      <p class="sub">Pay securely via PayPal, then receive your licence key by email.</p>
+      <p class="sub" style="margin-top:0.35rem; font-size:0.9rem;">Powered by PayPal</p>
 
       <!-- Email capture - above pricing cards -->
       <div id="email-section" style="
@@ -277,32 +278,32 @@
     <section class="grid">
       <article class="card">
         <h2>Monthly</h2>
-        <div class="price">R299 <small>/ month</small></div>
+        <div class="price">$16 <small>/ month</small></div>
         <p class="sub">Flexible access, cancel any time.</p>
-        <button id="btn-monthly" class="btn btn-secondary" onclick="startCheckout('monthly')"
+        <button id="btn-monthly" class="btn btn-secondary" onclick="startCheckout('monthly', event)"
           style="width:100%;margin-top:1rem;">
-          Subscribe - R299/month
+          Pay with PayPal - Monthly
         </button>
       </article>
 
       <article class="card featured">
         <span class="tag">Most popular</span>
         <h2>Annual</h2>
-        <div class="price">R2,499 <small>/ year</small></div>
+        <div class="price">$135 <small>/ year</small></div>
         <p class="sub">Save vs monthly and lock in your plan.</p>
-        <button id="btn-annual" class="btn btn-primary" onclick="startCheckout('annual')"
+        <button id="btn-annual" class="btn btn-primary" onclick="startCheckout('annual', event)"
           style="width:100%;margin-top:1rem;">
-          Subscribe - R2,499/year
+          Pay with PayPal - Annual
         </button>
       </article>
 
       <article class="card">
         <h2>Founders Edition</h2>
-        <div class="price">R2,499 <small>one-time</small></div>
+        <div class="price">$135 <small>one-time</small></div>
         <p class="sub">One-time founders offer, limited seats.</p>
-        <button id="btn-founders" class="btn btn-secondary" onclick="startCheckout('founders')"
+        <button id="btn-founders" class="btn btn-secondary" onclick="startCheckout('founders', event)"
           style="width:100%;margin-top:1rem;">
-          Claim Founders seat - R2,499 once
+          Pay with PayPal - Founders
         </button>
       </article>
     </section>
@@ -330,7 +331,7 @@
         style="color:var(--accent-light)">support@xaltrion.ai</a></div>
   </footer>
 
-  <script src="assets/js/paystack.js"></script>
+  <script src="assets/js/paypal.js"></script>
   <script src="assets/js/crisp.js"></script>
 </body>
 
