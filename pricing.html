@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xaltrion AI | Pricing</title>
-  <meta property="og:title" content="Xaltrion Pricing | Plans for Local-First AI Trading" />
-  <meta property="og:description"
-    content="Compare Xaltrion plans and choose the right setup for your local AI trading workflow." />
+  <title>Pricing | Xaltrion AI</title>
+  <meta name="description" content="Xaltrion AI pricing - monthly, annual, and Founders plans (USD)." />
+  <meta property="og:title" content="Xaltrion Pricing" />
+  <meta property="og:description" content="Simple, transparent USD pricing for the Xaltrion AI local-first trading bot." />
   <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/mark-512.png" />
   <meta property="og:url" content="https://xaltrion.ai/pricing.html" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -16,323 +16,143 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #13131a;
-      --border: #1e1e2e;
-      --accent: #3296c8;
-      --accent-light: #4ab0e0;
-      --ok: #22c55e;
-      --text: #f0f0f5;
-      --muted: #6b7280;
+    .email-capture {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      max-width: 500px;
+      margin: 2rem auto;
+      text-align: center;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
+    .email-capture input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: var(--r-md);
+      border: 1px solid var(--hairline);
       background: var(--bg);
       color: var(--text);
-    }
-
-    .container {
-      width: min(1100px, 92vw);
-      margin: 0 auto;
-    }
-
-    nav {
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(8px);
-      background: rgba(10, 10, 15, .9);
-    }
-
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 72px;
-    }
-
-    .logo {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .logo .co {
-      color: var(--muted);
-      font-size: 0.75em;
-      font-weight: 500;
-      letter-spacing: 0;
-      margin-left: 2px;
-      vertical-align: super;
-    }
-
-    .links {
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .links a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .links a:hover {
-      color: var(--text);
-    }
-
-    .top {
-      padding: 3rem 0 1rem;
-    }
-
-    h1 {
-      margin: 0 0 .4rem;
-      font-size: clamp(2rem, 5vw, 3rem);
-    }
-
-    .sub {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      margin-top: 1.2rem;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem;
-    }
-
-    .featured {
-      box-shadow: 0 0 0 1px var(--accent);
-    }
-
-    .price {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin: .45rem 0;
-    }
-
-    .price small {
-      font-size: .95rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .btn {
-      width: 100%;
-      border: 0;
-      border-radius: 10px;
-      padding: .8rem .9rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-secondary {
-      background: #0f0f16;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .tag {
-      display: inline-block;
-      background: rgba(50, 150, 200, .15);
-      border: 1px solid rgba(50, 150, 200, .4);
-      color: var(--accent-light);
-      border-radius: 999px;
-      padding: .18rem .65rem;
-      font-size: .78rem;
-    }
-
-    .faq {
-      margin-top: 2.2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem;
-    }
-
-    .q {
-      margin: 0.9rem 0 .3rem;
       font-size: 1rem;
+      margin: 0.5rem 0;
+      font-family: var(--font-ui);
     }
-
-    .a {
-      margin: 0;
-      color: var(--muted);
+    .faq {
+      max-width: 700px;
+      margin: 3rem auto;
     }
-
-    .guarantee {
-      margin-top: 1rem;
-      color: #fbbf24;
-      font-weight: 700;
+    .faq-item {
+      border-bottom: 1px solid var(--hairline);
+      padding: 1rem 0;
     }
-
-    footer {
-      margin-top: 2rem;
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 0 2rem;
-      color: var(--muted);
-    }
-
-    #checkout-email:focus {
-      border-color: var(--accent) !important;
-    }
-
-    @media (max-width:780px) {
-      .links {
-        display: none;
-      }
-    }
+    .faq-item h4 { margin: 0 0 0.5rem; color: var(--text); }
+    .faq-item p { margin: 0; color: var(--text-3); }
   </style>
 </head>
 
 <body>
   <nav>
-    <div class="container row">
-      <a class="logo" href="index.html"><img src="assets/img/brand/lockup-horizontal.png" alt="Xaltrion"
-          height="32"></a>
-      <ul class="links">
-        <li><a href="index.html">Home</a></li>
+    <div class="container nav-row">
+      <a class="x-logotype" href="index.html" aria-label="Xaltrion home">XALTRION<span class="co">AI</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#brokers">Brokers</a></li>
         <li><a href="docs.html">Docs</a></li>
-        <li><a href="download.html">Download</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
       </ul>
+      <a class="cta cta-primary" href="#plans">Choose plan</a>
     </div>
   </nav>
 
-  <main class="container">
-    <section class="top">
-      <h1>Pick your Xaltrion plan</h1>
-      <p class="sub">Pay securely via PayPal, then receive your licence key by email.</p>
-      <p class="sub" style="margin-top:0.35rem; font-size:0.9rem;">Powered by PayPal</p>
+  <header class="hero container">
+    <h1>Pricing</h1>
+    <p>Local-first, subscription-gated software. Pick a plan that matches your usage. Cancel anytime.</p>
+    <p class="muted">All prices in USD. Your card provider may apply a currency conversion fee.</p>
+  </header>
 
-      <!-- Email capture - above pricing cards -->
-      <div id="email-section" style="
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          padding: 1.25rem 1.5rem;
-          margin-bottom: 1.25rem;
-          margin-top: 1.25rem;
-          max-width: 480px;
-      ">
-        <label for="checkout-email" style="
-              display: block;
-              font-size: 0.85rem;
-              font-weight: 600;
-              color: var(--muted);
-              margin-bottom: 0.5rem;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-          ">Your email address</label>
-        <input type="email" id="checkout-email" placeholder="you@example.com" autocomplete="email" style="
-                  width: 100%;
-                  background: var(--bg);
-                  border: 1px solid var(--border);
-                  border-radius: 8px;
-                  color: var(--text);
-                  font-size: 1rem;
-                  font-family: inherit;
-                  padding: 0.75rem 1rem;
-                  outline: none;
-                  box-sizing: border-box;
-                  transition: border-color 0.15s;
-              " />
-        <div id="email-error" style="
-              color: #f87171;
-              font-size: 0.8rem;
-              margin-top: 0.4rem;
-              display: none;
-          ">Please enter a valid email address.</div>
-        <p style="
-              color: var(--muted);
-              font-size: 0.78rem;
-              margin: 0.5rem 0 0;
-          ">Your licence key will be sent to this address after payment.</p>
-      </div>
-    </section>
-
-    <section class="grid">
+  <section id="plans" class="container">
+    <div class="grid">
       <article class="card">
-        <h2>Monthly</h2>
-        <div class="price">$16 <small>/ month</small></div>
-        <p class="sub">Flexible access, cancel any time.</p>
-        <button id="btn-monthly" class="btn btn-secondary" onclick="startCheckout('monthly', event)"
-          style="width:100%;margin-top:1rem;">
-          Pay with PayPal - Monthly
-        </button>
+        <span class="tag">Flexible</span>
+        <h3>Monthly</h3>
+        <div class="price"><span class="x-mono">$16</span> <small>/ month</small></div>
+        <p class="muted">Full trading features. Cancel anytime.</p>
+        <button class="btn btn-secondary" onclick="startCheckout('monthly', event)">Choose Monthly</button>
       </article>
-
       <article class="card featured">
-        <span class="tag">Most popular</span>
-        <h2>Annual</h2>
-        <div class="price">$135 <small>/ year</small></div>
-        <p class="sub">Save vs monthly and lock in your plan.</p>
-        <button id="btn-annual" class="btn btn-primary" onclick="startCheckout('annual', event)"
-          style="width:100%;margin-top:1rem;">
-          Pay with PayPal - Annual
-        </button>
+        <span class="tag">Best value</span>
+        <h3>Annual</h3>
+        <div class="price"><span class="x-mono">$135</span> <small>/ year</small></div>
+        <p class="muted">Lock in your plan and save vs monthly.</p>
+        <button class="btn btn-primary" onclick="startCheckout('annual', event)">Choose Annual</button>
       </article>
-
       <article class="card">
-        <h2>Founders Edition</h2>
-        <div class="price">$135 <small>one-time</small></div>
-        <p class="sub">One-time founders offer, limited seats.</p>
-        <button id="btn-founders" class="btn btn-secondary" onclick="startCheckout('founders', event)"
-          style="width:100%;margin-top:1rem;">
-          Pay with PayPal - Founders
-        </button>
+        <span class="tag">Limited</span>
+        <h3>Founders</h3>
+        <div class="price"><span class="x-mono">$135</span> <small>once</small></div>
+        <p class="muted">One-time access for early supporters. 47 seats remaining.</p>
+        <button class="btn btn-secondary" onclick="startCheckout('founders', event)">Claim Founders</button>
       </article>
-    </section>
+    </div>
+    <p class="guarantee">14-day money-back guarantee on all plans</p>
+  </section>
 
-    <section class="faq">
-      <h2>FAQ</h2>
-      <h3 class="q">Which brokers can I use?</h3>
-      <p class="a">Alpaca, Luno, Binance, IG South Africa, Kraken, and cTrader paths are supported.</p>
-      <h3 class="q">Do I use my own API keys?</h3>
-      <p class="a">Yes. You provide your own broker and AI keys in the local setup screen.</p>
-      <h3 class="q">Does it trade automatically?</h3>
-      <p class="a">Yes, based on your configured guardrails and operator controls.</p>
-      <h3 class="q">Can I cancel?</h3>
-      <p class="a">Yes, monthly and annual subscriptions can be cancelled based on your billing policy.</p>
-      <h3 class="q">Where is my data stored?</h3>
-      <p class="a">Locally on your machine. Xaltrion is designed local-first.</p>
-      <h3 class="q">Is there a trial or guarantee?</h3>
-      <p class="a">Use paper mode first, and contact support for billing support if needed.</p>
-      <p class="guarantee">14-day money-back guarantee</p>
-    </section>
-  </main>
+  <section class="container">
+    <div class="email-capture">
+      <h3>Not ready? Get launch updates</h3>
+      <p class="muted">Be first to hear about new brokers, features, and promotions.</p>
+      <input type="email" placeholder="you@email.com" id="email-input" />
+      <button class="btn btn-secondary" onclick="captureEmail()">Notify me</button>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>FAQ</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Where does my data live?</h4>
+        <p>On your machine. Keys, journal data, and bot state never leave your device.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I switch plans?</h4>
+        <p>Yes - upgrade or cancel anytime from PayPal subscription settings.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Which brokers are supported?</h4>
+        <p>Alpaca, Luno, Binance, IG South Africa, Kraken, cTrader and Pepperstone via cTrader.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How is billing handled?</h4>
+        <p>PayPal in USD. Use any major card or your PayPal balance.</p>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <div class="container">Built in South Africa 🇿🇦 · <a href="mailto:support@xaltrion.ai"
-        style="color:var(--accent-light)">support@xaltrion.ai</a></div>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
+      </div>
+      <div class="muted">Built in South Africa 🇿🇦</div>
+    </div>
   </footer>
 
   <script src="assets/js/paypal.js"></script>
   <script src="assets/js/crisp.js"></script>
+  <script>
+    function captureEmail() {
+      var email = document.getElementById('email-input').value;
+      if (!email || !email.includes('@')) { alert('Please enter a valid email'); return; }
+      alert('Thanks! We will notify you about updates at ' + email);
+      document.getElementById('email-input').value = '';
+    }
+  </script>
 </body>
 
 </html>

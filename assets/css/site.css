@@ -1,0 +1,290 @@
+/* ============================================================
+   XALTRION WEBSITE — SHARED STYLES
+   Built on tokens.css. Pages should include tokens.css first.
+   Rerun 150 (PR-11/PR-12): consolidated from per-page inline styles.
+   ============================================================ */
+
+/* Legacy semantic aliases used across the marketing site,
+   remapped to brand tokens so a single source-of-truth in
+   tokens.css controls colour + typography across all surfaces. */
+:root {
+  --bg: var(--ink-900);
+  --surface: var(--ink-850);
+  --surface-soft: var(--ink-800);
+  --border: var(--ink-700);
+  --accent-light: var(--accent-2);
+  --muted: var(--text-3);
+  --ok: var(--gain);
+  --warn: var(--status-warn);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container { width: min(1120px, 92vw); margin: 0 auto; }
+
+/* ---------- NAV ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--hairline);
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklch, var(--bg), transparent 8%);
+}
+.nav-row,
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+}
+.nav-links,
+.links {
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-links a,
+.links a {
+  color: var(--text-3);
+  text-decoration: none;
+  font-size: .95rem;
+}
+.nav-links a:hover,
+.links a:hover { color: var(--text); }
+
+/* ---------- LOGOTYPE COMPONENT ---------- */
+/* The brand wordmark. Exo 2 — reserved for the XALTRION mark only.
+   PR-12: pages should prefer this over the legacy <img> lockup. */
+.x-logotype {
+  font-family: var(--font-wordmark);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+}
+.x-logotype .accent { color: var(--accent); }
+.x-logotype .co {
+  font-family: var(--font-mono);
+  color: var(--text-3);
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-left: 6px;
+  vertical-align: super;
+}
+
+/* Numeric / monospaced inline component */
+.x-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- BUTTONS / CTA ---------- */
+.cta {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: var(--r-md);
+  padding: .68rem 1rem;
+  font-weight: 700;
+}
+.cta-primary,
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.cta-secondary,
+.btn-secondary {
+  border: 1px solid var(--hairline);
+  color: var(--text);
+  background: var(--surface);
+}
+.btn {
+  width: 100%;
+  border: 0;
+  border-radius: var(--r-md);
+  padding: .8rem .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+}
+
+/* ---------- HERO / SECTIONS ---------- */
+.hero { padding: 5.5rem 0 3rem; text-align: center; }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+.hero p {
+  color: var(--text-3);
+  margin: 1rem auto 1.8rem;
+  max-width: 680px;
+  font-size: 1.05rem;
+}
+.hero-actions {
+  display: flex;
+  gap: .8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+section { padding: 4.2rem 0; }
+h2 {
+  margin: 0 0 .8rem;
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
+  letter-spacing: -.02em;
+}
+.sub { color: var(--text-3); margin: 0; }
+
+/* ---------- CARDS / PILLS ---------- */
+.cards {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 1.1rem;
+}
+.card h3 { margin: .1rem 0 .4rem; font-size: 1rem; }
+.card p { margin: 0; color: var(--text-3); font-size: .92rem; }
+
+.featured { box-shadow: 0 0 0 1px var(--accent); }
+
+.band {
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: linear-gradient(180deg, var(--accent-bg), transparent);
+}
+
+.pill-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.pill {
+  border: 1px solid var(--hairline);
+  background: var(--bg);
+  padding: .45rem .75rem;
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  font-size: .9rem;
+}
+.tag {
+  display: inline-block;
+  background: var(--accent-bg);
+  border: 1px solid color-mix(in oklch, var(--accent), transparent 60%);
+  color: var(--accent-2);
+  border-radius: var(--r-pill);
+  padding: .18rem .65rem;
+  font-size: .78rem;
+}
+
+/* ---------- STEPS / STATS ---------- */
+.steps {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.step-num {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  color: var(--accent-2);
+  border: 1px solid color-mix(in oklch, var(--accent), transparent 60%);
+  background: var(--accent-bg);
+  font-weight: 700;
+}
+.stats {
+  margin-top: 2.6rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.stats-grid {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+.stat { text-align: center; }
+.stat strong { display: block; font-size: 1.25rem; font-family: var(--font-mono); }
+.stat span { color: var(--text-3); font-size: .83rem; }
+
+/* ---------- PRICING ---------- */
+.pricing-grid,
+.grid {
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+}
+.price {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: .4rem 0 .2rem;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.price span,
+.price small {
+  font-size: .95rem;
+  color: var(--text-3);
+  font-weight: 500;
+  font-family: var(--font-ui);
+}
+.pricing-note {
+  color: var(--text-3);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+.urgency,
+.guarantee {
+  margin-top: 1rem;
+  color: var(--status-warn);
+  font-weight: 700;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  border-top: 1px solid var(--hairline);
+  padding: 2rem 0;
+  color: var(--text-3);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: .5rem;
+}
+.footer-links a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+.muted { color: var(--text-3); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 780px) {
+  .nav-links,
+  .links { display: none; }
+}
