@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing | Xaltrion AI</title>
-  <meta name="description" content="Xaltrion AI pricing - monthly, annual, and Founders plans (USD)." />
-  <meta property="og:title" content="Xaltrion Pricing" />
-  <meta property="og:description" content="Simple, transparent USD pricing for the Xaltrion AI local-first trading bot." />
+  <title>Pricing — Xaltrion AI</title>
+  <meta name="description" content="One price. Lifetime if you mean it. Monthly, Annual, and Founders plans for Xaltrion AI." />
+  <meta property="og:title" content="Xaltrion AI Pricing" />
+  <meta property="og:description" content="Simple, transparent pricing. Runs locally — we never see your trades or your capital." />
   <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/mark-512.png" />
   <meta property="og:url" content="https://xaltrion.ai/pricing.html" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -18,38 +18,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/site.css" />
-  <style>
-    .email-capture {
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: var(--r-lg);
-      padding: 1.5rem;
-      max-width: 500px;
-      margin: 2rem auto;
-      text-align: center;
-    }
-    .email-capture input {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: var(--r-md);
-      border: 1px solid var(--hairline);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      font-family: var(--font-ui);
-    }
-    .faq {
-      max-width: 700px;
-      margin: 3rem auto;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--hairline);
-      padding: 1rem 0;
-    }
-    .faq-item h4 { margin: 0 0 0.5rem; color: var(--text); }
-    .faq-item p { margin: 0; color: var(--text-3); }
-  </style>
 </head>
 
 <body>
@@ -59,73 +27,146 @@
       <ul class="nav-links">
         <li><a href="index.html#features">Features</a></li>
         <li><a href="index.html#brokers">Brokers</a></li>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="pricing.html" style="color:var(--text)">Pricing</a></li>
         <li><a href="docs.html">Docs</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
       </ul>
-      <a class="cta cta-primary" href="#plans">Choose plan</a>
+      <a class="cta cta-secondary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
     </div>
   </nav>
 
-  <header class="hero container">
-    <h1>Pricing</h1>
-    <p>Local-first, subscription-gated software. Pick a plan that matches your usage. Cancel anytime.</p>
-    <p class="muted">All prices in USD. Your card provider may apply a currency conversion fee.</p>
+  <!-- ═══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header class="ws-pricing-page-hdr">
+    <div class="container">
+      <div class="ws-pricing-header">
+        <div class="x-eyebrow">Pricing</div>
+        <h1>One price. <em>Lifetime</em> if you mean it.</h1>
+        <p class="sub">
+          Xaltrion runs locally and connects to the broker you already trust.
+          We never see your trades or your capital &mdash; only you do.
+        </p>
+      </div>
+    </div>
   </header>
 
-  <section id="plans" class="container">
-    <div class="grid">
-      <article class="card">
-        <span class="tag">Flexible</span>
-        <h3>Monthly</h3>
-        <div class="price"><span class="x-mono">$16</span> <small>/ month</small></div>
-        <p class="muted">Full trading features. Cancel anytime.</p>
-        <button class="btn btn-secondary" onclick="startCheckout('monthly', event)">Choose Monthly</button>
-      </article>
-      <article class="card featured">
-        <span class="tag">Best value</span>
-        <h3>Annual</h3>
-        <div class="price"><span class="x-mono">$135</span> <small>/ year</small></div>
-        <p class="muted">Lock in your plan and save vs monthly.</p>
-        <button class="btn btn-primary" onclick="startCheckout('annual', event)">Choose Annual</button>
-      </article>
-      <article class="card">
-        <span class="tag">Limited</span>
-        <h3>Founders</h3>
-        <div class="price"><span class="x-mono">$135</span> <small>once</small></div>
-        <p class="muted">One-time access for early supporters. 47 seats remaining.</p>
-        <button class="btn btn-secondary" onclick="startCheckout('founders', event)">Claim Founders</button>
-      </article>
+  <!-- ═══ PRICING CARDS ════════════════════════════════════════════════════════ -->
+  <section id="plans" class="ws-pricing-plans-bg">
+    <div class="container">
+      <div class="pc-grid">
+
+        <!-- Monthly -->
+        <div class="pc-card">
+          <span class="pc-badge">Most flexible</span>
+          <div class="pc-tier">Monthly</div>
+          <p class="pc-blurb">Try it month to month. Cancel any time, keep what you&rsquo;ve made.</p>
+          <div class="pc-price-row">
+            <span class="x-mono">$16</span>
+            <span class="pc-price-period">/ month</span>
+          </div>
+          <a class="paypal-btn" href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-MONTHLY" target="_blank" rel="noopener">
+            <span class="paypal-btn__logo"><span class="paypal-btn__logo--pp">Pay</span><span class="paypal-btn__logo--al">Pal</span></span>
+            <span class="paypal-btn__label">&middot; Buy now</span>
+          </a>
+          <div class="pc-sep"></div>
+          <ul class="pc-features">
+            <li>All three portal experiences (Simple, Operator, Expert)</li>
+            <li>Paper &amp; live trading</li>
+            <li>Bring your own broker keys</li>
+            <li>Custom risk guardrails &amp; kill switches</li>
+            <li>Up to $5 / day in AI spend</li>
+            <li>Decision audit &amp; exports</li>
+            <li>7-day free trial &middot; no card required</li>
+          </ul>
+        </div>
+
+        <!-- Annual (featured) -->
+        <div class="pc-card pc-card--featured">
+          <span class="pc-badge">Best value</span>
+          <div class="pc-tier">Annual <span class="pc-badge-note">Save $57&nbsp;/&nbsp;yr</span></div>
+          <p class="pc-blurb">For operators who stay. Same product, less paperwork &mdash; 30% off.</p>
+          <div class="pc-price-row">
+            <span class="x-mono">$135</span>
+            <span class="pc-price-period">/ year</span>
+          </div>
+          <a class="paypal-btn" href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-ANNUAL" target="_blank" rel="noopener">
+            <span class="paypal-btn__logo"><span class="paypal-btn__logo--pp">Pay</span><span class="paypal-btn__logo--al">Pal</span></span>
+            <span class="paypal-btn__label">&middot; Buy now</span>
+          </a>
+          <div class="pc-sep"></div>
+          <ul class="pc-features">
+            <li>Everything in Monthly</li>
+            <li>Locked-in price &mdash; never raised on you</li>
+            <li>Priority email support</li>
+            <li>Early access to new model versions</li>
+            <li>Up to $10 / day in AI spend</li>
+            <li>Backtest engine &mdash; 5 years of data</li>
+          </ul>
+        </div>
+
+        <!-- Founders -->
+        <div class="pc-card">
+          <span class="pc-badge pc-badge--warn">312 / 500 left</span>
+          <div class="pc-tier">Founders</div>
+          <p class="pc-blurb">Lifetime license, one machine. Limited to the first 500 operators.</p>
+          <div class="pc-price-row">
+            <span class="x-mono">$135</span>
+            <span class="pc-price-period">/ once</span>
+            <span class="pc-price-lifetime">LIFETIME</span>
+          </div>
+          <a class="paypal-btn" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=payments@xaltrion.ai&item_name=Xaltrion+Founders+License&amount=135.00&currency_code=USD" target="_blank" rel="noopener">
+            <span class="paypal-btn__logo"><span class="paypal-btn__logo--pp">Pay</span><span class="paypal-btn__logo--al">Pal</span></span>
+            <span class="paypal-btn__label">&middot; Buy now</span>
+          </a>
+          <div class="pc-sep"></div>
+          <ul class="pc-features">
+            <li>Everything in Annual &mdash; forever</li>
+            <li>No subscription &mdash; ever</li>
+            <li>Direct line to engineering</li>
+            <li>Influence the roadmap</li>
+            <li>Founders&rsquo; ledger &mdash; your handle in the app</li>
+            <li>Lifetime model updates</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pc-trust" style="margin-top:28px">
+        <span>14-day money-back</span>
+        <span class="pc-trust-sep">&middot;</span>
+        <span>Secure checkout via PayPal</span>
+        <span class="pc-trust-sep">&middot;</span>
+        <span>&#x2318; macOS &middot; &#x229E; Windows &middot; Linux</span>
+      </div>
     </div>
-    <p class="guarantee">14-day money-back guarantee on all plans</p>
   </section>
 
-  <section class="container">
-    <div class="email-capture">
-      <h3>Not ready? Get launch updates</h3>
-      <p class="muted">Be first to hear about new brokers, features, and promotions.</p>
-      <input type="email" placeholder="you@email.com" id="email-input" />
-      <button class="btn btn-secondary" onclick="captureEmail()">Notify me</button>
-    </div>
-  </section>
-
-  <section class="container">
-    <h2>FAQ</h2>
+  <!-- ═══ FAQ ══════════════════════════════════════════════════════════════════ -->
+  <section class="container" style="padding:4rem 0">
+    <h2>Frequently asked</h2>
     <div class="faq">
       <div class="faq-item">
-        <h4>Where does my data live?</h4>
-        <p>On your machine. Keys, journal data, and bot state never leave your device.</p>
+        <h4 class="faq-item__q">Where does my data live?</h4>
+        <p class="faq-item__a">On your machine. API keys, trade journal data, and bot state never leave your device. The activation heartbeat sends only a hashed machine ID and key hash &mdash; never personal data or trade history.</p>
       </div>
       <div class="faq-item">
-        <h4>Can I switch plans?</h4>
-        <p>Yes - upgrade or cancel anytime from PayPal subscription settings.</p>
+        <h4 class="faq-item__q">Can I switch plans?</h4>
+        <p class="faq-item__a">Yes. Upgrade or cancel anytime from your PayPal subscription settings. Downgrades take effect at the end of your billing period.</p>
       </div>
       <div class="faq-item">
-        <h4>Which brokers are supported?</h4>
-        <p>Alpaca, Luno, Binance, IG South Africa, Kraken, cTrader and Pepperstone via cTrader.</p>
+        <h4 class="faq-item__q">What happens after I buy?</h4>
+        <p class="faq-item__a">You&rsquo;ll receive a license key by email within minutes. Enter it in the app&rsquo;s Setup screen and you&rsquo;re live. Keys validate against our server using only your machine ID hash &mdash; results are cached for 24 hours.</p>
       </div>
       <div class="faq-item">
-        <h4>How is billing handled?</h4>
-        <p>PayPal in USD. Use any major card or your PayPal balance.</p>
+        <h4 class="faq-item__q">What brokers are supported?</h4>
+        <p class="faq-item__a">Alpaca (live &amp; paper), IBKR, Tradier, Luno, Binance, IG South Africa, and cTrader / Pepperstone. More being added regularly.</p>
+      </div>
+      <div class="faq-item">
+        <h4 class="faq-item__q">Is there a free trial?</h4>
+        <p class="faq-item__a">Monthly plans include a 7-day free trial with no card required. You can also paper-trade indefinitely without a license.</p>
+      </div>
+      <div class="faq-item">
+        <h4 class="faq-item__q">How is billing handled?</h4>
+        <p class="faq-item__a">PayPal in USD. Use any major card, your PayPal balance, or PayPal&rsquo;s Pay Later. Your card provider may apply a currency conversion fee.</p>
       </div>
     </div>
   </section>
@@ -139,20 +180,11 @@
         <a href="docs.html">Docs</a>
         <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
       </div>
-      <div class="muted">Built in South Africa 🇿🇦</div>
+      <div class="muted">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2025 Xaltrion AI</div>
     </div>
   </footer>
 
-  <script src="assets/js/paypal.js"></script>
   <script src="assets/js/crisp.js"></script>
-  <script>
-    function captureEmail() {
-      var email = document.getElementById('email-input').value;
-      if (!email || !email.includes('@')) { alert('Please enter a valid email'); return; }
-      alert('Thanks! We will notify you about updates at ' + email);
-      document.getElementById('email-input').value = '';
-    }
-  </script>
 </body>
 
 </html>
