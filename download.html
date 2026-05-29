@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Download | Xaltrion AI</title>
-  <meta name="description" content="Download the latest Xaltrion AI Windows installer." />
+  <title>Download — Xaltrion AI</title>
+  <meta name="description" content="Download Xaltrion AI for Windows. Local-first — your keys and data stay on your machine." />
+  <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/mark-512.png" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
@@ -20,37 +21,89 @@
     <div class="container nav-row">
       <a class="x-logotype" href="index.html" aria-label="Xaltrion home">XALTRION<span class="co">AI</span></a>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="docs.html">Docs</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#brokers">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
         <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="docs.html">Docs</a></li>
       </ul>
-      <a class="cta cta-primary" href="pricing.html">Get a license</a>
+      <a class="cta cta-primary" href="pricing.html" style="font-size:13px;padding:10px 16px">Get a license</a>
     </div>
   </nav>
 
-  <header class="hero container">
-    <h1>Download Xaltrion</h1>
-    <p>Latest Windows release. Local-first - your keys and data stay on your machine.</p>
-    <div class="hero-actions">
-      <a class="cta cta-primary" href="https://github.com/izakl/xaltrion/releases/latest">Download from GitHub</a>
-      <a class="cta cta-secondary" href="docs.html">Setup guide</a>
+  <!-- ═══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header style="padding:5rem 0 3rem;background:var(--ink-950,#0a0a0f);background-image:radial-gradient(ellipse at 50% -10%,oklch(0.68 0.21 250 / 0.10) 0%,transparent 55%);text-align:center">
+    <div class="container">
+      <div class="x-eyebrow" style="margin-bottom:12px">Download</div>
+      <h1 style="font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-0.03em;margin:0 0 16px">Download Xaltrion</h1>
+      <p class="sub" style="max-width:480px;margin:0 auto 32px;line-height:1.55">Local-first &mdash; your keys, strategies, and trade data stay on your machine. No cloud, no middleman.</p>
+      <a class="cta cta-primary" href="https://github.com/izakl/xaltrion/releases/latest" target="_blank" rel="noopener" style="padding:14px 28px;font-size:15px">Download from GitHub &rarr;</a>
+      <div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--text-3)">v1.0.0-beta &middot; 2026-05-29</div>
     </div>
   </header>
 
-  <section class="container">
-    <div class="cards">
+  <!-- ═══ PLATFORM BADGES ══════════════════════════════════════════════════════ -->
+  <section style="padding:3rem 0">
+    <div class="container">
+      <div class="x-eyebrow" style="margin-bottom:16px">Platforms</div>
+      <div class="platform-badges">
+        <div class="platform-badge platform-badge--available">
+          <span class="platform-badge__icon">&#x229E;</span>
+          <div class="platform-badge__label">
+            <span class="platform-badge__name">Windows</span>
+            <span class="platform-badge__sub">AVAILABLE NOW</span>
+          </div>
+        </div>
+        <div class="platform-badge platform-badge--soon">
+          <span class="platform-badge__icon">&#x2318;</span>
+          <div class="platform-badge__label">
+            <span class="platform-badge__name">macOS</span>
+            <span class="platform-badge__sub">COMING SOON</span>
+          </div>
+        </div>
+        <div class="platform-badge platform-badge--soon">
+          <span class="platform-badge__icon">&#x1F427;</span>
+          <div class="platform-badge__label">
+            <span class="platform-badge__name">Linux</span>
+            <span class="platform-badge__sub">COMING SOON</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INSTALL STEPS ═══════════════════════════════════════════════════════ -->
+  <section class="container" style="padding-bottom:5rem">
+    <h2>Installation</h2>
+    <p class="sub">Three steps from download to trading.</p>
+    <div class="cards" style="margin-top:1.5rem">
       <article class="card">
-        <h3>1. Download</h3>
-        <p>Grab the latest <code class="x-mono">.zip</code> from GitHub releases.</p>
+        <span class="step-num" style="margin-bottom:10px;display:inline-grid">1</span>
+        <h3>Download</h3>
+        <p>Grab the latest <span class="x-mono" style="font-size:0.9em;background:var(--surface-soft);padding:1px 5px;border-radius:4px">.exe</span> installer from GitHub Releases. Click the asset named <span class="x-mono" style="font-size:0.9em;background:var(--surface-soft);padding:1px 5px;border-radius:4px">XaltrionSetup-&hellip;-windows.exe</span>.</p>
       </article>
       <article class="card">
-        <h3>2. Run install.ps1</h3>
-        <p>Right-click and run with PowerShell to set up the local venv.</p>
+        <span class="step-num" style="margin-bottom:10px;display:inline-grid">2</span>
+        <h3>Install &amp; activate</h3>
+        <p>Run the installer. On first launch, enter your <span class="x-mono" style="font-size:0.9em;background:var(--surface-soft);padding:1px 5px;border-radius:4px">XALT-XXXX-XXXX-XXXX-XXXX</span> key on the activation screen. No account needed.</p>
       </article>
       <article class="card">
-        <h3>3. Activate</h3>
-        <p>Paste your <code class="x-mono">XALT-XXXX-XXXX-XXXX-XXXX</code> key on the activation screen.</p>
+        <span class="step-num" style="margin-bottom:10px;display:inline-grid">3</span>
+        <h3>Connect &amp; trade</h3>
+        <p>Add your broker and AI keys in Settings. Start in paper mode, confirm everything looks right, then flip live when you&rsquo;re ready.</p>
       </article>
+    </div>
+
+    <div style="margin-top:2.5rem;padding:20px 24px;background:var(--surface);border:1px solid var(--hairline);border-radius:12px;display:flex;align-items:flex-start;gap:16px">
+      <div style="font-size:20px;flex-shrink:0">&#x26A0;&#xFE0F;</div>
+      <div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Windows SmartScreen may warn you</div>
+        <div style="font-size:12px;color:var(--text-3);line-height:1.55">The installer is unsigned during beta. Click <strong style="color:var(--text)">&ldquo;More info&rdquo;</strong> then <strong style="color:var(--text)">&ldquo;Run anyway&rdquo;</strong> to proceed. A signed release is planned for v1.0 GA.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:center">
+      <p class="sub" style="font-size:13px">Need a license? <a href="pricing.html" style="color:var(--accent-2)">View plans</a> &mdash; or paper-trade free, no key required.</p>
     </div>
   </section>
 
@@ -58,11 +111,15 @@
     <div class="container">
       <div class="footer-links">
         <a href="index.html">Home</a>
+        <a href="roadmap.html">Roadmap</a>
         <a href="pricing.html">Pricing</a>
+        <a href="download.html">Download</a>
         <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
         <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
       </div>
-      <div class="muted">Built in South Africa 🇿🇦</div>
+      <div class="muted">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
     </div>
   </footer>
 

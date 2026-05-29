@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Docs | Xaltrion AI</title>
-  <meta name="description" content="Xaltrion AI documentation - install, setup, brokers, troubleshooting." />
+  <title>Docs — Xaltrion AI</title>
+  <meta name="description" content="Xaltrion AI documentation — install, setup, brokers, troubleshooting." />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
@@ -58,11 +58,13 @@
     <div class="container nav-row">
       <a class="x-logotype" href="index.html" aria-label="Xaltrion home">XALTRION<span class="co">AI</span></a>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="docs.html">Docs</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#brokers">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
         <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="docs.html" style="color:var(--text)">Docs</a></li>
       </ul>
-      <a class="cta cta-primary" href="download.html">Download</a>
+      <a class="cta cta-primary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
     </div>
   </nav>
 
@@ -83,35 +85,40 @@
 
       <section id="install">
         <h2>Installation</h2>
-        <p>Xaltrion ships as a Windows installer with a local Python venv.</p>
+        <p>Xaltrion ships as a Windows installer. macOS and Linux are on the roadmap.</p>
         <ol>
-          <li>Download the latest release from <a href="https://github.com/izakl/xaltrion/releases/latest">GitHub Releases</a>.</li>
-          <li>Extract the <code class="x-mono">.zip</code> to a folder of your choice.</li>
-          <li>Right-click <code class="x-mono">install.ps1</code> and run with PowerShell.</li>
-          <li>The installer creates a <code class="x-mono">.venv</code> and installs dependencies.</li>
+          <li>Download the latest <code>.exe</code> from <a href="https://github.com/izakl/xaltrion/releases/latest">GitHub Releases</a>.</li>
+          <li>Run the installer. Windows SmartScreen may warn you &mdash; click <strong>More info</strong> then <strong>Run anyway</strong>.</li>
+          <li>On first launch, enter your <code>XALT-XXXX-XXXX-XXXX-XXXX</code> license key on the activation screen.</li>
+          <li>Add your broker and AI keys in <strong>Settings</strong> and start paper trading.</li>
         </ol>
       </section>
 
       <section id="brokers">
         <h2>Broker setup</h2>
-        <p>Xaltrion supports six brokers out of the box. Add credentials via the Setup page.</p>
-        <h3>Alpaca (US equities + crypto)</h3>
-        <p>Sign up at <a href="https://alpaca.markets">alpaca.markets</a>, paper account by default.</p>
+        <p>Three brokers are live now. Add credentials via the Settings page inside the portal.</p>
+
+        <h3>Alpaca (US stocks &amp; crypto)</h3>
+        <p>Sign up at <a href="https://alpaca.markets">alpaca.markets</a>. A paper account is created automatically. Generate API keys under <strong>API Keys</strong> in your Alpaca dashboard and paste them into Settings &rarr; Brokers &rarr; Alpaca.</p>
+
         <h3>Luno (ZAR crypto)</h3>
-        <p>Use API keys from your Luno account. Start in paper mode.</p>
-        <h3>Binance, IG SA, Kraken, cTrader</h3>
-        <p>Each broker has its own settings tab in the portal at <code class="x-mono">http://localhost:8080/settings</code>.</p>
+        <p>Create API keys at <a href="https://www.luno.com">luno.com</a> under Account &rarr; API keys. Grant <strong>read</strong> and <strong>trade</strong> permissions. Paste into Settings &rarr; Brokers &rarr; Luno.</p>
+
+        <h3>VALR (ZAR crypto)</h3>
+        <p>Generate keys in your VALR account under API management. Grant read and trade permissions. Paste into Settings &rarr; Brokers &rarr; VALR.</p>
+
+        <h3>Coming soon</h3>
+        <p>Binance, Interactive Brokers, MetaTrader 5, OKX, Bybit, Rain, and 9 more. <a href="roadmap.html">See the full roadmap.</a></p>
       </section>
 
       <section id="dashboard">
         <h2>Dashboard guide</h2>
-        <p>The portal opens at <code class="x-mono">http://localhost:8080</code> after starting the app. Key pages:</p>
+        <p>The portal opens at <code>http://localhost:8080</code> after starting the app. Choose your portal from the top ribbon.</p>
         <ul>
-          <li><strong>Dashboard</strong> - portfolio value, positions, recent activity</li>
-          <li><strong>Portfolio</strong> - holdings table + chart with P&amp;L</li>
-          <li><strong>Journal</strong> - every AI decision logged as JSONL</li>
-          <li><strong>Settings</strong> - risk, watchlist, brokers, AI provider</li>
-          <li><strong>Analytics</strong> - win rate, Sharpe, monthly returns</li>
+          <li><strong>Simple</strong> &mdash; equity curve, open positions, recent decisions. Clean and calm.</li>
+          <li><strong>Operator</strong> &mdash; multi-broker portfolio, AI spend tile, risk guardrail bars, equity graph with range selector.</li>
+          <li><strong>Expert</strong> &mdash; full console, AI reasoning log with <code>[OBSERVE][TRIGGER][ACT][CONTEXT]</code> tags, live feeds, orders, backtest, heartbeat.</li>
+          <li><strong>Settings</strong> &mdash; brokers, AI provider, risk limits, notifications, licensing.</li>
         </ul>
       </section>
 
@@ -119,22 +126,22 @@
         <h2>Troubleshooting</h2>
 
         <h3>License token cache stale</h3>
-        <p>Delete <code class="x-mono">.activation_cache.json</code> and <code class="x-mono">state/license_token.json</code> then restart the app.</p>
+        <p>Delete <code>.activation_cache.json</code> and <code>state/license_token.json</code> then restart the app.</p>
 
         <h3>Machine binding mismatch</h3>
         <p>If you moved to a new machine, contact <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a> to clear the binding.</p>
 
         <h3>Port 8080 already in use</h3>
-        <p>Start with a different port: <code class="x-mono">python -m src.main --ui-port 8081</code>.</p>
+        <p>Start with a different port: <code>python -m src.main --ui-port 8081</code>.</p>
 
         <h3>Windows SmartScreen blocks installer</h3>
-        <p>Click "More info" then "Run anyway". The installer is unsigned during alpha.</p>
+        <p>Click <strong>More info</strong> then <strong>Run anyway</strong>. The installer is unsigned during beta.</p>
 
-        <h3>Perplexity research not running</h3>
-        <p>Add <code class="x-mono">PERPLEXITY_API_KEY</code> in Setup. Without it, the agent runs in Claude-only mode.</p>
+        <h3>Perplexity context not running</h3>
+        <p>Add your <code>PERPLEXITY_API_KEY</code> in Settings &rarr; AI. Without it, the agent runs in Claude-only mode.</p>
 
-        <h3>localStorage reset</h3>
-        <p>To reset dashboard layout, open DevTools and run <code class="x-mono">localStorage.clear()</code> on <code class="x-mono">localhost:8080</code>.</p>
+        <h3>Reset dashboard layout</h3>
+        <p>Open DevTools and run <code>localStorage.clear()</code> on <code>localhost:8080</code>.</p>
       </section>
     </main>
   </div>
@@ -143,11 +150,14 @@
     <div class="container">
       <div class="footer-links">
         <a href="index.html">Home</a>
+        <a href="roadmap.html">Roadmap</a>
         <a href="pricing.html">Pricing</a>
         <a href="download.html">Download</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
         <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
       </div>
-      <div class="muted">Built in South Africa 🇿🇦</div>
+      <div class="muted">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
     </div>
   </footer>
 
