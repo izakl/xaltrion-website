@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pricing — Xaltrion AI</title>
-  <meta name="description" content="One price. Lifetime if you mean it. Monthly, Annual, and Founders plans for Xaltrion AI." />
+  <meta name="description" content="One price. Lifetime if you mean it. Monthly, Annual, and Founders plans for Xaltrion AI — currently in early access." />
   <meta property="og:title" content="Xaltrion AI Pricing" />
   <meta property="og:description" content="Simple, transparent pricing. Runs locally — we never see your trades or your capital." />
   <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/mark-512.png" />
@@ -27,12 +27,13 @@
       <ul class="nav-links">
         <li><a href="index.html#features">Features</a></li>
         <li><a href="index.html#brokers">Brokers</a></li>
-        <li><a href="index.html#intelligence">Intelligence</a></li>
         <li><a href="roadmap.html">Roadmap</a></li>
         <li><a href="pricing.html" style="color:var(--text)">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
         <li><a href="docs.html">Docs</a></li>
       </ul>
-      <a class="cta cta-secondary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
+      <a class="cta cta-primary" href="download.html" style="padding:10px 18px;font-size:13px">Download</a>
     </div>
   </nav>
 
@@ -50,9 +51,18 @@
     </div>
   </header>
 
-  <!-- ═══ PRICING CARDS ════════════════════════════════════════════════════════ -->
+  <!-- ═══ PLANS ════════════════════════════════════════════════════════════════ -->
   <section id="plans" class="ws-pricing-plans-bg">
     <div class="container">
+
+      <!-- Early access banner -->
+      <div class="early-access-banner">
+        <div class="early-access-banner__eyebrow">&#x1F680; Early Access &mdash; Free for 90 days</div>
+        <h2>Be one of the first <em>50 traders</em> to try Xaltrion.</h2>
+        <p>No payment required during the preview period. Plans below will launch after early access closes.</p>
+        <a class="cta cta-primary" href="beta.html" style="padding:12px 22px;font-size:14px">Apply for Early Access &rarr;</a>
+      </div>
+
       <div class="pc-grid">
 
         <!-- Monthly -->
@@ -64,10 +74,8 @@
             <span class="x-mono">$16</span>
             <span class="pc-price-period">/ month</span>
           </div>
-          <a class="paypal-btn" href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-MONTHLY" target="_blank" rel="noopener">
-            <span class="paypal-btn__logo"><span class="paypal-btn__logo--pp">Pay</span><span class="paypal-btn__logo--al">Pal</span></span>
-            <span class="paypal-btn__label">&middot; Buy now</span>
-          </a>
+          <div class="pc-coming-soon">&#x23F3;&ensp;Coming Soon</div>
+          <button class="btn-interest" onclick="openInterest('Monthly')">Register your interest &rarr;</button>
           <div class="pc-sep"></div>
           <ul class="pc-features">
             <li>All three portal experiences (Simple, Operator, Expert)</li>
@@ -89,10 +97,8 @@
             <span class="x-mono">$135</span>
             <span class="pc-price-period">/ year</span>
           </div>
-          <a class="paypal-btn" href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-ANNUAL" target="_blank" rel="noopener">
-            <span class="paypal-btn__logo"><span class="paypal-btn__logo--pp">Pay</span><span class="paypal-btn__logo--al">Pal</span></span>
-            <span class="paypal-btn__label">&middot; Buy now</span>
-          </a>
+          <div class="pc-coming-soon">&#x23F3;&ensp;Coming Soon</div>
+          <button class="btn-interest" onclick="openInterest('Annual')">Register your interest &rarr;</button>
           <div class="pc-sep"></div>
           <ul class="pc-features">
             <li>Everything in Monthly</li>
@@ -114,10 +120,8 @@
             <span class="pc-price-period">/ once</span>
             <span class="pc-price-lifetime">LIFETIME</span>
           </div>
-          <a class="paypal-btn" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=payments@xaltrion.ai&item_name=Xaltrion+Founders+License&amount=135.00&currency_code=USD" target="_blank" rel="noopener">
-            <span class="paypal-btn__logo"><span class="paypal-btn__logo--pp">Pay</span><span class="paypal-btn__logo--al">Pal</span></span>
-            <span class="paypal-btn__label">&middot; Buy now</span>
-          </a>
+          <div class="pc-coming-soon">&#x23F3;&ensp;Coming Soon</div>
+          <button class="btn-interest" onclick="openInterest('Founders')">Register your interest &rarr;</button>
           <div class="pc-sep"></div>
           <ul class="pc-features">
             <li>Everything in Annual &mdash; forever</li>
@@ -132,7 +136,7 @@
       </div>
 
       <div class="pc-trust" style="margin-top:28px">
-        <span>14-day money-back</span>
+        <span>14-day money-back (on launch)</span>
         <span class="pc-trust-sep">&middot;</span>
         <span>Secure checkout via PayPal</span>
         <span class="pc-trust-sep">&middot;</span>
@@ -146,6 +150,10 @@
     <h2>Frequently asked</h2>
     <div class="faq">
       <div class="faq-item">
+        <h4 class="faq-item__q">When will paid plans launch?</h4>
+        <p class="faq-item__a">After the early access period closes. Early access testers get 90 days free, and registered interests will be notified first when plans go live.</p>
+      </div>
+      <div class="faq-item">
         <h4 class="faq-item__q">Where does my data live?</h4>
         <p class="faq-item__a">On your machine. API keys, trade journal data, and bot state never leave your device. The activation heartbeat sends only a hashed machine ID and key hash &mdash; never personal data or trade history.</p>
       </div>
@@ -155,22 +163,18 @@
       </div>
       <div class="faq-item">
         <h4 class="faq-item__q">Can I switch plans?</h4>
-        <p class="faq-item__a">Yes. Upgrade or cancel anytime from your PayPal subscription settings. Downgrades take effect at the end of your billing period.</p>
-      </div>
-      <div class="faq-item">
-        <h4 class="faq-item__q">What happens after I buy?</h4>
-        <p class="faq-item__a">You&rsquo;ll receive a license key by email within minutes. Enter it in the app&rsquo;s activation screen and you&rsquo;re live. Keys validate against our server using only your machine ID hash &mdash; results are cached for 24 hours.</p>
+        <p class="faq-item__a">Yes. Upgrade or cancel anytime from your subscription settings. Downgrades take effect at the end of your billing period.</p>
       </div>
       <div class="faq-item">
         <h4 class="faq-item__q">Is there a free trial?</h4>
-        <p class="faq-item__a">Monthly plans include a 7-day free trial with no card required. You can also paper-trade indefinitely without a license.</p>
+        <p class="faq-item__a">Early access is free for 90 days. After launch, Monthly plans will include a 7-day free trial with no card required. You can also paper-trade indefinitely without a license.</p>
       </div>
       <div class="faq-item">
         <h4 class="faq-item__q">What AI models does Xaltrion use?</h4>
         <p class="faq-item__a">Claude Haiku 4.5 for fast routine decisions and Claude Sonnet 4.6 for deeper analysis. Perplexity provides real-time market context. You bring your own API keys and pay providers at cost &mdash; Xaltrion takes no cut.</p>
       </div>
       <div class="faq-item">
-        <h4 class="faq-item__q">How is billing handled?</h4>
+        <h4 class="faq-item__q">How will billing be handled?</h4>
         <p class="faq-item__a">PayPal in USD. Use any major card, your PayPal balance, or PayPal&rsquo;s Pay Later. Your card provider may apply a currency conversion fee.</p>
       </div>
     </div>
@@ -182,16 +186,147 @@
         <a href="index.html">Home</a>
         <a href="roadmap.html">Roadmap</a>
         <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
         <a href="download.html">Download</a>
         <a href="docs.html">Docs</a>
         <a href="changelog.html">Changelog</a>
         <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
         <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
       </div>
-      <div class="muted">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
+      <div style="margin-top:8px">
+        <a href="https://ko-fi.com/xaltrion" target="_blank" rel="noopener" style="font-size:12px;color:var(--text-3);text-decoration:none">&#x2615; Support Xaltrion on Ko-fi</a>
+      </div>
+      <div class="muted" style="margin-top:4px">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
     </div>
   </footer>
 
+  <!-- ═══ INTEREST MODAL ═══════════════════════════════════════════════════════ -->
+  <div class="x-modal-overlay" id="interest-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="x-modal">
+      <button class="x-modal__close" onclick="closeInterest()" aria-label="Close">&times;</button>
+
+      <!-- Form view -->
+      <div id="interest-form-wrap">
+        <div class="x-modal__eyebrow">Register interest</div>
+        <h3 id="modal-title">Notify me when <span id="modal-plan-name">this plan</span> launches</h3>
+        <p>We&rsquo;ll email you as soon as it&rsquo;s available. No spam &mdash; just the one launch email.</p>
+
+        <form id="interest-form" novalidate>
+          <div class="x-modal-field">
+            <label for="interest_email">Email address *</label>
+            <input class="x-modal-input" type="email" id="interest_email" name="interest_email" required placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="x-modal-field">
+            <label for="interest_name">Name <span style="font-weight:400;color:var(--text-3)">(optional)</span></label>
+            <input class="x-modal-input" type="text" id="interest_name" name="interest_name" placeholder="Jane Smith" autocomplete="name" />
+          </div>
+          <label class="x-modal-check">
+            <input type="checkbox" name="interest_opt_in" id="interest_opt_in" checked />
+            I&rsquo;d like to receive updates about Xaltrion (unsubscribe any time)
+          </label>
+          <div id="interest-error" style="display:none;margin-top:12px;font-size:12px;color:oklch(0.82 0.10 28)"></div>
+          <button class="x-modal-submit" type="submit" id="interest-submit-btn">Notify me</button>
+        </form>
+      </div>
+
+      <!-- Success view -->
+      <div id="interest-success" style="display:none">
+        <div class="x-modal-success">
+          <div class="x-modal-success__icon">&#x1F4EC;</div>
+          <h4>You&rsquo;re on the list!</h4>
+          <p>We&rsquo;ll notify you when <strong id="success-plan-name"></strong> plans launch.</p>
+          <button class="x-modal-done-btn" onclick="closeInterest()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var currentPlan = '';
+
+    function openInterest(plan) {
+      currentPlan = plan;
+      document.getElementById('modal-plan-name').textContent = plan;
+      document.getElementById('interest-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('interest_email').focus();
+    }
+
+    function closeInterest() {
+      document.getElementById('interest-modal').classList.remove('active');
+      document.body.style.overflow = '';
+      // Reset for re-use
+      setTimeout(function () {
+        document.getElementById('interest-success').style.display = 'none';
+        document.getElementById('interest-form-wrap').style.display = 'block';
+        document.getElementById('interest-form').reset();
+        document.getElementById('interest_opt_in').checked = true;
+        document.getElementById('interest-error').style.display = 'none';
+        var btn = document.getElementById('interest-submit-btn');
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+      }, 250);
+    }
+
+    document.getElementById('interest-modal').addEventListener('click', function (e) {
+      if (e.target === this) closeInterest();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeInterest();
+    });
+
+    document.getElementById('interest-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('interest-submit-btn');
+      var errEl = document.getElementById('interest-error');
+      var email = this.elements['interest_email'].value.trim();
+
+      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        errEl.textContent = 'Please enter a valid email address.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      errEl.style.display = 'none';
+
+      var payload = {
+        email: email,
+        name: this.elements['interest_name'].value.trim(),
+        plan: currentPlan,
+        opted_in: this.elements['interest_opt_in'].checked
+      };
+
+      try {
+        var res = await fetch('https://license.xaltrion.ai/api/interest/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          var err = await res.json().catch(function () { return {}; });
+          throw new Error(err.message || 'Server error');
+        }
+
+        document.getElementById('interest-form-wrap').style.display = 'none';
+        document.getElementById('success-plan-name').textContent = currentPlan;
+        document.getElementById('interest-success').style.display = 'block';
+
+      } catch (err) {
+        errEl.textContent = err.message && err.message !== 'Failed to fetch'
+          ? err.message
+          : 'Something went wrong. Please try again.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+      }
+    });
+  </script>
   <script src="assets/js/crisp.js"></script>
 </body>
 
