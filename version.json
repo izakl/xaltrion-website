@@ -1,7 +1,23 @@
 {
   "version": "1.0.0-beta",
-  "release_date": "2026-05-27",
+  "release_date": "2026-05-29",
   "download_url": "https://github.com/izakl/xaltrion/releases/download/v1.0.0-beta/XaltrionSetup-1.0.0-beta-windows.exe",
   "release_notes": "Portal views complete — Simple, Operator, Expert. Data feeds: Polygon, Finnhub, FRED, Perplexity. Broker simulation layer. Auto-update notifications.",
-  "min_version": "0.0.1"
+  "min_version": "0.0.1",
+  "changelog": {
+    "whats_new": [
+      "Per-broker trading configuration",
+      "Discord and Telegram notifications",
+      "SQLite database for real trading history"
+    ],
+    "bug_fixes": [
+      "Portfolio ZAR loads instantly",
+      "Licence cache auto-refreshes on startup",
+      "Ticker ribbon scrolls continuously"
+    ],
+    "performance": [
+      "SQLite replaces JSON for all state data",
+      "FX rates cached locally for instant display"
+    ]
+  }
 }
