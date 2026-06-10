@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers: Referrer policy and CSP -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.crisp.chat https://client.crisp.chat; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://client.crisp.chat; font-src 'self' https://fonts.gstatic.com https://client.crisp.chat data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com https://client.crisp.chat wss://client.relay.crisp.chat; frame-src https://client.crisp.chat https://go.crisp.chat" />
+  <title>Roadmap — Xaltrion AI</title>
+  <meta name="description" content="Xaltrion AI product roadmap — what's available now, what's coming, and what's on the horizon." />
+  <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/mark-512.png" />
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="brokers.html">Brokers</a></li>
+        <li><a href="roadmap.html" style="color:var(--text)">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
+        <li><a href="docs.html">Docs</a></li>
+      </ul>
+      <a class="cta cta-primary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header class="roadmap-page-hdr">
+    <div class="container">
+      <div class="x-eyebrow" style="margin-bottom:12px">Product Roadmap</div>
+      <h1>Where we&rsquo;re going.</h1>
+      <p>From the brokers and features live at launch, to the global expansion and intelligence upgrades ahead. Updated as we ship.</p>
+    </div>
+  </header>
+
+  <!-- ═══ LEGEND ═══════════════════════════════════════════════════════════════ -->
+  <div style="border-bottom:1px solid var(--hairline);padding:16px 0">
+    <div class="container" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3)">Legend:</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gain)"><span style="width:8px;height:8px;border-radius:50%;background:var(--gain);display:inline-block"></span>Available at launch</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--status-warn)"><span style="width:8px;height:8px;border-radius:50%;background:var(--status-warn);display:inline-block"></span>Coming soon</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3)"><span style="width:8px;height:8px;border-radius:50%;background:var(--text-3);display:inline-block"></span>On the roadmap</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-4)"><span style="width:8px;height:8px;border-radius:50%;background:var(--text-4);display:inline-block"></span>Future</span>
+    </div>
+  </div>
+
+  <!-- ═══ PHASES ════════════════════════════════════════════════════════════════ -->
+  <section class="roadmap-phases">
+    <div class="container">
+
+      <!-- PHASE 1 -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p1">Phase 1</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p1">Available at launch</h2>
+          <div class="roadmap-phase-line"></div>
+          <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.10em;color:var(--gain)">v1.0.0-beta &middot; 2026-05-29</span>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Core AI trading engine</div>
+            <div class="roadmap-item__desc">Claude reasons every decision. Plain-English audit trail for every trade.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[AI]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Perplexity context AI</div>
+            <div class="roadmap-item__desc">Real-time market news, sentiment, and macro events synthesised into every decision.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[AI]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Alpaca Markets</div>
+            <div class="roadmap-item__desc">US stocks and crypto. Live and paper accounts. Commission-free equities.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[US]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Luno</div>
+            <div class="roadmap-item__desc">South African crypto exchange. ZAR markets, BTC, ETH, and major pairs.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">VALR</div>
+            <div class="roadmap-item__desc">SA crypto exchange with more pairs and deeper liquidity.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Simple portal</div>
+            <div class="roadmap-item__desc">Equity curve, open positions, recent decisions. Clean and calm.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Operator portal</div>
+            <div class="roadmap-item__desc">Multi-broker portfolio, AI spend, risk guardrail bars, equity graph with range selector.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Expert portal</div>
+            <div class="roadmap-item__desc">Console, AI reasoning log, live feeds, orders, backtest, heartbeat.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Paper trading</div>
+            <div class="roadmap-item__desc">Full simulation mode. No API keys required. Run indefinitely for free.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Risk guardrails</div>
+            <div class="roadmap-item__desc">Daily loss, drawdown, position size, and exposure limits. Hard floors — not suggestions.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Kill switch</div>
+            <div class="roadmap-item__desc">Flatten all positions and halt the agent. Hold 1.5s or press ⌘.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">AI spend controls</div>
+            <div class="roadmap-item__desc">Per-model daily budget caps. Bot pauses when limit is hit.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Backtest engine</div>
+            <div class="roadmap-item__desc">Replay strategies across 5 years of real ticks. Same code-path as live.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Data feeds</div>
+            <div class="roadmap-item__desc">Massive, Finnhub, FRED, CoinGecko. All via your own keys.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Discord &amp; Telegram alerts</div>
+            <div class="roadmap-item__desc">Trade notifications and guardrail breach alerts to your channels.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Windows installer</div>
+            <div class="roadmap-item__desc">One-click installer with auto-update pipeline.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[Windows]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p2">Phase 2</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p2">v1.1 &mdash; Coming soon</h2>
+          <div class="roadmap-phase-line"></div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Options trading &mdash; Phase 1</div>
+            <div class="roadmap-item__desc">Long calls and puts on US equities via Alpaca. AI-selected strikes, automatic close before expiry.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--options">Options</span>
+              <span class="btag btag--region">[US]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Goal-driven AI advisor</div>
+            <div class="roadmap-item__desc">Set target return, time horizon, and risk tolerance. Portfolio health score and goal tracking.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[AI]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">News intelligence</div>
+            <div class="roadmap-item__desc">Live symbol-level news from Alpaca fed directly into the AI observe cycle.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[AI]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Trailing stops &amp; bracket orders</div>
+            <div class="roadmap-item__desc">Advanced order types for systematic entry and exit management.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Single-account optimisation</div>
+            <div class="roadmap-item__desc">Alpaca-only users fully supported with a streamlined single-account workflow.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Binance</div>
+            <div class="roadmap-item__desc">Global crypto exchange. Spot and futures.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[Global]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Bybit</div>
+            <div class="roadmap-item__desc">Derivatives and spot crypto for ME and Asian markets.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ME]</span>
+              <span class="btag btag--region">[Asia]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">OKX</div>
+            <div class="roadmap-item__desc">Global crypto exchange. VASP licensed in UAE.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[Global]</span>
+              <span class="btag btag--region">[UAE]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Rain</div>
+            <div class="roadmap-item__desc">MENA-focused crypto exchange. AED markets.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[AED]</span>
+              <span class="btag btag--region">[ME]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Interactive Brokers</div>
+            <div class="roadmap-item__desc">Stocks, forex, options, futures. Global coverage.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--options">Options</span>
+              <span class="btag btag--region">[Global]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">macOS support</div>
+            <div class="roadmap-item__desc">Native macOS installer and package.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[macOS]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Email notifications</div>
+            <div class="roadmap-item__desc">Daily summary and alert emails to your inbox.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">JSE data pathway</div>
+            <div class="roadmap-item__desc">Dedicated South African equities data feed for JSE-listed stocks.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Asian market coverage</div>
+            <div class="roadmap-item__desc">Data feeds for Hong Kong, Singapore, and Tokyo markets.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[Asia]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Options strategy support</div>
+            <div class="roadmap-item__desc">Multi-leg options strategies with greeks-aware position sizing.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--options">Options</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Luno limit orders &amp; GTC/IOC support</div>
+            <div class="roadmap-item__desc">Place limit orders with Good-Till-Cancelled and Immediate-Or-Cancel semantics on Luno markets.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Luno multi-pair (ETHZAR, SOLZAR, XRPZAR) + order book AI context</div>
+            <div class="roadmap-item__desc">Expand Luno beyond BTCZAR to ETH, SOL, and XRP pairs. Order book depth fed into AI context for smarter entries.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">VALR native stop-loss &amp; take-profit</div>
+            <div class="roadmap-item__desc">VALR has built-in conditional orders — the AI places entry, take-profit, and stop-loss atomically. No price-monitoring loop needed.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">VALR limit orders &amp; OCO</div>
+            <div class="roadmap-item__desc">Limit orders with GTC semantics, plus native One-Cancels-Other orders. The AI sets both TP and SL in a single order.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">VALR multi-pair + order book AI context</div>
+            <div class="roadmap-item__desc">Expand beyond BTCZAR to top pairs by volume. Real-time order book depth fed into AI observe cycle for smarter entries.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p3">Phase 3</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p3">v1.2 &mdash; This year</h2>
+          <div class="roadmap-phase-line"></div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Options Phase 2</div>
+            <div class="roadmap-item__desc">Covered calls, cash-secured puts, vertical spreads, straddles.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--options">Options</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Fractional shares</div>
+            <div class="roadmap-item__desc">Trade partial shares of high-priced equities. Full exposure at any position size.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Extended hours trading</div>
+            <div class="roadmap-item__desc">Pre-market and after-hours execution for US equities.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--region">[US]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Short selling &amp; margin</div>
+            <div class="roadmap-item__desc">Directional short positions and margin-enabled accounts via supported brokers.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">High-yield cash &amp; stock lending display</div>
+            <div class="roadmap-item__desc">Visibility into yield-generating programs available through supported brokers.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">MetaTrader 5</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--cfd">CFD</span>
+              <span class="btag btag--region">[Global]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">OctaTrader</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--cfd">CFD</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Exness</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--cfd">CFD</span>
+              <span class="btag btag--region">[Africa]</span>
+              <span class="btag btag--region">[ME]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">XM</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--cfd">CFD</span>
+              <span class="btag btag--region">[Africa]</span>
+              <span class="btag btag--region">[ME]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Tiger Brokers</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[Asia]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Saxo Bank</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--region">[Europe]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Capital.com</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--cfd">CFD</span>
+              <span class="btag btag--region">[ME]</span>
+              <span class="btag btag--region">[Europe]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Mercado Bitcoin</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[BRL]</span>
+              <span class="btag btag--region">[LATAM]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Bitso</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[LATAM]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Linux installer</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--region">[Linux]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Mobile dashboard</div>
+            <div class="roadmap-item__desc">Read-only view of your bot&rsquo;s status from your phone.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Multi-machine licensing</div>
+            <div class="roadmap-item__desc">Run on two machines with one key.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Custom strategy scripting</div>
+            <div class="roadmap-item__desc">Write and load custom strategy modules in Python.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">FX bundle data feeds</div>
+            <div class="roadmap-item__desc">Curated forex data packages for major pairs and exotics.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Luno WebSocket streaming (replace REST polling)</div>
+            <div class="roadmap-item__desc">Switch Luno market data from REST polling to WebSocket streaming for lower latency and reduced API overhead.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">VALR spot margin</div>
+            <div class="roadmap-item__desc">Borrow to amplify spot positions up to 5x on major ZAR pairs. AI-managed with configurable leverage guardrails and liquidation monitoring.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">VALR WebSocket account stream</div>
+            <div class="roadmap-item__desc">Real-time fill notifications and balance updates. Includes CANCEL_ON_DISCONNECT — open orders auto-cancel if Xaltrion goes offline.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p4">Phase 4</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p4">v2.0 &mdash; Roadmap</h2>
+          <div class="roadmap-phase-line"></div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Options Phase 3</div>
+            <div class="roadmap-item__desc">Iron condor, butterfly, and calendar spread strategies.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--options">Options</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Portfolio rebalancing API</div>
+            <div class="roadmap-item__desc">Automated allocation rebalancing across accounts and asset classes.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Tax-aware suggestions</div>
+            <div class="roadmap-item__desc">AI-guided trade decisions that account for tax-lot optimisation and wash-sale rules.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Full backtesting with options historical data</div>
+            <div class="roadmap-item__desc">Replay options strategies across historical expiry chains and greeks data.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--options">Options</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Portfolio optimisation AI</div>
+            <div class="roadmap-item__desc">AI-generated allocation suggestions across your holdings.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Strategy marketplace</div>
+            <div class="roadmap-item__desc">Browse and deploy community-contributed strategy templates.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Multi-account management</div>
+            <div class="roadmap-item__desc">Manage multiple broker accounts from a single installation.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">Tax reporting</div>
+            <div class="roadmap-item__desc">Export trade history in formats compatible with local tax tools.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">LATAM market expansion</div>
+            <div class="roadmap-item__desc">Dedicated data feeds and broker integrations for Brazilian and Mexican markets.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">AI-generated backtests</div>
+            <div class="roadmap-item__desc">Let the AI propose and backtest new strategies based on market conditions.</div>
+          </div>
+          <div class="roadmap-item roadmap-item--p4">
+            <div class="roadmap-item__name">VALR perpetual futures</div>
+            <div class="roadmap-item__desc">Up to 60x leverage on BTCZAR and USDTZAR perpetuals. Dedicated subaccount, cross-margin, AI-managed conditional TP/SL. PnL settled every 4 hours.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+              <span class="btag btag--options">Futures</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════════════════════ -->
+  <section style="border-top:1px solid var(--hairline);padding:4rem 0;text-align:center;background:linear-gradient(180deg,transparent,var(--accent-bg) 40%,var(--accent-bg) 60%,transparent)">
+    <div class="container">
+      <div class="x-eyebrow" style="margin-bottom:12px">Available now</div>
+      <h2 style="margin:0 0 12px;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-0.025em">Phase 1 is live. <em style="font-style:italic;color:var(--accent)">Download today.</em></h2>
+      <p class="sub" style="max-width:400px;margin:0 auto 28px">Start paper trading in minutes. Flip live when you&rsquo;re ready.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="cta cta-primary" href="download.html" style="padding:14px 24px;font-size:14px">Download for Windows &rarr;</a>
+        <a class="cta cta-secondary" href="pricing.html" style="padding:14px 24px;font-size:14px">View pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+        <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
+      </div>
+      <div style="margin-top:8px">
+        <a href="https://ko-fi.com/xaltrion" target="_blank" rel="noopener" style="font-size:12px;color:var(--text-3);text-decoration:none">&#x2615; Support Xaltrion on Ko-fi</a>
+      </div>
+      <div class="muted" style="margin-top:4px">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion AI is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/crisp.js"></script>
+</body>
+
+</html>

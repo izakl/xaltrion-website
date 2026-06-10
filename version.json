@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0-beta.1",
+  "release_date": "2026-06-07",
+  "download_url": "https://github.com/izakl/xaltrion/releases/download/v1.0.0-beta.1/XaltrionSetup-1.0.0-beta.1-windows.exe",
+  "release_notes": "Adaptive order sizing, profitability advisor, position management (Hold-Only/AI Managed/Ignore), event-awareness for earnings, settings revamp with cycle cost chip, broker-validated symbol picker, expanded onboarding, and 24/7 reliability hardening.",
+  "min_version": "0.0.1",
+  "changelog": {
+    "whats_new": [
+      "Adaptive order sizing: Auto (% of balance) and Fixed cap modes",
+      "Profitability advisor per broker with break-even analysis",
+      "Position management: Hold-Only, AI Managed, and Ignore modes",
+      "Earnings event-awareness with Finnhub calendar integration",
+      "Broker-validated symbol picker in watchlist settings"
+    ],
+    "bug_fixes": [
+      "Settings cycle cost chip shows live API cost estimates",
+      "Onboarding step 4 profitability chip and step 7 sizing prefs",
+      "Clean-state defaults: paper mode, onboarding reset on fresh install"
+    ],
+    "performance": [
+      "24/7 reliability: heartbeat, watchdog, supervisor, auto-retry",
+      "Adaptive balance-aware sizing prevents oversized orders"
+    ]
+  }
+}

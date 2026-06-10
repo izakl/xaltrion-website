@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 90" width="360" height="90"><g transform="translate(6 13) scale(0.64)">
+<g stroke="#05070C" stroke-width="0.7" stroke-linejoin="round">
+<polygon points="18,50 50,8 50,28 28,50" fill="#2E93F5"></polygon>
+<polygon points="50,8 82,50 72,50 50,28" fill="#33415C"></polygon>
+<polygon points="82,50 50,92 50,72 72,50" fill="#0E1420"></polygon>
+<polygon points="50,92 18,50 28,50 50,72" fill="#232E42"></polygon>
+<polygon points="50,28 28,50 50,72" fill="#6E82A6"></polygon>
+<polygon points="50,28 50,72 72,50" fill="#18202E"></polygon>
+</g>
+<polyline points="18,50 50,8 50,28" fill="none" stroke="#DCE7F5" stroke-width="1.1" stroke-linecap="round" opacity="0.9"></polyline>
+<circle cx="43" cy="30" r="2" fill="#FFFFFF"></circle></g><text x="80" y="46" dominant-baseline="central" font-family="Exo 2, sans-serif" font-weight="600" font-size="30" letter-spacing="6" fill="#F1F4FB">XALTRION</text></svg>

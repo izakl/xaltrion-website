@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers: Referrer policy and CSP -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.crisp.chat https://client.crisp.chat; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://client.crisp.chat; font-src 'self' https://fonts.gstatic.com https://client.crisp.chat data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com https://client.crisp.chat wss://client.relay.crisp.chat; frame-src https://client.crisp.chat https://go.crisp.chat" />
+  <title>Brokers — Xaltrion AI</title>
+  <meta name="description" content="Brokers supported by Xaltrion AI — live now, coming soon, and on the roadmap." />
+  <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/mark-512.png" />
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="brokers.html" style="color:var(--text)">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
+        <li><a href="docs.html">Docs</a></li>
+      </ul>
+      <a class="cta cta-primary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header class="roadmap-page-hdr">
+    <div class="container">
+      <div class="x-eyebrow" style="margin-bottom:12px">Supported Brokers</div>
+      <h1>Your brokers. Your capital.</h1>
+      <p>Xaltrion connects to the brokers you already use. Your keys never leave your machine.</p>
+    </div>
+  </header>
+
+  <!-- ═══ LEGEND ═══════════════════════════════════════════════════════════════ -->
+  <div style="border-bottom:1px solid var(--hairline);padding:16px 0">
+    <div class="container" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3)">Legend:</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gain)"><span style="width:8px;height:8px;border-radius:50%;background:var(--gain);display:inline-block"></span>Live now</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--status-warn)"><span style="width:8px;height:8px;border-radius:50%;background:var(--status-warn);display:inline-block"></span>Coming in v1.1</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3)"><span style="width:8px;height:8px;border-radius:50%;background:var(--text-3);display:inline-block"></span>On the roadmap</span>
+    </div>
+  </div>
+
+  <!-- ═══ BROKER SECTIONS ═══════════════════════════════════════════════════════ -->
+  <section class="roadmap-phases">
+    <div class="container">
+
+      <!-- LIVE NOW -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p1">Live now</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p1">Available at launch</h2>
+          <div class="roadmap-phase-line"></div>
+          <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.10em;color:var(--gain)">v1.0.0-beta.1 &middot; 2026-06-07</span>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Alpaca Markets</div>
+            <div class="roadmap-item__desc">US stocks, ETFs, crypto. Paper + live accounts. Commission-free.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[US]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">Luno</div>
+            <div class="roadmap-item__desc">South African crypto exchange. ZAR markets, BTC, ETH, SOL, XRP and more.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p1">
+            <div class="roadmap-item__name">VALR</div>
+            <div class="roadmap-item__desc">SA crypto exchange with 100+ pairs, native stop-loss, spot margin, and perpetual futures.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ZAR]</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMING IN v1.1 -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p2">v1.1</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p2">Coming soon</h2>
+          <div class="roadmap-phase-line"></div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Binance</div>
+            <div class="roadmap-item__desc">Global crypto. Spot and futures.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[Global]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Bybit</div>
+            <div class="roadmap-item__desc">Derivatives and spot. ME and Asian markets.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[ME]</span>
+              <span class="btag btag--region">[Asia]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">OKX</div>
+            <div class="roadmap-item__desc">Global crypto. VASP licensed in UAE.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[Global]</span>
+              <span class="btag btag--region">[UAE]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p2">
+            <div class="roadmap-item__name">Rain</div>
+            <div class="roadmap-item__desc">MENA-focused. AED markets.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--crypto">Crypto</span>
+              <span class="btag btag--region">[AED]</span>
+              <span class="btag btag--region">[ME]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ON THE ROADMAP -->
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-hdr">
+          <span class="roadmap-phase-num roadmap-phase-num--p3">Roadmap</span>
+          <h2 class="roadmap-phase-title roadmap-phase-title--p3">On the roadmap</h2>
+          <div class="roadmap-phase-line"></div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">Interactive Brokers</div>
+            <div class="roadmap-item__desc">Stocks, forex, options, futures. Global.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--options">Options</span>
+              <span class="btag btag--region">[Global]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">MetaTrader 5</div>
+            <div class="roadmap-item__desc">Unlocks 50+ brokers.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--forex">Forex</span>
+              <span class="btag btag--cfd">CFD</span>
+              <span class="btag btag--region">[Global]</span>
+            </div>
+          </div>
+          <div class="roadmap-item roadmap-item--p3">
+            <div class="roadmap-item__name">JSE data pathway</div>
+            <div class="roadmap-item__desc">South African equities.</div>
+            <div class="roadmap-item__tags">
+              <span class="btag btag--stocks">Stocks</span>
+              <span class="btag btag--region">[SA]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════════════════════ -->
+  <section style="border-top:1px solid var(--hairline);padding:4rem 0;text-align:center;background:linear-gradient(180deg,transparent,var(--accent-bg) 40%,var(--accent-bg) 60%,transparent)">
+    <div class="container">
+      <p class="sub" style="max-width:440px;margin:0 auto 24px">Don&rsquo;t see your broker?</p>
+      <a class="cta cta-secondary" href="beta.html" style="padding:14px 24px;font-size:14px">Request a broker &rarr;</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="brokers.html">Brokers</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+        <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
+      </div>
+      <div style="margin-top:8px">
+        <a href="https://ko-fi.com/xaltrion" target="_blank" rel="noopener" style="font-size:12px;color:var(--text-3);text-decoration:none">&#x2615; Support Xaltrion on Ko-fi</a>
+      </div>
+      <div class="muted" style="margin-top:4px">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion AI is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/crisp.js"></script>
+</body>
+
+</html>

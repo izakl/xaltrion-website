@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers: Referrer policy and CSP -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.crisp.chat https://client.crisp.chat; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://client.crisp.chat; font-src 'self' https://fonts.gstatic.com https://client.crisp.chat data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com https://client.crisp.chat wss://client.relay.crisp.chat; frame-src https://client.crisp.chat https://go.crisp.chat" />
+  <title>Docs — Xaltrion AI</title>
+  <meta name="description" content="Xaltrion AI documentation — install, setup, brokers, data feeds, AI, troubleshooting." />
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <style>
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      max-width: 1120px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .docs-toc {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+      padding: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-lg);
+    }
+    .docs-toc h4 { margin: 0 0 0.5rem; font-size: 0.85rem; text-transform: uppercase; color: var(--text-3); letter-spacing: 0.05em; }
+    .docs-toc ul { list-style: none; padding: 0; margin: 0; }
+    .docs-toc li { margin: 0.35rem 0; }
+    .docs-toc a { color: var(--text); text-decoration: none; font-size: 0.92rem; }
+    .docs-toc a:hover { color: var(--accent); }
+    .docs-main h2 { margin-top: 2.2rem; }
+    .docs-main h3 { margin-top: 1.4rem; font-size: 1.1rem; color: var(--accent-2); }
+    .docs-main pre {
+      background: var(--ink-800);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-md);
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .docs-main code { font-family: var(--font-mono); font-size: 0.9em; background: var(--ink-800); padding: 0.1rem 0.35rem; border-radius: var(--r-sm); }
+    .docs-main pre code { background: transparent; padding: 0; }
+    @media (max-width: 780px) { .docs-layout { grid-template-columns: 1fr; } .docs-toc { position: static; } }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="brokers.html">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
+        <li><a href="docs.html" style="color:var(--text)">Docs</a></li>
+      </ul>
+      <a class="cta cta-primary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#install">Installation</a></li>
+        <li><a href="#brokers">Broker setup</a></li>
+        <li><a href="#feeds">Data feeds</a></li>
+        <li><a href="#ai">AI setup</a></li>
+        <li><a href="#dashboard">Dashboard guide</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+      </ul>
+    </aside>
+
+    <main class="docs-main">
+      <h1>Documentation</h1>
+      <p class="muted">Quick reference for getting Xaltrion AI installed and running locally.</p>
+
+      <section id="install">
+        <h2>Installation</h2>
+        <p>Xaltrion ships as a Windows installer. macOS and Linux are on the roadmap.</p>
+        <ol>
+          <li>Download the latest <code>.exe</code> installer from the <a href="download.html">Download page</a>.</li>
+          <li>Run the installer. Windows SmartScreen may warn you &mdash; click <strong>More info</strong> then <strong>Run anyway</strong>. The installer is unsigned during beta.</li>
+          <li>On first launch, the 9-step setup wizard opens automatically.</li>
+          <li>The wizard guides you through: licence activation &rarr; notifications &rarr; brokers &rarr; data feeds &rarr; AI keys &rarr; trading profile &rarr; view selection.</li>
+          <li>After completing the wizard, click <strong>Start trading</strong> &mdash; you're done.</li>
+        </ol>
+      </section>
+
+      <section id="brokers">
+        <h2>Broker setup</h2>
+        <p>Brokers are configured in the wizard (Step 4) or anytime via <strong>Settings &rarr; Brokers</strong>.</p>
+
+        <h3>Alpaca (US stocks &amp; crypto)</h3>
+        <p>Sign up at <a href="https://alpaca.markets">alpaca.markets</a> and generate API keys. Supports three modes: <strong>Paper only</strong> (simulated trading), <strong>Live only</strong> (real money), or <strong>Both</strong>.</p>
+
+        <h3>Luno (ZAR crypto)</h3>
+        <p>Create API keys at <a href="https://www.luno.com">luno.com</a> under Account &rarr; API keys. Grant <strong>read</strong> and <strong>trade</strong> permissions.</p>
+
+        <h3>VALR (ZAR crypto)</h3>
+        <p>Generate keys in your VALR account under API management. Grant read and trade permissions.</p>
+
+        <h3>Coming soon</h3>
+        <p>Binance, Bybit, OKX, Rain, Interactive Brokers, MetaTrader 5, and more. <a href="roadmap.html">See the full roadmap.</a></p>
+      </section>
+
+      <section id="feeds">
+        <h2>Data feeds</h2>
+        <p>Data feeds are configured in the wizard (Step 5) or anytime via <strong>Settings &rarr; Data Feeds</strong>. More feeds give the AI richer market context.</p>
+
+        <h3>Massive</h3>
+        <p>Real-time prices, news, and crypto and stock data. The individual plan works well for crypto trading; upgrade for real-time stocks and options data. Get a key at <a href="https://massive.com">massive.com</a>.</p>
+
+        <h3>Finnhub</h3>
+        <p>Sentiment scoring, earnings calendar, analyst recommendations, and social sentiment. A free API key is available at <a href="https://finnhub.io">finnhub.io</a>.</p>
+
+        <h3>FRED</h3>
+        <p>US macroeconomic data &mdash; interest rates, inflation, GDP. Free API key available from the <a href="https://fred.stlouisfed.org/docs/api/api_key.html">St. Louis Fed</a>.</p>
+
+        <h3>CoinGecko</h3>
+        <p>Global crypto prices and market data. No API key needed &mdash; enabled by default. Xaltrion's usage stays well within the free tier.</p>
+      </section>
+
+      <section id="ai">
+        <h2>AI setup</h2>
+        <p>AI keys are configured in the wizard (Step 6) or anytime via <strong>Settings &rarr; AI</strong>.</p>
+
+        <h3>Claude API key (required)</h3>
+        <p>Powers all trading decisions &mdash; evaluates signals, explains reasoning, and manages risk. Get a key at <a href="https://console.anthropic.com">console.anthropic.com</a>. Without this key Xaltrion cannot make AI-powered decisions.</p>
+
+        <h3>Perplexity API key (optional)</h3>
+        <p>Adds real-time web market context on top of your data feeds. Get a key at <a href="https://www.perplexity.ai/settings/api">perplexity.ai</a>. Without it Xaltrion runs in Claude-only mode, which is still fully functional.</p>
+
+        <h3>Model selection</h3>
+        <p>Choose your Claude model in Settings &rarr; AI:</p>
+        <ul>
+          <li><strong>Claude Haiku 4.5</strong> &mdash; faster, more cost-effective. Recommended for high-frequency trading.</li>
+          <li><strong>Claude Sonnet 4.6</strong> &mdash; more capable, higher cost. Recommended for complex multi-asset strategies.</li>
+        </ul>
+      </section>
+
+      <section id="dashboard">
+        <h2>Dashboard guide</h2>
+        <p>The portal opens at <code>http://localhost:8080</code> after starting the app. Choose your view from the top ribbon.</p>
+        <ul>
+          <li><strong>Simple</strong> &mdash; equity curve, open positions, recent decisions. Clean and calm.</li>
+          <li><strong>Operator</strong> &mdash; multi-broker portfolio, AI spend tile, risk guardrail bars, equity graph with range selector.</li>
+          <li><strong>Expert</strong> &mdash; full console, AI reasoning log, live feeds, orders, backtest, heartbeat.</li>
+          <li><strong>Settings</strong> &mdash; brokers, data feeds, AI provider, risk limits, notifications, licensing.</li>
+        </ul>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+
+        <h3>Windows SmartScreen blocks installer</h3>
+        <p>Click <strong>More info</strong> then <strong>Run anyway</strong>. The installer is unsigned during beta.</p>
+
+        <h3>Setup wizard not appearing on first launch</h3>
+        <p>Go to <strong>Settings &rarr; General &rarr; Resume onboarding</strong> to restart the setup wizard.</p>
+
+        <h3>License token cache stale</h3>
+        <p>Go to <strong>Settings &rarr; System &rarr; Clear activation cache</strong>, or delete <code>.activation_cache.json</code> and restart Xaltrion.</p>
+
+        <h3>Machine binding mismatch</h3>
+        <p>If you moved to a new machine, contact <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a> to clear the binding.</p>
+
+        <h3>Port 8080 already in use</h3>
+        <p>Close any other app using port 8080 and restart Xaltrion.</p>
+
+        <h3>Perplexity not working</h3>
+        <p>Check your API key is saved in <strong>Settings &rarr; AI &rarr; Perplexity</strong>. Without a valid key, Xaltrion runs in Claude-only mode.</p>
+
+        <h3>Reset portal layout</h3>
+        <p>Use <strong>Settings &rarr; System &rarr; Reset portal layout</strong> to restore the default layout.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+        <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a>
+      </div>
+      <div style="margin-top:8px">
+        <a href="https://ko-fi.com/xaltrion" target="_blank" rel="noopener" style="font-size:12px;color:var(--text-3);text-decoration:none">&#x2615; Support Xaltrion on Ko-fi</a>
+      </div>
+      <div class="muted" style="margin-top:4px">Built in South Africa &#x1F1FF;&#x1F1E6; &middot; &copy; 2026 Xaltrion AI</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion AI is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/crisp.js"></script>
+</body>
+
+</html>
