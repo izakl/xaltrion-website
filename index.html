@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers: Referrer policy and CSP -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com" />
+  <meta name="description" content="Xaltrion — a local-first trading bot that reasons about every move and executes while you stay in full control of every decision." />
+  <title>Xaltrion — Intelligent trading, automated.</title>
+  <meta property="og:title" content="Xaltrion — Intelligent trading, automated." />
+  <meta property="og:description" content="A trading bot that lives on your computer. It watches the market, reasons about every move, and executes — while you stay in full control of every decision." />
+  <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/og-card.png" />
+  <meta property="og:url" content="https://xaltrion.ai/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Theme bootstrap: apply saved light/dark theme BEFORE first paint (no flash)
+       and expose window.XTheme for the nav toggle. Default is dark. -->
+  <script>
+    (function () {
+      window.XTheme = {
+        get: function () {
+          try { return localStorage.getItem('xaltrion-theme') === 'light' ? 'light' : 'dark'; }
+          catch (e) { return 'dark'; }
+        },
+        _apply: function (t) {
+          var r = document.documentElement;
+          r.setAttribute('data-theme', t);
+          r.classList.toggle('theme-light', t === 'light');
+        },
+        set: function (t) {
+          t = (t === 'light') ? 'light' : 'dark';
+          try { localStorage.setItem('xaltrion-theme', t); } catch (e) {}
+          this._apply(t);
+          try { window.dispatchEvent(new CustomEvent('xaltrion-theme-changed', { detail: { theme: t } })); } catch (e) {}
+          return t;
+        },
+        toggle: function () { return this.set(this.get() === 'light' ? 'dark' : 'light'); }
+      };
+      window.XTheme._apply(window.XTheme.get());
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="brokers.html">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
+        <li><a href="docs.html">Docs</a></li>
+      </ul>
+      <a class="cta cta-primary" href="download.html" style="padding:10px 18px;font-size:13px">Download</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════════════════════════ -->
+  <section class="ws-hero">
+    <div class="container ws-hero-inner">
+      <div class="ws-hero__copy">
+        <div class="ws-hero__eyebrow">
+          <span class="ws-hero__eyebrow-dot"></span>
+          Private beta &middot; runs on your machine
+        </div>
+        <h1 class="ws-hero__h1">Intelligent <em>trading,</em><br>automated.</h1>
+        <p class="ws-hero__body">
+          Xaltrion is a trading bot that lives on your computer.
+          It watches the market, reasons about every move, and executes &mdash;
+          while you stay in full control of every decision.
+        </p>
+        <div class="ws-hero__ctas">
+          <a class="cta cta-primary" href="download.html" style="padding:14px 22px;font-size:14px">Download for Windows &rarr;</a>
+          <a class="cta cta-secondary" href="#features" style="padding:14px 22px;font-size:14px">See what it does</a>
+        </div>
+        <div class="ws-hero__trust">
+          <div class="ws-hero__trust-item">
+            <strong>Local-only</strong>
+            <span>Your keys never leave your machine</span>
+          </div>
+          <div class="ws-hero__trust-item">
+            <strong>Bring your broker</strong>
+            <span>Alpaca, Luno, VALR &middot; options v1.1</span>
+          </div>
+          <div class="ws-hero__trust-item">
+            <strong>Open reasoning</strong>
+            <span>Every decision logged &amp; auditable</span>
+          </div>
+        </div>
+      </div>
+      <!-- Product card mock -->
+      <div class="ws-hero__mock">
+        <div class="ws-mock-card">
+          <div class="ws-mock-card__header">
+            <span class="x-logotype" style="font-size:13px">XALTRION</span>
+            <span class="ws-mock-card__live">
+              <span class="ws-mock-card__live-dot"></span>
+              LIVE &middot; 4h 12m
+            </span>
+          </div>
+          <div class="ws-mock-card__eyebrow">Equity &middot; today</div>
+          <div class="ws-mock-card__value">
+            <span class="x-mono">$48,213.74</span>
+            <span class="ws-mock-card__gain">+$612.40 &middot; +1.28%</span>
+          </div>
+          <div class="ws-mock-sparkline" style="margin-top:14px;">
+            <svg viewBox="0 0 400 50" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="hero-eq" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--gain)" stop-opacity="0.30"/>
+                  <stop offset="100%" stop-color="var(--gain)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 44 L22 42 L44 38 L66 41 L88 35 L110 37 L132 30 L154 26 L176 29 L198 23 L220 19 L242 21 L264 15 L286 17 L308 11 L330 9 L352 13 L374 7 L400 4 L400 50 L0 50 Z" fill="url(#hero-eq)"/>
+              <path d="M0 44 L22 42 L44 38 L66 41 L88 35 L110 37 L132 30 L154 26 L176 29 L198 23 L220 19 L242 21 L264 15 L286 17 L308 11 L330 9 L352 13 L374 7 L400 4" fill="none" stroke="var(--gain)" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="ws-mock-card__reasoning">
+            <div class="ws-mock-card__reasoning-hdr">What your bot just did</div>
+            <div class="ws-mock-card__reasoning-text">
+              Trimmed AAPL by 30%, rotated into NVDA &mdash; single-name risk over cap.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ══════════════════════════════════════════════════════════ -->
+  <section class="ws-features" id="features">
+    <div class="container">
+      <div class="ws-features__hdr">
+        <div class="x-eyebrow" style="margin-bottom:8px">Features</div>
+        <h2>A trader you can <em>actually read.</em></h2>
+        <p class="sub">Every decision narrated — no black boxes. Three portals for how closely you want to watch. Real risk controls that actually bite.</p>
+      </div>
+
+      <div class="ft-grid">
+        <!-- 01 — Full-width: plain English reasoning -->
+        <div class="ft-tile ft-tile--full">
+          <div class="ft-tile__body">
+            <div class="ft-tile__idx">01</div>
+            <h3 class="ft-tile__name">Every decision, <em>in plain English.</em></h3>
+            <p class="ft-tile__blurb">No black boxes. The agent narrates each move with its thesis, the signals that drove it, the risk it accepted, and what it&rsquo;s watching next. Read like a journal, replay like a tape.</p>
+          </div>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="position:relative;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="ws-mock-card__live-dot"></span>
+                <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">JUST NOW &middot; 09:42</span>
+              </div>
+              <div style="font-size:17px;margin-top:10px;line-height:1.3">
+                Trimmed <em>AAPL</em> by 30%, rotated into <em>NVDA</em> &mdash; single-name risk over cap.
+              </div>
+              <div style="font-size:12px;color:var(--text-3);line-height:1.5;margin-top:8px">
+                AAPL ran +6% and exceeded your max single-name exposure; rotated the trim into NVDA, which still has room under the daily-loss cap. Regime: high-volatility.
+              </div>
+              <div style="display:flex;gap:5px;margin-top:10px">
+                <span class="tag">conf 0.78</span>
+                <span class="tag">vol-spike</span>
+                <span class="tag">rotation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 — Guardrails -->
+        <div class="ft-tile">
+          <div class="ft-tile__idx">02</div>
+          <h3 class="ft-tile__name">Guardrails that bite</h3>
+          <p class="ft-tile__blurb">Max daily loss, drawdown, position size, exposure &mdash; every limit is a hard floor. Breach one and the bot auto-pauses, not promises to.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card">
+              <div class="ft-gbar">
+                <div class="ft-gbar__label"><span>Daily loss</span><span>418 / 500</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:83.6%;background:var(--status-warn)"></div></div>
+              </div>
+              <div class="ft-gbar" style="margin-top:10px">
+                <div class="ft-gbar__label"><span>Open positions</span><span>7 / 10</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:70%;background:var(--accent)"></div></div>
+              </div>
+              <div class="ft-gbar" style="margin-top:10px">
+                <div class="ft-gbar__label"><span>Max pos. size</span><span>3.2k / 5k</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:64%;background:var(--accent)"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 — Local-first -->
+        <div class="ft-tile">
+          <div class="ft-tile__idx">03</div>
+          <h3 class="ft-tile__name">Runs on your machine</h3>
+          <p class="ft-tile__blurb">Local-first. Your strategies, keys, and trades never leave your device. We can&rsquo;t see them &mdash; only you can.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="display:flex;align-items:center;gap:14px">
+              <div style="width:48px;height:48px;border-radius:10px;background:var(--surface);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">&#x229E;</div>
+              <div>
+                <div style="font-size:12px;font-weight:500">Your Machine</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-top:2px">Windows &middot; macOS soon</div>
+                <div style="display:flex;gap:5px;margin-top:8px">
+                  <span class="tag tag--accent">LOCAL</span>
+                  <span class="tag">KEYCHAIN</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 — Full-width: backtest -->
+        <div class="ft-tile ft-tile--full">
+          <div class="ft-tile__body">
+            <div class="ft-tile__idx">04</div>
+            <h3 class="ft-tile__name">Backtest before you commit</h3>
+            <p class="ft-tile__blurb">Replay any strategy across five years of real ticks &mdash; same code-path as live trading, with realistic slippage and fees. See the equity curve before risking a dollar.</p>
+          </div>
+          <div class="ft-tile__art">
+            <div class="ft-art-card">
+              <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+                <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-3)">BACKTEST &middot; 1Y</span>
+                <span class="x-mono" style="font-size:14px;color:var(--gain)">+30.4%</span>
+                <span class="x-mono" style="font-size:11px;color:var(--text-3)">Sharpe 2.14</span>
+                <span class="x-mono" style="font-size:11px;color:var(--text-3);margin-left:auto">vs SPY +18.4%</span>
+              </div>
+              <div style="height:80px;margin-top:10px;overflow:hidden">
+                <svg viewBox="0 0 400 80" preserveAspectRatio="none" width="100%" height="80" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="bt-eq" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.25"/>
+                      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 70 L20 68 L40 64 L60 67 L80 60 L100 63 L120 54 L140 48 L160 51 L180 43 L200 37 L220 39 L240 30 L260 33 L280 24 L300 20 L320 26 L340 16 L360 10 L380 6 L400 2 L400 80 L0 80 Z" fill="url(#bt-eq)"/>
+                  <path d="M0 70 L20 68 L40 64 L60 67 L80 60 L100 63 L120 54 L140 48 L160 51 L180 43 L200 37 L220 39 L240 30 L260 33 L280 24 L300 20 L320 26 L340 16 L360 10 L380 6 L400 2" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 — Broker -->
+        <div class="ft-tile">
+          <div class="ft-tile__idx">05</div>
+          <h3 class="ft-tile__name">Bring your broker</h3>
+          <p class="ft-tile__blurb">Alpaca, Luno, VALR live now &mdash; plus Kraken, Kraken Futures, IG and HitBTC in beta. Simulate on any live account against real prices &mdash; no separate demo needed &mdash; in your choice of currency. Binance, IBKR and more coming. Switch any time: Demo, Simulated, or Live with a toggle.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-row">
+              <div class="ft-art-card" style="display:flex;align-items:center;gap:8px;padding:10px 12px">
+                <div style="width:24px;height:24px;border-radius:5px;background:var(--surface);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;font-weight:600">A</div>
+                <span style="font-size:12px;font-weight:500">Alpaca</span>
+                <span class="tag tag--gain tag--xs" style="margin-left:auto">&#x2713; LIVE</span>
+              </div>
+              <div class="ft-art-card" style="display:flex;align-items:center;gap:8px;padding:10px 12px">
+                <div style="width:24px;height:24px;border-radius:5px;background:var(--surface);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;font-weight:600">L</div>
+                <span style="font-size:12px;font-weight:500">Luno</span>
+                <span class="tag tag--gain tag--xs" style="margin-left:auto">&#x2713; LIVE</span>
+              </div>
+              <div class="ft-art-card" style="display:flex;align-items:center;gap:8px;padding:10px 12px">
+                <div style="width:24px;height:24px;border-radius:5px;background:var(--surface);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;font-weight:600">V</div>
+                <span style="font-size:12px;font-weight:500">VALR</span>
+                <span class="tag tag--gain tag--xs" style="margin-left:auto">&#x2713; LIVE</span>
+              </div>
+              <div class="ft-art-card" style="display:flex;align-items:center;gap:8px;padding:10px 12px;opacity:0.45">
+                <div style="width:24px;height:24px;border-radius:5px;background:var(--surface);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;font-weight:600">+</div>
+                <span style="font-size:12px;font-weight:500">Binance, Bybit + more</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 — Kill switch -->
+        <div class="ft-tile">
+          <div class="ft-tile__idx">06</div>
+          <h3 class="ft-tile__name">Kill switch &middot; always within reach</h3>
+          <p class="ft-tile__blurb">One hold, one keystroke, one moment &mdash; flatten everything and halt the agent. &ldquo;&#x2318;.&rdquo; anywhere in the app.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">KILL SWITCH</div>
+                <div style="font-size:13px;font-weight:600;margin-top:4px">Flatten all &amp; halt</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-top:4px">hold 1.5s or &#x2318;.</div>
+              </div>
+              <div style="width:52px;height:52px;border-radius:50%;background:oklch(0.66 0.14 28 / 0.14);border:2px solid oklch(0.66 0.14 28 / 0.40);display:flex;align-items:center;justify-content:center;font-size:20px">&#x26D4;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 — AI spend -->
+        <div class="ft-tile">
+          <div class="ft-tile__idx">07</div>
+          <h3 class="ft-tile__name">AI spend is yours to control</h3>
+          <p class="ft-tile__blurb">See exactly how many tokens cost what. Set a daily cap. The bot pauses when it hits the budget &mdash; never spends behind your back.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card">
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <span class="x-mono" style="font-size:28px">$0.84</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3)">/ $5.00 today</span>
+              </div>
+              <div style="height:4px;background:var(--surface-soft);border-radius:2px;margin-top:10px">
+                <div style="width:16.8%;height:4px;background:var(--accent);border-radius:2px"></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-3)">
+                <div>18 decisions &middot; avg $0.047</div>
+                <div style="text-align:right">haiku-4.5 &middot; 840 tok</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 — Veylor assistant -->
+        <div class="ft-tile">
+          <div class="ft-tile__idx">08</div>
+          <h3 class="ft-tile__name">Ask <em>Veylor</em> anything</h3>
+          <p class="ft-tile__blurb">Your built-in AI assistant knows your live setup &mdash; brokers, positions, costs. Ask why it traded, what to watch, or how to cut spend. Opt in and it can configure and fix things for you too &mdash; always with your confirmation. Every chat shows its cost.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card">
+              <div style="display:flex;flex-direction:column;gap:8px;font-family:var(--font-ui);font-size:11px">
+                <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:6px 10px;border-radius:10px 10px 2px 10px;max-width:80%">Why didn&rsquo;t it trade today?</div>
+                <div style="align-self:flex-start;background:var(--surface-soft);padding:6px 10px;border-radius:10px 10px 10px 2px;max-width:85%;color:var(--text-2)">RSI stayed neutral on your watchlist and the daily-loss guardrail wasn&rsquo;t hit &mdash; so it held. Want me to widen the watchlist?</div>
+              </div>
+              <div style="text-align:right;margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--text-3)">~$0.003 this chat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMING IN v1.1 ═══════════════════════════════════════════════════ -->
+  <section class="ws-features" id="coming-soon">
+    <div class="container">
+      <div class="ws-features__hdr">
+        <div class="x-eyebrow" style="margin-bottom:8px">Coming in v1.1</div>
+        <h2>More ways to trade. <em>More ways to win.</em></h2>
+      </div>
+      <div class="ft-grid">
+        <!-- 09 — Options trading -->
+        <div class="ft-tile" style="border-style:dashed">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div class="ft-tile__idx" style="margin-bottom:0">08</div>
+            <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;color:var(--text-3);border:1px solid var(--hairline);border-radius:3px;padding:2px 6px">COMING v1.1</span>
+          </div>
+          <h3 class="ft-tile__name">Options trading</h3>
+          <p class="ft-tile__blurb">Long calls and puts on US equities via Alpaca. Defined risk, AI-selected strikes, automatic close before expiry. Phase 1 of a full options roadmap.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="opacity:0.6">
+              <div style="display:flex;gap:5px;flex-wrap:wrap">
+                <span class="tag">Long call</span>
+                <span class="tag">Long put</span>
+                <span class="tag tag--accent">AI strikes</span>
+                <span class="tag">Auto-close</span>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-top:8px">AAPL 185C &middot; exp 14d &middot; delta 0.42</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 — Goal-driven AI -->
+        <div class="ft-tile" style="border-style:dashed">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div class="ft-tile__idx" style="margin-bottom:0">09</div>
+            <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;color:var(--text-3);border:1px solid var(--hairline);border-radius:3px;padding:2px 6px">COMING v1.1</span>
+          </div>
+          <h3 class="ft-tile__name">Goal-driven AI</h3>
+          <p class="ft-tile__blurb">Set your target return, time horizon, and risk tolerance. The Advisor AI evaluates your portfolio against your goals and surfaces what to change &mdash; and why.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="opacity:0.6">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-bottom:8px">TARGET &middot; +25% / 12mo</div>
+              <div class="ft-gbar">
+                <div class="ft-gbar__label"><span>Portfolio health</span><span>72 / 100</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:72%;background:var(--status-warn)"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 — News intelligence -->
+        <div class="ft-tile" style="border-style:dashed">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div class="ft-tile__idx" style="margin-bottom:0">10</div>
+            <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;color:var(--text-3);border:1px solid var(--hairline);border-radius:3px;padding:2px 6px">COMING v1.1</span>
+          </div>
+          <h3 class="ft-tile__name">News intelligence</h3>
+          <p class="ft-tile__blurb">Real-time symbol-level news from Alpaca fed directly into the AI&rsquo;s observe cycle. Your bot reads the same headlines you do &mdash; before it decides.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="opacity:0.6">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-bottom:6px">LIVE NEWS &middot; AAPL</div>
+              <div style="font-size:12px;line-height:1.4">Apple beats earnings estimates by 8% &mdash; guidance raised for Q3.</div>
+              <div style="display:flex;gap:5px;margin-top:8px">
+                <span class="tag tag--gain">Bullish</span>
+                <span class="tag">Earnings</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12 — Smarter Luno trading -->
+        <div class="ft-tile" style="border-style:dashed">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div class="ft-tile__idx" style="margin-bottom:0">11</div>
+            <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.10em;color:var(--text-3);border:1px solid var(--hairline);border-radius:3px;padding:2px 6px">COMING v1.1</span>
+          </div>
+          <h3 class="ft-tile__name">Smarter Luno trading</h3>
+          <p class="ft-tile__blurb">Limit orders with GTC/IOC, order book depth in AI context, and tighter stop-loss monitoring. Multi-pair ZAR trading (ETH, SOL, XRP) is already live &mdash; this makes Luno work even harder.</p>
+          <div class="ft-tile__art">
+            <div class="ft-art-card" style="opacity:0.6">
+              <div style="display:flex;gap:5px;flex-wrap:wrap">
+                <span class="tag">Limit orders</span>
+                <span class="tag tag--accent">Multi-pair</span>
+                <span class="tag">Order book AI</span>
+                <span class="tag">Stop-loss</span>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-top:8px">ETHZAR &middot; SOLZAR &middot; XRPZAR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PORTALS ═══════════════════════════════════════════════════════════ -->
+  <section class="ws-portals" id="portals">
+    <div class="container">
+      <div class="ws-section-hdr">
+        <div class="x-eyebrow" style="margin-bottom:8px">Three portals &middot; one bot</div>
+        <h2>Choose your level of <em>control.</em></h2>
+        <p class="sub">Switch portals in one click. The bot runs identically &mdash; only the view changes.</p>
+      </div>
+      <div class="portal-grid" role="tablist" aria-label="Preview a portal">
+        <div class="portal-card" data-portal="simple" role="tab" tabindex="0" aria-selected="false" aria-controls="portal-mock" onclick="selectPortal('simple')" onkeydown="portalKey(event,'simple')">
+          <div class="portal-card__label">Portal 01</div>
+          <div class="portal-card__name">Simple</div>
+          <p class="portal-card__blurb">Clean overview. Start/stop, equity curve, open positions, what your bot just did. No noise.</p>
+          <div class="portal-card__tags">
+            <span class="portal-card__tag">Equity curve</span>
+            <span class="portal-card__tag">Positions</span>
+            <span class="portal-card__tag">Activity feed</span>
+          </div>
+        </div>
+        <div class="portal-card portal-card--active" data-portal="operator" role="tab" tabindex="0" aria-selected="true" aria-controls="portal-mock" onclick="selectPortal('operator')" onkeydown="portalKey(event,'operator')">
+          <div class="portal-card__label">Portal 02</div>
+          <div class="portal-card__name">Operator</div>
+          <p class="portal-card__blurb">Full control. Portfolio across all brokers, AI spend, risk guardrails, equity graph with broker selector, market context.</p>
+          <div class="portal-card__tags">
+            <span class="portal-card__tag">Multi-broker</span>
+            <span class="portal-card__tag">AI spend</span>
+            <span class="portal-card__tag">Risk guardrails</span>
+            <span class="portal-card__tag">Market context</span>
+          </div>
+        </div>
+        <div class="portal-card" data-portal="expert" role="tab" tabindex="0" aria-selected="false" aria-controls="portal-mock" onclick="selectPortal('expert')" onkeydown="portalKey(event,'expert')">
+          <div class="portal-card__label">Portal 03</div>
+          <div class="portal-card__name">Expert</div>
+          <p class="portal-card__blurb">Everything. Console, AI reasoning with [OBSERVE][TRIGGER][ACT][CONTEXT], live feeds, positions, orders, backtest, heartbeat.</p>
+          <div class="portal-card__tags">
+            <span class="portal-card__tag">Console</span>
+            <span class="portal-card__tag">AI reasoning</span>
+            <span class="portal-card__tag">Live feeds</span>
+            <span class="portal-card__tag">Backtest</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ OPERATOR VIEW SHOWCASE ════════════════════════════════════════════ -->
+  <section id="operator-view" style="padding:2rem 0 3rem">
+    <div class="container">
+      <div class="ws-section-hdr" style="text-align:left;margin:0 0 24px 0">
+        <div class="x-eyebrow" style="margin-bottom:8px">See it in action</div>
+        <h2 id="portal-mock-h2">The <em>Operator</em> view.</h2>
+        <p class="sub" id="portal-mock-sub">Everything on one screen &mdash; live equity across every broker, real-time risk guardrails, and AI spend you can actually see. Figures shown are illustrative.</p>
+      </div>
+      <div id="portal-mock">
+
+        <!-- ─ SIMPLE view ─ -->
+        <div class="portal-mock__view" data-view="simple" style="display:none;background:var(--ink-950);border:1px solid var(--hairline);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.35)">
+          <!-- chrome -->
+          <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid var(--hairline);flex-wrap:wrap">
+            <span class="x-logotype" style="font-size:13px;display:flex;align-items:center;gap:6px">
+              <span style="width:13px;height:13px;border-radius:3px;background:var(--accent);display:inline-block"></span>XALTRION
+            </span>
+            <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+              <span class="tag tag--accent">Simple</span>
+              <span class="tag">Operator</span>
+              <span class="tag">Expert</span>
+            </div>
+          </div>
+          <!-- body -->
+          <div style="padding:24px 16px;display:flex;gap:16px;flex-wrap:wrap">
+            <div style="flex:1.4;min-width:280px;display:flex;flex-direction:column;gap:14px">
+              <div>
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">PORTFOLIO &middot; TODAY</div>
+                <div class="x-mono" style="font-size:34px;color:var(--gain);margin-top:4px;line-height:1">$48,213.74</div>
+                <div style="font-size:13px;color:var(--gain);margin-top:6px">+$612.40 &middot; +1.28% today</div>
+              </div>
+              <div style="height:90px;overflow:hidden">
+                <svg viewBox="0 0 600 90" preserveAspectRatio="none" width="100%" height="90" aria-hidden="true">
+                  <defs><linearGradient id="sm-eq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--gain)" stop-opacity="0.25"/><stop offset="100%" stop-color="var(--gain)" stop-opacity="0"/></linearGradient></defs>
+                  <path d="M0 78 L50 74 L100 68 L150 72 L200 60 L250 64 L300 50 L350 42 L400 47 L450 34 L500 26 L550 30 L600 12 L600 90 L0 90 Z" fill="url(#sm-eq)"/>
+                  <path d="M0 78 L50 74 L100 68 L150 72 L200 60 L250 64 L300 50 L350 42 L400 47 L450 34 L500 26 L550 30 L600 12" fill="none" stroke="var(--gain)" stroke-width="1.6"/>
+                </svg>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:12px 14px">
+                <span class="ws-mock-card__live-dot"></span>
+                <span style="font-size:13px;color:var(--text)">Bot is running</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3)">&middot; 4h 12m</span>
+                <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--loss);border:1px solid var(--loss);border-radius:6px;padding:5px 12px">Stop</span>
+              </div>
+            </div>
+            <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:12px">
+              <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3);margin-bottom:8px">OPEN POSITIONS &middot; 2</div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-top:1px solid var(--hairline)"><span>GOOGL</span><span class="x-mono" style="color:var(--gain)">+3.9%</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-top:1px solid var(--hairline)"><span>ETH/USD</span><span class="x-mono" style="color:var(--gain)">+2.3%</span></div>
+              </div>
+              <div class="ft-art-card">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="ws-mock-card__live-dot"></span>
+                  <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">WHAT YOUR BOT JUST DID</span>
+                </div>
+                <div style="font-size:13px;margin-top:8px;line-height:1.4">Trimmed AAPL by 30%, rotated into NVDA &mdash; single-name risk over cap.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─ OPERATOR view (default) ─ -->
+        <div class="portal-mock__view" data-view="operator" style="background:var(--ink-950,#0a0a0f);border:1px solid var(--hairline);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.35)">
+
+        <!-- Top chrome -->
+        <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid var(--hairline);flex-wrap:wrap">
+          <span class="x-logotype" style="font-size:13px;display:flex;align-items:center;gap:6px">
+            <span style="width:13px;height:13px;border-radius:3px;background:var(--accent);display:inline-block"></span>XALTRION
+          </span>
+          <div style="display:flex;gap:14px;font-size:11px;color:var(--text-3);flex-wrap:wrap">
+            <span style="color:var(--text)">Overview</span>
+            <span>Portfolio</span>
+            <span>Positions</span>
+            <span>Journal</span>
+            <span>Watchlist</span>
+            <span>Backtest</span>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+            <span class="tag">Simple</span>
+            <span class="tag tag--accent">Operator</span>
+            <span class="tag">Expert</span>
+          </div>
+        </div>
+
+        <!-- Ticker strip -->
+        <div style="display:flex;gap:18px;padding:8px 16px;border-bottom:1px solid var(--hairline);font-family:var(--font-mono);font-size:10px;color:var(--text-3);overflow:hidden;white-space:nowrap">
+          <span>BTC/USD <span style="color:var(--text)">96,420</span> <span style="color:var(--gain)">+1.8%</span></span>
+          <span>AAPL <span style="color:var(--text)">228.55</span> <span style="color:var(--gain)">+1.05%</span></span>
+          <span>NVDA <span style="color:var(--text)">205.19</span> <span style="color:var(--loss)">&minus;0.4%</span></span>
+          <span>USD/ZAR <span style="color:var(--text)">18.12</span> <span style="color:var(--gain)">+0.2%</span></span>
+          <span>ETH/USD <span style="color:var(--text)">3,640</span> <span style="color:var(--gain)">+2.3%</span></span>
+          <span>GOOGL <span style="color:var(--text)">196.40</span> <span style="color:var(--gain)">+3.9%</span></span>
+        </div>
+
+        <!-- Body -->
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+
+          <!-- KPI row -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px">
+            <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">EQUITY</div>
+              <div class="x-mono" style="font-size:20px;color:var(--gain);margin-top:6px">$48,213.74</div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:4px">+$612.40 open</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">OPEN P&amp;L</div>
+              <div class="x-mono" style="font-size:20px;color:var(--gain);margin-top:6px">+1.28%</div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:4px">unrealized &middot; since 09:30</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">OPEN RISK</div>
+              <div class="x-mono" style="font-size:20px;color:var(--text);margin-top:6px">$4,920</div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:4px">10.2% of equity</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">AI SPEND &middot; TODAY</div>
+              <div class="x-mono" style="font-size:20px;color:var(--text);margin-top:6px">$2.14</div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:4px">~88% of budget left</div>
+            </div>
+          </div>
+
+          <!-- Chart + portfolio -->
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <!-- Equity chart -->
+            <div style="flex:2;min-width:300px;background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+              <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+                <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">EQUITY</span>
+                <span class="x-mono" style="font-size:16px">$48,213.74</span>
+                <span class="x-mono" style="font-size:11px;color:var(--gain)">+12.4% &middot; 1M</span>
+                <span style="margin-left:auto;display:flex;gap:7px;font-family:var(--font-mono);font-size:9px;color:var(--text-3)">
+                  <span>1D</span><span style="color:var(--text)">1M</span><span>3M</span><span>1Y</span>
+                </span>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+                <span class="tag tag--accent">Total</span>
+                <span class="tag">Alpaca</span>
+                <span class="tag">Luno</span>
+                <span class="tag">VALR</span>
+              </div>
+              <div style="height:120px;margin-top:12px;overflow:hidden">
+                <svg viewBox="0 0 600 120" preserveAspectRatio="none" width="100%" height="120" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="op-eq" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--gain)" stop-opacity="0.25"/>
+                      <stop offset="100%" stop-color="var(--gain)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 104 L40 100 L80 92 L120 98 L160 84 L200 88 L240 72 L280 64 L320 70 L360 56 L400 48 L440 52 L480 38 L520 30 L560 34 L600 16 L600 120 L0 120 Z" fill="url(#op-eq)"/>
+                  <path d="M0 104 L40 100 L80 92 L120 98 L160 84 L200 88 L240 72 L280 64 L320 70 L360 56 L400 48 L440 52 L480 38 L520 30 L560 34 L600 16" fill="none" stroke="var(--gain)" stroke-width="1.6"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Portfolio breakdown -->
+            <div style="flex:1;min-width:240px;background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">PORTFOLIO</div>
+              <div class="x-mono" style="font-size:18px;margin-top:6px">$48,213.74</div>
+              <div style="font-size:10px;color:var(--text-3);margin-bottom:6px">total across 3 brokers</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-top:1px solid var(--hairline)">
+                <span style="display:flex;align-items:center;gap:6px;font-size:12px">Alpaca <span class="tag tag--muted tag--xs">PAPER</span></span>
+                <span class="x-mono" style="font-size:12px">$31,540.18</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-top:1px solid var(--hairline)">
+                <span style="display:flex;align-items:center;gap:6px;font-size:12px">Luno <span class="tag tag--gain tag--xs">LIVE</span></span>
+                <span class="x-mono" style="font-size:12px">$9,180.40</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-top:1px solid var(--hairline)">
+                <span style="display:flex;align-items:center;gap:6px;font-size:12px">VALR <span class="tag tag--gain tag--xs">LIVE</span></span>
+                <span class="x-mono" style="font-size:12px">$7,493.16</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guardrails -->
+          <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+              <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">RISK GUARDRAILS</span>
+              <span style="display:flex;gap:12px;align-items:center;font-size:10px;color:var(--text-3)">
+                <span style="color:var(--gain)">&#x25CF; All within bounds</span>
+                <span>Regime: <span style="color:var(--status-warn)">HIGH&#95;VOLATILITY</span></span>
+              </span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:16px">
+              <div class="ft-gbar">
+                <div class="ft-gbar__label"><span>Daily loss</span><span>180 / 500</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:36%;background:var(--accent)"></div></div>
+              </div>
+              <div class="ft-gbar">
+                <div class="ft-gbar__label"><span>Open positions</span><span>6 / 10</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:60%;background:var(--accent)"></div></div>
+              </div>
+              <div class="ft-gbar">
+                <div class="ft-gbar__label"><span>Max pos. size</span><span>2.1k / 5k</span></div>
+                <div class="ft-gbar__track"><div class="ft-gbar__fill" style="width:42%;background:var(--accent)"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+        <!-- ─ EXPERT view ─ -->
+        <div class="portal-mock__view" data-view="expert" style="display:none;background:var(--ink-950);border:1px solid var(--hairline);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.35)">
+          <!-- chrome -->
+          <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid var(--hairline);flex-wrap:wrap">
+            <span class="x-logotype" style="font-size:13px;display:flex;align-items:center;gap:6px">
+              <span style="width:13px;height:13px;border-radius:3px;background:var(--accent);display:inline-block"></span>XALTRION
+            </span>
+            <div style="display:flex;gap:14px;font-size:11px;color:var(--text-3);flex-wrap:wrap">
+              <span style="color:var(--text)">Console</span>
+              <span>Reasoning</span>
+              <span>Feeds</span>
+              <span>Positions</span>
+              <span>Orders</span>
+              <span>Backtest</span>
+            </div>
+            <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+              <span class="tag">Simple</span>
+              <span class="tag">Operator</span>
+              <span class="tag tag--accent">Expert</span>
+            </div>
+          </div>
+          <!-- body -->
+          <div style="padding:16px;display:flex;gap:12px;flex-wrap:wrap">
+            <!-- console -->
+            <div style="flex:2;min-width:300px;background:var(--ink-1000);border:1px solid var(--hairline);border-radius:10px;padding:14px;font-family:var(--font-mono);font-size:11px;line-height:1.75;overflow:hidden">
+              <div style="color:var(--text-3)">09:42:11 <span style="color:var(--accent)">[OBSERVE]</span> scanning 14 symbols &middot; RSI, MACD, regime</div>
+              <div style="color:var(--text-3)">09:42:12 <span style="color:var(--status-warn)">[TRIGGER]</span> AAPL momentum + single-name risk &gt; cap</div>
+              <div style="color:var(--text-2)">09:42:13 <span style="color:var(--gain)">[ACT]</span> SELL 30% AAPL @ 228.55 &middot; BUY NVDA &times;18</div>
+              <div style="color:var(--text-3)">09:42:13 <span style="color:var(--accent-2)">[CONTEXT]</span> regime HIGH&#95;VOLATILITY &middot; F&amp;G 62</div>
+              <div style="color:var(--text-3);margin-top:6px">09:43:02 <span style="color:var(--accent)">[OBSERVE]</span> ETHZAR depth ok &middot; spread 0.06%</div>
+              <div style="color:var(--text-3)">09:43:03 <span style="color:var(--text-3)">[HOLD]</span> no edge &middot; daily-loss cap 36% used</div>
+            </div>
+            <!-- side -->
+            <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:12px">
+              <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                  <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3)">HEARTBEAT</span>
+                  <span style="font-size:10px;color:var(--gain)">&#x25CF; healthy &middot; 1s</span>
+                </div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);line-height:1.7">feeds 6/6 &middot; brokers 3/3<br/>AI calls 26/100 &middot; cycle 1.2s</div>
+              </div>
+              <div style="background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px">
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;color:var(--text-3);margin-bottom:8px">OPEN ORDERS &middot; 2</div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;padding:5px 0;border-top:1px solid var(--hairline)"><span>NVDA BUY 18</span><span style="color:var(--status-warn)">working</span></div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;padding:5px 0;border-top:1px solid var(--hairline)"><span>SOLZAR SELL</span><span style="color:var(--gain)">filled</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BROKERS ═══════════════════════════════════════════════════════════ -->
+  <section id="brokers" class="ws-brokers">
+    <div class="container">
+      <div class="ws-section-hdr">
+        <div class="x-eyebrow" style="margin-bottom:8px">Broker support</div>
+        <h2>Bring your <em>existing accounts.</em></h2>
+        <p class="sub">Start in paper mode. Scale to live when ready. Binance, Bybit, OKX, Rain, Interactive Brokers, MetaTrader 5 + 9 more coming.</p>
+      </div>
+
+      <!-- Available now -->
+      <div class="broker-subsection-label">Available now</div>
+      <div class="broker-grid-live">
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">A</div>
+            <div class="broker-card__name">Alpaca</div>
+            <div class="broker-card__status-live">LIVE</div>
+          </div>
+          <p class="broker-card__desc">US stocks and crypto. Paper account included. Commission-free equities.</p>
+          <div class="broker-tags">
+            <span class="btag btag--stocks">Stocks</span>
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[US]</span>
+          </div>
+        </div>
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">L</div>
+            <div class="broker-card__name">Luno</div>
+            <div class="broker-card__status-live">LIVE</div>
+          </div>
+          <p class="broker-card__desc">South African crypto exchange. ZAR markets, BTC, ETH, and major pairs.</p>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[ZAR]</span>
+            <span class="btag btag--region">[SA]</span>
+          </div>
+        </div>
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">V</div>
+            <div class="broker-card__name">VALR</div>
+            <div class="broker-card__status-live">LIVE</div>
+          </div>
+          <p class="broker-card__desc">SA crypto exchange with more pairs and deeper liquidity. ZAR markets.</p>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[ZAR]</span>
+            <span class="btag btag--region">[SA]</span>
+          </div>
+        </div>
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">K</div>
+            <div class="broker-card__name">Kraken</div>
+            <div class="broker-card__status-beta">BETA</div>
+          </div>
+          <p class="broker-card__desc">Global crypto spot, 1,400+ pairs. In beta &mdash; Simulated or Live (real money, off by default).</p>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">KF</div>
+            <div class="broker-card__name">Kraken Futures</div>
+            <div class="broker-card__status-beta">BETA</div>
+          </div>
+          <p class="broker-card__desc">Crypto perpetual futures. In beta &mdash; Demo, Simulated or Live (real money, off by default).</p>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Perps</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">IG</div>
+            <div class="broker-card__name">IG</div>
+            <div class="broker-card__status-beta">BETA</div>
+          </div>
+          <p class="broker-card__desc">CFDs on indices, commodities, forex &amp; shares. In beta &mdash; Demo, Simulated or Live (real money, off by default).</p>
+          <div class="broker-tags">
+            <span class="btag btag--cfd">CFD</span>
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+        <div class="broker-card">
+          <div class="broker-card__top">
+            <div class="broker-card__icon">H</div>
+            <div class="broker-card__name">HitBTC</div>
+            <div class="broker-card__status-beta">BETA</div>
+          </div>
+          <p class="broker-card__desc">Global crypto spot &amp; futures. In beta &mdash; Simulated against live prices on a virtual balance.</p>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coming soon -->
+      <div class="broker-subsection-label">Coming soon</div>
+      <div class="broker-grid-soon">
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">B</div>
+            <div class="broker-card__name broker-card__name--sm">Binance</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">By</div>
+            <div class="broker-card__name broker-card__name--sm">Bybit</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[ME]</span>
+            <span class="btag btag--region">[Asia]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">OX</div>
+            <div class="broker-card__name broker-card__name--sm">OKX</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[Global]</span>
+            <span class="btag btag--region">[UAE]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">R</div>
+            <div class="broker-card__name broker-card__name--sm">Rain</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[AED]</span>
+            <span class="btag btag--region">[ME]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">IB</div>
+            <div class="broker-card__name broker-card__name--sm">Interactive Brokers</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--stocks">Stocks</span>
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--options">Options</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">MT</div>
+            <div class="broker-card__name broker-card__name--sm">MetaTrader 5</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--cfd">CFD</span>
+            <span class="btag btag--region">[Global]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">OT</div>
+            <div class="broker-card__name broker-card__name--sm">OctaTrader</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--cfd">CFD</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">Ex</div>
+            <div class="broker-card__name broker-card__name--sm">Exness</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--cfd">CFD</span>
+            <span class="btag btag--region">[Africa]</span>
+            <span class="btag btag--region">[ME]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">XM</div>
+            <div class="broker-card__name broker-card__name--sm">XM</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--cfd">CFD</span>
+            <span class="btag btag--region">[Africa]</span>
+            <span class="btag btag--region">[ME]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">Ti</div>
+            <div class="broker-card__name broker-card__name--sm">Tiger Brokers</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--stocks">Stocks</span>
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[Asia]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">Sx</div>
+            <div class="broker-card__name broker-card__name--sm">Saxo Bank</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--stocks">Stocks</span>
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--region">[Europe]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">CC</div>
+            <div class="broker-card__name broker-card__name--sm">Capital.com</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--forex">Forex</span>
+            <span class="btag btag--cfd">CFD</span>
+            <span class="btag btag--region">[ME]</span>
+            <span class="btag btag--region">[Europe]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">MB</div>
+            <div class="broker-card__name broker-card__name--sm">Mercado Bitcoin</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[BRL]</span>
+            <span class="btag btag--region">[LATAM]</span>
+          </div>
+        </div>
+        <div class="broker-card broker-card--soon">
+          <div class="broker-card__top">
+            <div class="broker-card__icon broker-card__icon--sm">Bs</div>
+            <div class="broker-card__name broker-card__name--sm">Bitso</div>
+            <div class="broker-card__status-soon">Soon</div>
+          </div>
+          <div class="broker-tags">
+            <span class="btag btag--crypto">Crypto</span>
+            <span class="btag btag--region">[LATAM]</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px;text-align:center">
+        <a href="roadmap.html" style="font-size:13px;color:var(--accent-2);text-decoration:none;">View full roadmap &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INTELLIGENCE ══════════════════════════════════════════════════════ -->
+  <section class="ws-intel" id="intelligence">
+    <div class="container">
+      <div class="ws-section-hdr">
+        <div class="x-eyebrow" style="margin-bottom:8px">Intelligence layer</div>
+        <h2>Powered by the best <em>AI on the planet.</em></h2>
+        <p class="sub">Two AI systems. One watches markets. One reasons about them. Both use your own keys &mdash; you pay the provider directly, at cost.</p>
+      </div>
+
+      <div class="intel-grid">
+        <div class="intel-card">
+          <div class="intel-card__eyebrow">Decision AI</div>
+          <div class="intel-card__name">Claude</div>
+          <p class="intel-card__blurb">Every trade decision is reasoned by Claude. The model reads the full market context, your strategy rules, and risk limits &mdash; then writes a plain-English rationale you can actually read.</p>
+          <div class="intel-card__model-tags">
+            <span class="intel-card__model-tag">Haiku 4.5</span>
+            <span class="intel-card__model-tag">Sonnet 4.6</span>
+            <span class="intel-card__model-tag">Your key</span>
+          </div>
+        </div>
+        <div class="intel-card">
+          <div class="intel-card__eyebrow">Context AI</div>
+          <div class="intel-card__name">Perplexity</div>
+          <p class="intel-card__blurb">Real-time market context from across the web. News, sentiment, and macro events synthesised into every decision &mdash; so the bot knows what happened this morning, not just what the chart says.</p>
+          <div class="intel-card__model-tags">
+            <span class="intel-card__model-tag">Real-time web</span>
+            <span class="intel-card__model-tag">Your key</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="broker-subsection-label" style="margin-top:36px;margin-bottom:16px">Data feeds</div>
+      <div class="feeds-grid">
+        <div class="feed-card">
+          <div class="feed-card__name">Massive</div>
+          <div class="feed-card__desc">Real-time prices, news, options data. US equities and crypto.</div>
+        </div>
+        <div class="feed-card">
+          <div class="feed-card__name">Finnhub</div>
+          <div class="feed-card__desc">Sentiment scoring, earnings calendar, analyst ratings.</div>
+        </div>
+        <div class="feed-card">
+          <div class="feed-card__name">FRED</div>
+          <div class="feed-card__desc">US macroeconomic indicators. Rates, inflation, employment.</div>
+        </div>
+        <div class="feed-card">
+          <div class="feed-card__name">CoinGecko</div>
+          <div class="feed-card__desc">Global crypto prices. Free tier, no key required.</div>
+        </div>
+        <div class="feed-card">
+          <div class="feed-card__name">FMP</div>
+          <div class="feed-card__desc">Earnings calendar fed into the AI&rsquo;s market context.</div>
+        </div>
+        <div class="feed-card">
+          <div class="feed-card__name">Alpha Vantage</div>
+          <div class="feed-card__desc">US market movers &mdash; gainers, losers, most active &mdash; as a risk signal.</div>
+        </div>
+        <div class="feed-card" style="border-style:dashed;opacity:0.6">
+          <div class="feed-card__name">Custom feeds</div>
+          <div class="feed-card__desc">Add any data source. Build your own feed adapters.</div>
+        </div>
+      </div>
+
+      <div class="intel-byok">
+        <div class="intel-byok__icon">&#x1F511;</div>
+        <div class="intel-byok__text">
+          <strong>Bring your own API keys &mdash; your data, your accounts, no middleman.</strong>
+          Every connection goes directly from your machine to the provider. Xaltrion never sees your keys, your data, or your usage.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VEYLOR ════════════════════════════════════════════════════════════ -->
+  <section class="ws-notifs" id="veylor">
+    <div class="container">
+      <div class="ws-section-hdr" style="text-align:left;margin:0 0 24px 0">
+        <div class="x-eyebrow" style="margin-bottom:8px">Your AI co-pilot</div>
+        <h2>Meet <em>Veylor.</em></h2>
+        <p class="sub">The built-in assistant that knows your live setup &mdash; brokers, balances, holdings, watchlist, and running costs. Open it from the &#10024; button in any view and just ask, in plain language.</p>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch">
+        <div style="flex:1.3;min-width:300px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+          <div class="notif-card">
+            <div class="notif-card__icon">&#x1F50D;</div>
+            <div>
+              <div class="notif-card__name">Knows your setup</div>
+              <div class="notif-card__desc">Brokers, balances, positions, watchlist, and AI spend &mdash; so answers are about <em>your</em> bot, not generic advice.</div>
+            </div>
+          </div>
+          <div class="notif-card">
+            <div class="notif-card__icon">&#x1F6E1;&#xFE0F;</div>
+            <div>
+              <div class="notif-card__name">Read-only by default</div>
+              <div class="notif-card__desc">Veylor explains and advises but changes nothing &mdash; until you choose to let it.</div>
+            </div>
+          </div>
+          <div class="notif-card">
+            <div class="notif-card__icon">&#x2699;&#xFE0F;</div>
+            <div>
+              <div class="notif-card__name">Full experience (opt-in)</div>
+              <div class="notif-card__desc">Let Veylor apply settings, run diagnostics, and self-heal common issues &mdash; every action asks for your confirmation first.</div>
+            </div>
+          </div>
+          <div class="notif-card">
+            <div class="notif-card__icon">&#x1F4B0;</div>
+            <div>
+              <div class="notif-card__name">Cost shown per chat</div>
+              <div class="notif-card__desc">Every message shows its estimated AI cost up front &mdash; no surprises. Runs on your own AI key.</div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:290px;display:flex">
+          <div class="ft-art-card" style="display:flex;flex-direction:column;justify-content:center;width:100%">
+            <div style="display:flex;flex-direction:column;gap:8px;font-family:var(--font-ui);font-size:12px">
+              <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:7px 11px;border-radius:10px 10px 2px 10px;max-width:80%">Why didn&rsquo;t it trade today?</div>
+              <div style="align-self:flex-start;background:var(--surface-soft);padding:7px 11px;border-radius:10px 10px 10px 2px;max-width:85%;color:var(--text-2)">RSI stayed neutral on your watchlist and the daily-loss guardrail wasn&rsquo;t hit &mdash; so it held. Want me to widen the watchlist?</div>
+              <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:7px 11px;border-radius:10px 10px 2px 10px;max-width:80%">How do I cut my AI cost?</div>
+              <div style="align-self:flex-start;background:var(--surface-soft);padding:7px 11px;border-radius:10px 10px 10px 2px;max-width:85%;color:var(--text-2)">Switch the research model to a lighter one for routine cycles and set a daily AI-spend cap in Settings &rarr; AI. Want me to apply that?</div>
+            </div>
+            <div style="text-align:right;margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--text-3)">~$0.004 this chat &middot; your AI key</div>
+          </div>
+        </div>
+      </div>
+      <div class="notif-byok">&#x1F512; Veylor uses your own AI keys and your trading data stays on your machine. Sending feedback to the team is always opt-in.</div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ══════════════════════════════════════════════════════ -->
+  <section id="how" class="container">
+    <h2>How it works</h2>
+    <p class="sub">From install to live automation in four straightforward steps.</p>
+    <div class="steps">
+      <article class="card"><span class="step-num">1</span>
+        <h3>Download</h3>
+        <p>Install the app from the latest Windows release. macOS and Linux coming soon.</p>
+      </article>
+      <article class="card"><span class="step-num">2</span>
+        <h3>Connect</h3>
+        <p>Add broker &amp; AI keys in Settings and validate connectivity before going anywhere near live funds.</p>
+      </article>
+      <article class="card"><span class="step-num">3</span>
+        <h3>Paper trade</h3>
+        <p>Run safely in simulation first with risk guardrails enabled. Watch decisions flow in real time.</p>
+      </article>
+      <article class="card"><span class="step-num">4</span>
+        <h3>Go live</h3>
+        <p>When confidence and controls are in place, flip the live switch. One toggle, full power.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ NOTIFICATIONS ═════════════════════════════════════════════════════ -->
+  <section class="ws-notifs" id="notifications">
+    <div class="container">
+      <div class="ws-section-hdr" style="text-align:left;margin:0 0 0 0">
+        <div class="x-eyebrow" style="margin-bottom:8px">Notifications</div>
+        <h2>Stay <em>informed.</em></h2>
+        <p class="sub">Get alerts where you already are. Your channels, your keys &mdash; we never see them.</p>
+      </div>
+      <div class="notif-grid">
+        <div class="notif-card">
+          <div class="notif-card__icon">&#x1F4AC;</div>
+          <div>
+            <div class="notif-card__name">Discord webhook</div>
+            <div class="notif-card__desc">Trade alerts, guardrail breaches, and bot status straight into your server or a private DM channel.</div>
+          </div>
+        </div>
+        <div class="notif-card">
+          <div class="notif-card__icon">&#x2708;</div>
+          <div>
+            <div class="notif-card__name">Telegram</div>
+            <div class="notif-card__desc">Real-time alerts on your phone. Configure your bot token and chat ID in Settings.</div>
+          </div>
+        </div>
+      </div>
+      <div class="notif-byok">&#x1F512; Your webhook URLs and bot tokens are encrypted on your machine and never sent to Xaltrion servers.</div>
+    </div>
+  </section>
+
+  <!-- ═══ PRICING PREVIEW ════════════════════════════════════════════════════ -->
+  <section class="container" style="padding-bottom:5rem">
+    <div class="ws-pricing-header">
+      <div class="x-eyebrow" style="margin-bottom:8px">Pricing</div>
+      <h2>One price. <em>Lifetime</em> if you mean it.</h2>
+      <p class="sub">Xaltrion runs locally. We never see your trades or your capital &mdash; only you do.</p>
+    </div>
+
+    <!-- Early access banner -->
+    <div class="early-access-banner" style="margin-bottom:32px">
+      <div class="early-access-banner__eyebrow">&#x1F680; Early Access &mdash; Free for 90 days</div>
+      <h2>Be one of the first <em>50 traders</em> to try Xaltrion.</h2>
+      <p>No payment required during the preview period. Plans launch after early access closes.</p>
+      <a class="cta cta-primary" href="beta.html" style="padding:12px 22px;font-size:14px">Apply for Early Access &rarr;</a>
+    </div>
+
+    <div class="pc-grid pc-grid--preview">
+      <div class="pc-card">
+        <span class="pc-badge">Most flexible</span>
+        <div class="pc-tier">Monthly</div>
+        <p class="pc-blurb">Try it month to month. Cancel any time, keep what you&rsquo;ve made.</p>
+        <div class="pc-price-row">
+          <span class="x-mono">$16</span>
+          <span class="pc-price-period">/ month</span>
+        </div>
+        <div class="pc-coming-soon">&#x23F3;&ensp;Coming Soon</div>
+        <a class="btn-interest" href="pricing.html">Register your interest &rarr;</a>
+        <div class="pc-sep"></div>
+        <ul class="pc-features">
+          <li>All three portal experiences</li>
+          <li>Paper &amp; live trading</li>
+          <li>Custom risk guardrails &amp; kill switches</li>
+          <li>7-day free trial &middot; no card required</li>
+        </ul>
+      </div>
+      <div class="pc-card pc-card--featured">
+        <span class="pc-badge">Best value</span>
+        <div class="pc-tier">Annual <span class="pc-badge-note">Save $93 / yr</span></div>
+        <p class="pc-blurb">For operators who stay. Lower annual cost with full feature access.</p>
+        <div class="pc-price-row">
+          <span class="x-mono">$99</span>
+          <span class="pc-price-period">/ year</span>
+        </div>
+        <div class="pc-coming-soon">&#x23F3;&ensp;Coming Soon</div>
+        <a class="btn-interest" href="pricing.html">Register your interest &rarr;</a>
+        <div class="pc-sep"></div>
+        <ul class="pc-features">
+          <li>Everything in Monthly</li>
+          <li>Locked-in price &mdash; never raised on you</li>
+          <li>Backtest engine &mdash; 5 years of data</li>
+          <li>Priority email support</li>
+        </ul>
+      </div>
+      <div class="pc-card">
+        <span class="pc-badge pc-badge--warn">Limited release</span>
+        <div class="pc-tier">Founders</div>
+        <p class="pc-blurb">Lifetime license, one machine. Limited to the first 500 operators.</p>
+        <div class="pc-price-row">
+          <span class="x-mono">$135</span>
+          <span class="pc-price-period">/ once</span>
+          <span class="pc-price-lifetime">LIFETIME</span>
+        </div>
+        <div class="pc-coming-soon">&#x23F3;&ensp;Coming Soon</div>
+        <a class="btn-interest" href="pricing.html">Register your interest &rarr;</a>
+        <div class="pc-sep"></div>
+        <ul class="pc-features">
+          <li>Everything in Annual &mdash; forever</li>
+          <li>No subscription &mdash; ever</li>
+          <li>Direct line to engineering</li>
+          <li>Founders&rsquo; ledger &mdash; your handle in the app</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pc-trust">
+      <span>14-day money-back (on launch)</span>
+      <span class="pc-trust-sep">&middot;</span>
+      <span>Secure checkout via PayPal</span>
+      <span class="pc-trust-sep">&middot;</span>
+      <span>&#x229E; Windows &middot; macOS soon</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="brokers.html">Brokers</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+      </div>
+      <div class="muted" style="margin-top:4px">&copy; 2026 Xaltrion</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var copy = {
+        simple: ['The <em>Simple</em> view.', 'Just the essentials — your equity curve, open positions, and what the bot just did. Start or stop in one click.'],
+        operator: ['The <em>Operator</em> view.', 'Everything on one screen — live equity across every broker, real-time risk guardrails, and AI spend you can actually see. Figures shown are illustrative.'],
+        expert: ['The <em>Expert</em> view.', 'Everything under the hood — the AI’s OBSERVE / TRIGGER / ACT / CONTEXT reasoning, live feeds, orders, and heartbeat.']
+      };
+      window.selectPortal = function (name) {
+        var cards = document.querySelectorAll('[data-portal]');
+        for (var i = 0; i < cards.length; i++) {
+          var on = cards[i].getAttribute('data-portal') === name;
+          cards[i].classList.toggle('portal-card--active', on);
+          cards[i].setAttribute('aria-selected', on ? 'true' : 'false');
+        }
+        var views = document.querySelectorAll('#portal-mock [data-view]');
+        for (var j = 0; j < views.length; j++) {
+          views[j].style.display = views[j].getAttribute('data-view') === name ? '' : 'none';
+        }
+        var info = copy[name];
+        if (info) {
+          var h = document.getElementById('portal-mock-h2');
+          var s = document.getElementById('portal-mock-sub');
+          if (h) { h.innerHTML = info[0]; }
+          if (s) { s.textContent = info[1]; }
+        }
+      };
+      window.portalKey = function (e, name) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.selectPortal(name); }
+      };
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

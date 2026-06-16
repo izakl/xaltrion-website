@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers: Referrer policy and CSP -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com" />
+  <title>Docs — Xaltrion</title>
+  <meta name="description" content="Xaltrion documentation — install, setup, brokers, data feeds, AI, troubleshooting." />
+  <meta property="og:title" content="Docs — Xaltrion" />
+  <meta property="og:description" content="Xaltrion documentation — install, setup, brokers, data feeds, AI, troubleshooting." />
+  <meta property="og:url" content="https://xaltrion.ai/docs.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Theme bootstrap: apply saved light/dark theme BEFORE first paint (no flash)
+       and expose window.XTheme for the nav toggle. Default is dark. -->
+  <script>
+    (function () {
+      window.XTheme = {
+        get: function () {
+          try { return localStorage.getItem('xaltrion-theme') === 'light' ? 'light' : 'dark'; }
+          catch (e) { return 'dark'; }
+        },
+        _apply: function (t) {
+          var r = document.documentElement;
+          r.setAttribute('data-theme', t);
+          r.classList.toggle('theme-light', t === 'light');
+        },
+        set: function (t) {
+          t = (t === 'light') ? 'light' : 'dark';
+          try { localStorage.setItem('xaltrion-theme', t); } catch (e) {}
+          this._apply(t);
+          try { window.dispatchEvent(new CustomEvent('xaltrion-theme-changed', { detail: { theme: t } })); } catch (e) {}
+          return t;
+        },
+        toggle: function () { return this.set(this.get() === 'light' ? 'dark' : 'light'); }
+      };
+      window.XTheme._apply(window.XTheme.get());
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <style>
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      max-width: 1120px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .docs-toc {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+      padding: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-lg);
+    }
+    .docs-toc h4 { margin: 0 0 0.5rem; font-size: 0.85rem; text-transform: uppercase; color: var(--text-3); letter-spacing: 0.05em; }
+    .docs-toc ul { list-style: none; padding: 0; margin: 0; }
+    .docs-toc li { margin: 0.35rem 0; }
+    .docs-toc a { color: var(--text); text-decoration: none; font-size: 0.92rem; }
+    .docs-toc a:hover { color: var(--accent); }
+    .docs-main h2 { margin-top: 2.2rem; }
+    .docs-main h3 { margin-top: 1.4rem; font-size: 1.1rem; color: var(--accent-2); }
+    .docs-main pre {
+      background: var(--ink-800);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-md);
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .docs-main code { font-family: var(--font-mono); font-size: 0.9em; background: var(--ink-800); padding: 0.1rem 0.35rem; border-radius: var(--r-sm); }
+    .docs-main pre code { background: transparent; padding: 0; }
+    @media (max-width: 780px) { .docs-layout { grid-template-columns: 1fr; } .docs-toc { position: static; } }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="brokers.html">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
+        <li><a href="docs.html" style="color:var(--text)">Docs</a></li>
+      </ul>
+      <a class="cta cta-primary" href="download.html" style="font-size:13px;padding:10px 16px">Download</a>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#install">Installation</a></li>
+        <li><a href="#brokers">Broker setup</a></li>
+        <li><a href="#feeds">Data feeds</a></li>
+        <li><a href="#ai">AI setup</a></li>
+        <li><a href="#assistant">AI assistant (Veylor)</a></li>
+        <li><a href="#dashboard">Dashboard guide</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+      </ul>
+    </aside>
+
+    <main class="docs-main">
+      <h1>Documentation</h1>
+      <p class="muted">Quick reference for getting Xaltrion installed and running locally.</p>
+
+      <section id="install">
+        <h2>Installation</h2>
+        <p>Xaltrion ships as a Windows installer. macOS and Linux are on the roadmap.</p>
+        <ol>
+          <li>Download the latest <code>.exe</code> installer from the <a href="download.html">Download page</a>.</li>
+          <li>Run the installer. Windows SmartScreen may warn you &mdash; click <strong>More info</strong> then <strong>Run anyway</strong>. The installer is unsigned during beta.</li>
+          <li>On first launch, the 9-step setup wizard opens automatically.</li>
+          <li>The wizard guides you through: licence activation &rarr; notifications &rarr; brokers &rarr; data feeds &rarr; AI keys &rarr; trading profile &rarr; view selection.</li>
+          <li>After completing the wizard, click <strong>Start trading</strong> &mdash; you're done.</li>
+        </ol>
+      </section>
+
+      <section id="brokers">
+        <h2>Broker setup</h2>
+        <p>Brokers are configured in the wizard (Step 4) or anytime via <strong>Settings &rarr; Brokers</strong>. Pick a broker for sign-up details:</p>
+        <p><strong>Each broker runs in one of three modes</strong>, switchable per broker: <strong>Demo</strong> (the broker&rsquo;s own paper/demo account, where one exists), <strong>Simulated</strong> (the app simulates fills against real live prices &mdash; run a <em>live-keyed</em> account with a virtual balance in your choice of currency, no separate demo needed), and <strong>Live</strong> (real money &mdash; off by default, gated behind a typed &ldquo;ENABLE LIVE&rdquo; confirmation). The AI behaves identically in every mode; only execution differs.</p>
+
+        <select id="broker-select" class="beta-select" aria-label="Choose a broker" style="max-width:380px;margin:8px 0 4px" onchange="showDoc('broker', this.value)">
+          <option value="alpaca">Alpaca &mdash; US stocks &amp; crypto</option>
+          <option value="luno">Luno &mdash; ZAR crypto</option>
+          <option value="valr">VALR &mdash; ZAR crypto</option>
+          <option value="kraken">Kraken &mdash; global crypto spot</option>
+          <option value="kraken_futures">Kraken Futures &mdash; crypto perpetuals</option>
+          <option value="ig">IG &mdash; CFDs (indices, commodities, forex, shares)</option>
+          <option value="hitbtc">HitBTC &mdash; crypto spot &amp; futures</option>
+        </select>
+
+        <div data-doc="broker:alpaca" class="doc-card">
+          <div class="doc-card__hd"><strong>Alpaca</strong> <span class="tag tag--gain tag--xs">LIVE</span> <span class="tag tag--xs">Stocks · ETFs · Crypto · [US]</span></div>
+          <p>US stocks, ETFs and crypto, commission-free. Three lanes: <strong>Paper</strong> (simulated), <strong>Live</strong> (real money), or both &mdash; paper is included with every Alpaca account.</p>
+          <p>Sign up &amp; create API keys: <a href="https://alpaca.markets" target="_blank" rel="noopener">alpaca.markets</a> &rarr; Home &rarr; API Keys.</p>
+        </div>
+        <div data-doc="broker:luno" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>Luno</strong> <span class="tag tag--gain tag--xs">LIVE</span> <span class="tag tag--xs">Crypto · [ZAR] · [SA]</span></div>
+          <p>South African crypto exchange &mdash; ZAR markets (BTC, ETH and major pairs).</p>
+          <p>Create keys at <a href="https://www.luno.com" target="_blank" rel="noopener">luno.com</a> &rarr; Account &rarr; API keys. Grant <strong>read</strong> and <strong>trade</strong> permissions.</p>
+        </div>
+        <div data-doc="broker:valr" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>VALR</strong> <span class="tag tag--gain tag--xs">LIVE</span> <span class="tag tag--xs">Crypto · [ZAR] · [SA]</span></div>
+          <p>SA crypto exchange with more pairs and deeper liquidity. ZAR markets.</p>
+          <p>Create keys at <a href="https://www.valr.com" target="_blank" rel="noopener">valr.com</a> &rarr; API Management. Grant <strong>read</strong> and <strong>trade</strong> permissions.</p>
+        </div>
+        <div data-doc="broker:kraken" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>Kraken</strong> <span class="tag tag--warn tag--xs">BETA · SIM / LIVE</span> <span class="tag tag--xs">Crypto · [Global]</span></div>
+          <p>Global crypto spot (1,400+ pairs). Kraken runs the full AI strategy in <strong>Simulated</strong> mode (fills against live prices on a virtual balance) or <strong>Live</strong> (real money &mdash; off by default, typed &ldquo;ENABLE LIVE&rdquo; confirmation). Kraken has no native demo, so use Simulated to trial it risk-free.</p>
+          <p>Create keys at <a href="https://www.kraken.com" target="_blank" rel="noopener">kraken.com</a> &rarr; Settings &rarr; API.</p>
+        </div>
+        <div data-doc="broker:kraken_futures" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>Kraken Futures</strong> <span class="tag tag--warn tag--xs">BETA · DEMO / SIM / LIVE</span> <span class="tag tag--xs">Perps · [Global]</span></div>
+          <p>Crypto perpetual futures. Run it on the <strong>broker-native demo</strong>, in <strong>Simulated</strong> mode (live prices, virtual balance), or <strong>Live</strong> (real money &mdash; off by default, typed confirmation; live stays long-only, 1&times; and reduce-only for safety).</p>
+          <p>Demo + live keys are generated separately inside the Kraken <a href="https://futures.kraken.com" target="_blank" rel="noopener">Futures</a> / <a href="https://demo-futures.kraken.com" target="_blank" rel="noopener">demo</a> platforms.</p>
+        </div>
+        <div data-doc="broker:ig" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>IG</strong> <span class="tag tag--warn tag--xs">BETA · DEMO / SIM / LIVE</span> <span class="tag tag--xs">CFD · Forex · [Global]</span></div>
+          <p>CFDs on indices, commodities, forex and shares. Run it on the IG <strong>demo</strong>, in <strong>Simulated</strong> mode (live prices, virtual balance), or <strong>Live</strong> (real money &mdash; off by default, typed confirmation; live needs an activated IG account).</p>
+          <p>Get API credentials at <a href="https://www.ig.com" target="_blank" rel="noopener">ig.com</a> (My IG &rarr; Settings &rarr; API). Demo and live use separate credentials.</p>
+        </div>
+        <div data-doc="broker:hitbtc" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>HitBTC</strong> <span class="tag tag--warn tag--xs">BETA · SIMULATED</span> <span class="tag tag--xs">Crypto · [Global]</span></div>
+          <p>Crypto spot &amp; futures. Runs in <strong>Simulated</strong> mode &mdash; the AI trades against live HitBTC prices on a virtual balance you set, so you can trial it with zero risk.</p>
+          <p>Create API keys at <a href="https://hitbtc.com" target="_blank" rel="noopener">hitbtc.com</a> (HTTP Basic API key + secret).</p>
+        </div>
+
+        <h3>Intelligent symbol setup</h3>
+        <p>During onboarding (and anytime in Settings) you can use <strong>&#10024; Suggest symbols with AI</strong> &mdash; Veylor proposes sensible per-broker symbols and sizing based on the brokers you've connected and your balances. Review and adjust before saving.</p>
+
+        <h3>Coming soon</h3>
+        <p>Binance, Bybit, OKX, Rain, Interactive Brokers, MetaTrader 5, and more. <a href="roadmap.html">See the full roadmap</a> &mdash; or <a href="request-broker.html">request a broker</a>.</p>
+      </section>
+
+      <section id="feeds">
+        <h2>Data feeds</h2>
+        <p>Data feeds are configured in the wizard (Step 5) or anytime via <strong>Settings &rarr; Data Feeds</strong>. They give the AI richer market context &mdash; more signal, better decisions.</p>
+        <p><strong>None of these are required.</strong> The bot runs on your broker&rsquo;s live prices plus your Claude key. <span class="tag tag--gain tag--xs">CoinGecko</span> (free, on by default) already covers crypto prices; add the others that match what you trade. Pick a feed for details:</p>
+
+        <select id="feed-select" class="beta-select" aria-label="Choose a data feed" style="max-width:380px;margin:8px 0 4px" onchange="showDoc('feed', this.value)">
+          <option value="coingecko">CoinGecko &mdash; crypto prices (default, free)</option>
+          <option value="massive">Massive &mdash; real-time prices, news, stocks</option>
+          <option value="finnhub">Finnhub &mdash; sentiment, earnings, analyst recs</option>
+          <option value="fmp">FMP &mdash; earnings calendar</option>
+          <option value="fred">FRED &mdash; macro (rates, inflation, GDP)</option>
+          <option value="alphavantage">Alpha Vantage &mdash; market movers</option>
+        </select>
+
+        <div data-doc="feed:coingecko" class="doc-card">
+          <div class="doc-card__hd"><strong>CoinGecko</strong> <span class="tag tag--accent tag--xs">Recommended</span> <span class="tag tag--gain tag--xs">Free · no key</span></div>
+          <p><strong>Provides:</strong> global crypto prices and market data. <strong>On by default</strong> &mdash; no API key needed; usage stays well within the free tier.</p>
+        </div>
+        <div data-doc="feed:massive" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>Massive</strong> <span class="tag tag--accent tag--xs">Recommended</span> <span class="tag tag--xs">Free tier · paid upgrade</span></div>
+          <p><strong>Provides:</strong> real-time prices, news, and crypto + stock data. The individual plan works well for crypto; upgrade for real-time stocks and options. <strong>Most useful if you trade stocks.</strong></p>
+          <p>Get a key: <a href="https://massive.com" target="_blank" rel="noopener">massive.com</a>.</p>
+        </div>
+        <div data-doc="feed:finnhub" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>Finnhub</strong> <span class="tag tag--muted tag--xs">Optional</span> <span class="tag tag--gain tag--xs">Free key</span></div>
+          <p><strong>Provides:</strong> sentiment scoring, earnings calendar, analyst recommendations, and social sentiment fed into the AI&rsquo;s context.</p>
+          <p>Free key: <a href="https://finnhub.io" target="_blank" rel="noopener">finnhub.io</a>.</p>
+        </div>
+        <div data-doc="feed:fmp" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>FMP</strong> (Financial Modeling Prep) <span class="tag tag--muted tag--xs">Optional</span> <span class="tag tag--gain tag--xs">Free tier</span></div>
+          <p><strong>Provides:</strong> the upcoming-earnings calendar, so the AI is aware of earnings events. Free tier is sufficient (cached aggressively).</p>
+          <p>Get a key: <a href="https://site.financialmodelingprep.com/developer/docs" target="_blank" rel="noopener">financialmodelingprep.com</a>.</p>
+        </div>
+        <div data-doc="feed:fred" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>FRED</strong> <span class="tag tag--muted tag--xs">Optional</span> <span class="tag tag--gain tag--xs">Free key</span></div>
+          <p><strong>Provides:</strong> US macroeconomic data &mdash; interest rates, inflation, GDP &mdash; as macro context for the AI.</p>
+          <p>Free key: <a href="https://fred.stlouisfed.org/docs/api/api_key.html" target="_blank" rel="noopener">St. Louis Fed</a>.</p>
+        </div>
+        <div data-doc="feed:alphavantage" class="doc-card" style="display:none">
+          <div class="doc-card__hd"><strong>Alpha Vantage</strong> <span class="tag tag--muted tag--xs">Optional</span> <span class="tag tag--gain tag--xs">Free key</span></div>
+          <p><strong>Provides:</strong> US market movers (top gainers, losers, most active) as a risk-appetite signal in the AI&rsquo;s context.</p>
+          <p>Free key: <a href="https://www.alphavantage.co/support/#api-key" target="_blank" rel="noopener">alphavantage.co</a>.</p>
+        </div>
+      </section>
+
+      <section id="ai">
+        <h2>AI setup</h2>
+        <p>AI keys are configured in the wizard (Step 6) or anytime via <strong>Settings &rarr; AI</strong>.</p>
+
+        <h3>Claude API key (required)</h3>
+        <p>Powers all trading decisions &mdash; evaluates signals, explains reasoning, and manages risk. Get a key at <a href="https://console.anthropic.com">console.anthropic.com</a>. Without this key Xaltrion cannot make AI-powered decisions.</p>
+
+        <h3>Perplexity API key (optional)</h3>
+        <p>Adds real-time web market context on top of your data feeds. Get a key at <a href="https://www.perplexity.ai/settings/api">perplexity.ai</a>. Without it Xaltrion runs in Claude-only mode, which is still fully functional.</p>
+
+        <h3>Model selection</h3>
+        <p>Choose your Claude model in Settings &rarr; AI:</p>
+        <ul>
+          <li><strong>Claude Haiku 4.5</strong> &mdash; faster, more cost-effective. Recommended for high-frequency trading.</li>
+          <li><strong>Claude Sonnet 4.6</strong> &mdash; more capable, higher cost. Recommended for complex multi-asset strategies.</li>
+        </ul>
+      </section>
+
+      <section id="assistant">
+        <h2>AI assistant (Veylor)</h2>
+        <p>Veylor is the built-in AI assistant, available from the &#10024; button in any view. It knows your live setup &mdash; brokers, balances, holdings, watchlist, and running costs &mdash; so you can ask things like &ldquo;why didn't it trade today?&rdquo;, &ldquo;what should I keep an eye on?&rdquo;, or &ldquo;how do I reduce my AI cost?&rdquo; The estimated cost of each chat is shown, so there are no surprises.</p>
+
+        <h3>Standard vs Full experience</h3>
+        <p>By default Veylor is a <strong>read-only advisor</strong> &mdash; it answers questions but changes nothing. You can opt in to <strong>Full experience</strong> mode (Settings &rarr; AI), which lets Veylor also act on your behalf: apply configuration (tradable symbols, watchlist, sizing), run diagnostics, self-heal common issues, and &mdash; with your permission &mdash; send feedback to the team. Every action asks for your confirmation first.</p>
+        <p><strong>Cost note:</strong> Full experience uses the AI more, so it costs more. Xaltrion makes it an explicit opt-in and shows the projected spend before you turn it on.</p>
+
+        <h3>Cost transparency</h3>
+        <p>The Operator view's <strong>AI Spend</strong> tile shows your projected cost per day and per month at your current settings. Cost scales with how much you ask the AI to do &mdash; the number of symbols, how often it runs, and whether optional research (Perplexity) is enabled. You stay in control of the spend.</p>
+
+        <h3>Privacy</h3>
+        <p>Veylor uses your own AI keys and your trading data stays on your machine. Sending feedback to the team is always opt-in.</p>
+      </section>
+
+      <section id="dashboard">
+        <h2>Dashboard guide</h2>
+        <p>The portal opens at <code>http://localhost:8080</code> after starting the app. Choose your view from the top ribbon.</p>
+        <ul>
+          <li><strong>Simple</strong> &mdash; equity curve, open positions, recent decisions. Clean and calm.</li>
+          <li><strong>Operator</strong> &mdash; multi-broker portfolio, AI spend tile, risk guardrail bars, equity graph with range selector.</li>
+          <li><strong>Expert</strong> &mdash; full console, AI reasoning log, live feeds, orders, backtest, heartbeat.</li>
+          <li><strong>Settings</strong> &mdash; brokers, data feeds, AI provider, risk limits, notifications, licensing.</li>
+          <li><strong>Veylor assistant</strong> &mdash; the &#10024; button (any view) opens the AI assistant for questions, setup help, and &mdash; in Full experience &mdash; hands-on changes.</li>
+        </ul>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+
+        <h3>Windows SmartScreen blocks installer</h3>
+        <p>Click <strong>More info</strong> then <strong>Run anyway</strong>. The installer is unsigned during beta.</p>
+
+        <h3>Setup wizard not appearing on first launch</h3>
+        <p>Go to <strong>Settings &rarr; General &rarr; Resume onboarding</strong> to restart the setup wizard.</p>
+
+        <h3>License token cache stale</h3>
+        <p>Go to <strong>Settings &rarr; System &rarr; Clear activation cache</strong>, or delete <code>.activation_cache.json</code> and restart Xaltrion.</p>
+
+        <h3>Machine binding mismatch</h3>
+        <p>Each licence activates on one machine. If you&rsquo;ve reinstalled, changed hardware, or moved machines, email <a href="mailto:support@xaltrion.ai">support@xaltrion.ai</a> to release the previous activation &mdash; then re-activate. A stale local cache can also cause this: <strong>Settings &rarr; System &rarr; Clear activation cache</strong> and restart.</p>
+
+        <h3>Port 8080 already in use</h3>
+        <p>Close any other app using port 8080 and restart Xaltrion.</p>
+
+        <h3>Perplexity not working</h3>
+        <p>Check your API key is saved in <strong>Settings &rarr; AI &rarr; Perplexity</strong>. Without a valid key, Xaltrion runs in Claude-only mode.</p>
+
+        <h3>Reset portal layout</h3>
+        <p>Use <strong>Settings &rarr; System &rarr; Reset portal layout</strong> to restore the default layout.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="brokers.html">Brokers</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+      </div>
+      <div class="muted" style="margin-top:4px">&copy; 2026 Xaltrion</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Docs broker/feed picker: show only the selected card within its group.
+    function showDoc(group, value) {
+      var cards = document.querySelectorAll('[data-doc^="' + group + ':"]');
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].style.display =
+          cards[i].getAttribute('data-doc') === group + ':' + value ? '' : 'none';
+      }
+    }
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

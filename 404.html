@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers: Referrer policy and CSP -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com" />
+  <title>404 | Xaltrion</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Theme bootstrap: apply saved light/dark theme BEFORE first paint (no flash)
+       and expose window.XTheme for the nav toggle. Default is dark. -->
+  <script>
+    (function () {
+      window.XTheme = {
+        get: function () {
+          try { return localStorage.getItem('xaltrion-theme') === 'light' ? 'light' : 'dark'; }
+          catch (e) { return 'dark'; }
+        },
+        _apply: function (t) {
+          var r = document.documentElement;
+          r.setAttribute('data-theme', t);
+          r.classList.toggle('theme-light', t === 'light');
+        },
+        set: function (t) {
+          t = (t === 'light') ? 'light' : 'dark';
+          try { localStorage.setItem('xaltrion-theme', t); } catch (e) {}
+          this._apply(t);
+          try { window.dispatchEvent(new CustomEvent('xaltrion-theme-changed', { detail: { theme: t } })); } catch (e) {}
+          return t;
+        },
+        toggle: function () { return this.set(this.get() === 'light' ? 'dark' : 'light'); }
+      };
+      window.XTheme._apply(window.XTheme.get());
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <h1>404</h1>
+    <p>That page does not exist. Try the <a href="index.html">home page</a> or check the <a href="docs.html">docs</a>.</p>
+  </header>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="brokers.html">Brokers</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+      </div>
+      <div class="muted" style="margin-top:4px">&copy; 2026 Xaltrion</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

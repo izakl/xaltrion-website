@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://license.xaltrion.ai https://api.anthropic.com" />
+  <title>Request a broker — Xaltrion</title>
+  <meta name="description" content="Don't see your broker? Request it. Tell us which broker you'd like Xaltrion to support and we'll factor it into the roadmap." />
+  <meta property="og:title" content="Request a broker — Xaltrion" />
+  <meta property="og:description" content="Don't see your broker? Tell us which one to add next." />
+  <meta property="og:image" content="https://xaltrion.ai/assets/img/brand/og-card.png" />
+  <meta property="og:url" content="https://xaltrion.ai/request-broker.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/brand/xaltrion-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/mark-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/mark-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Theme bootstrap: apply saved light/dark theme BEFORE first paint (no flash)
+       and expose window.XTheme for the nav toggle. Default is dark. -->
+  <script>
+    (function () {
+      window.XTheme = {
+        get: function () {
+          try { return localStorage.getItem('xaltrion-theme') === 'light' ? 'light' : 'dark'; }
+          catch (e) { return 'dark'; }
+        },
+        _apply: function (t) {
+          var r = document.documentElement;
+          r.setAttribute('data-theme', t);
+          r.classList.toggle('theme-light', t === 'light');
+        },
+        set: function (t) {
+          t = (t === 'light') ? 'light' : 'dark';
+          try { localStorage.setItem('xaltrion-theme', t); } catch (e) {}
+          this._apply(t);
+          try { window.dispatchEvent(new CustomEvent('xaltrion-theme-changed', { detail: { theme: t } })); } catch (e) {}
+          return t;
+        },
+        toggle: function () { return this.set(this.get() === 'light' ? 'dark' : 'light'); }
+      };
+      window.XTheme._apply(window.XTheme.get());
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-row">
+      <a class="nav-logo" href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-lockup-horizontal.svg?v=20260605b" alt="Xaltrion"></a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="brokers.html" style="color:var(--text)">Brokers</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="beta.html">Beta Access</a></li>
+        <li><a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Community</a></li>
+        <li><a href="docs.html">Docs</a></li>
+      </ul>
+      <a class="cta cta-primary" href="download.html" style="padding:10px 18px;font-size:13px">Download</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header style="padding:5rem 0 2rem;background:var(--ink-950,#0a0a0f);background-image:radial-gradient(ellipse at 50% -10%,oklch(0.68 0.21 250 / 0.10) 0%,transparent 55%);text-align:center">
+    <div class="container">
+      <div class="x-eyebrow" style="margin-bottom:12px">Request a broker</div>
+      <h1 style="font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.03em;margin:0 0 16px">Don&rsquo;t see your broker?</h1>
+      <p class="sub" style="max-width:560px;margin:0 auto;line-height:1.55">Tell us which broker you&rsquo;d like Xaltrion to support. This goes straight onto our planning board &mdash; the more detail you give, the faster we can scope it. No beta sign-up required.</p>
+    </div>
+  </header>
+
+  <!-- ═══ FORM ════════════════════════════════════════════════════════════════ -->
+  <section class="container" style="padding:2.5rem 0 5rem;max-width:680px">
+    <form id="broker-form" novalidate>
+      <div style="display:flex;flex-direction:column;gap:18px">
+
+        <div>
+          <label for="broker_name" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Broker name *</label>
+          <input class="beta-input" type="text" id="broker_name" name="broker_name" required placeholder="e.g. HitBTC, Interactive Brokers, Bybit" style="width:100%" />
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
+          <div>
+            <label for="broker_url" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Broker website</label>
+            <input class="beta-input" type="url" id="broker_url" name="broker_url" placeholder="https://" style="width:100%" />
+          </div>
+          <div>
+            <label for="api_docs_url" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">API docs URL <span style="font-weight:400;color:var(--text-3)">(if you know it)</span></label>
+            <input class="beta-input" type="url" id="api_docs_url" name="api_docs_url" placeholder="https://" style="width:100%" />
+          </div>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px">What does it trade?</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 18px">
+            <label style="font-size:13px;display:flex;align-items:center;gap:7px"><input type="checkbox" name="asset_classes" value="crypto" /> Crypto</label>
+            <label style="font-size:13px;display:flex;align-items:center;gap:7px"><input type="checkbox" name="asset_classes" value="stocks" /> Stocks / ETFs</label>
+            <label style="font-size:13px;display:flex;align-items:center;gap:7px"><input type="checkbox" name="asset_classes" value="forex" /> Forex</label>
+            <label style="font-size:13px;display:flex;align-items:center;gap:7px"><input type="checkbox" name="asset_classes" value="cfd" /> CFDs</label>
+            <label style="font-size:13px;display:flex;align-items:center;gap:7px"><input type="checkbox" name="asset_classes" value="futures" /> Futures / Perps</label>
+            <label style="font-size:13px;display:flex;align-items:center;gap:7px"><input type="checkbox" name="asset_classes" value="options" /> Options</label>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
+          <div>
+            <label for="region" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Region / country</label>
+            <input class="beta-input" type="text" id="region" name="region" placeholder="e.g. South Africa, Global, EU" style="width:100%" />
+          </div>
+          <div>
+            <label for="has_demo" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Does it offer a demo / sandbox?</label>
+            <select class="beta-select" id="has_demo" name="has_demo" style="width:100%">
+              <option value="unknown">Not sure</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
+          <div>
+            <label for="account_type" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Which account do you have?</label>
+            <select class="beta-select" id="account_type" name="account_type" style="width:100%">
+              <option value="">Prefer not to say</option>
+              <option value="live">Live</option>
+              <option value="demo">Demo</option>
+              <option value="both">Both</option>
+            </select>
+          </div>
+          <div>
+            <label for="email" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Email <span style="font-weight:400;color:var(--text-3)">(to notify you when it&rsquo;s added)</span></label>
+            <input class="beta-input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" style="width:100%" />
+          </div>
+        </div>
+
+        <div>
+          <label for="notes" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Anything else? <span style="font-weight:400;color:var(--text-3)">(why this broker, special features, etc.)</span></label>
+          <textarea class="beta-textarea" id="notes" name="notes" rows="3" maxlength="1000" placeholder="What would make this broker great to support?" style="width:100%;resize:vertical"></textarea>
+        </div>
+
+        <label class="x-modal-check" style="font-size:12px">
+          <input type="checkbox" name="marketing_opted_in" id="marketing_opted_in" />
+          Keep me posted on Xaltrion updates (unsubscribe any time)
+        </label>
+
+        <!-- honeypot: hidden from humans, bots fill it -->
+        <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+
+        <div id="form-error" style="display:none;font-size:13px;color:oklch(0.82 0.10 28)"></div>
+        <button class="cta cta-primary" type="submit" id="submit-btn" style="padding:14px 22px;font-size:15px;align-self:flex-start">Submit request &rarr;</button>
+      </div>
+    </form>
+
+    <!-- success state -->
+    <div id="form-success" style="display:none;text-align:center;padding:2rem 0">
+      <div style="font-size:40px;margin-bottom:12px">&#x1F4E5;</div>
+      <h2 style="margin:0 0 10px">Request received &mdash; thank you!</h2>
+      <p class="sub" style="max-width:480px;margin:0 auto 24px">We&rsquo;ve logged your broker on the planning board. If you left an email, we&rsquo;ll let you know when it&rsquo;s supported.</p>
+      <a class="cta cta-secondary" href="brokers.html" style="padding:12px 22px;font-size:14px">Back to brokers</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <a href="index.html" aria-label="Xaltrion home"><img src="assets/img/brand/xaltrion-crystal.svg" alt="Xaltrion" height="32"></a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="brokers.html">Brokers</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="beta.html">Beta Access</a>
+        <a href="download.html">Download</a>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="legal.html">Legal</a>
+        <a href="https://discord.gg/9XS5zF2MfJ" target="_blank" rel="noopener">Join our Discord</a>
+      </div>
+      <div class="muted" style="margin-top:4px">&copy; 2026 Xaltrion</div>
+      <div class="muted" style="margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.5">Xaltrion is a software tool, not financial advice. Trading is risky and you can lose money. Beta software, provided &ldquo;as is&rdquo;. See <a href="legal.html" style="color:inherit;text-decoration:underline">Legal</a> for full disclosures.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('broker-form');
+      var errEl = document.getElementById('form-error');
+      var btn = document.getElementById('submit-btn');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var name = document.getElementById('broker_name').value.trim();
+        if (!name) {
+          errEl.textContent = 'Please enter the broker name.';
+          errEl.style.display = 'block';
+          return;
+        }
+        var assets = Array.prototype.slice
+          .call(document.querySelectorAll('input[name="asset_classes"]:checked'))
+          .map(function (c) { return c.value; });
+
+        var payload = {
+          broker_name: name,
+          broker_url: document.getElementById('broker_url').value.trim(),
+          api_docs_url: document.getElementById('api_docs_url').value.trim(),
+          region: document.getElementById('region').value.trim(),
+          asset_classes: assets,
+          has_demo: document.getElementById('has_demo').value,
+          account_type: document.getElementById('account_type').value,
+          email: document.getElementById('email').value.trim(),
+          notes: document.getElementById('notes').value.trim(),
+          marketing_opted_in: document.getElementById('marketing_opted_in').checked,
+          honeypot: document.getElementById('honeypot').value
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        errEl.style.display = 'none';
+
+        try {
+          var res = await fetch('https://license.xaltrion.ai/api/broker-request', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          var data = await res.json().catch(function () { return {}; });
+          if (!res.ok || !data.ok) {
+            throw new Error(
+              data.error === 'rate_limited'
+                ? 'You’ve sent a few requests already — please try again later.'
+                : 'Something went wrong. Please try again.'
+            );
+          }
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          errEl.textContent = (err && err.message) ? err.message : 'Something went wrong. Please try again.';
+          errEl.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Submit request →';
+        }
+      });
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

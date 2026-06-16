@@ -1,0 +1,302 @@
+/* ============================================================
+   XALTRION — BRAND TOKENS
+   "Quiet authority" — editorial-financial sophistication
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ---------- BRAND CORE ---------- */
+  /* Ink scale — cool deep blacks with blue undertone */
+  --ink-1000: #030509;     /* deepest — true brand black */
+  --ink-950:  #060912;
+  --ink-900:  #0A0E18;     /* primary dark surface */
+  --ink-850:  #0F1422;
+  --ink-800:  #141B2C;     /* elevated dark surface */
+  --ink-700:  #1E2740;     /* hairline / divider on dark */
+  --ink-600:  #2C3654;
+  --ink-500:  #4A5474;
+  --ink-400:  #6E7896;
+  --ink-300:  #9AA3BD;
+  --ink-200:  #C4CAD8;
+  --ink-100:  #DFE3EC;
+  --ink-50:   #EEF1F6;
+
+  /* Bone scale — cool light surfaces (kept for light mode) */
+  --bone-50:   #F7F8FB;    /* primary light surface */
+  --bone-100:  #EFF2F7;
+  --bone-200:  #E4E9F2;
+  --bone-300:  #D2D9E6;
+  --bone-400:  #A8B0C2;
+
+  /* Signature accent — electric blue (the brand's voltage) */
+  --blue-50:  oklch(0.97 0.02 245);
+  --blue-100: oklch(0.92 0.06 245);
+  --blue-200: oklch(0.85 0.12 248);
+  --blue-300: oklch(0.76 0.18 250);
+  --blue-400: oklch(0.68 0.21 250);    /* primary accent */
+  --blue-500: oklch(0.60 0.22 252);
+  --blue-600: oklch(0.52 0.21 254);
+  --blue-700: oklch(0.42 0.18 255);
+
+  /* Legacy amber aliases kept so existing components don't break */
+  --amber-50:  var(--blue-50);
+  --amber-100: var(--blue-100);
+  --amber-200: var(--blue-200);
+  --amber-300: var(--blue-300);
+  --amber-400: var(--blue-400);
+  --amber-500: var(--blue-500);
+  --amber-600: var(--blue-600);
+  --amber-700: var(--blue-700);
+
+  /* P&L — desaturated, refined */
+  --gain:      oklch(0.74 0.10 155);   /* sage */
+  --gain-dim:  oklch(0.58 0.08 155);
+  --gain-bg:   oklch(0.74 0.10 155 / 0.12);
+  --loss:      oklch(0.66 0.14 28);    /* cinnabar */
+  --loss-dim:  oklch(0.52 0.13 28);
+  --loss-bg:   oklch(0.66 0.14 28 / 0.12);
+  --neutral:   oklch(0.65 0.02 80);
+
+  /* Status */
+  --status-live:    oklch(0.74 0.10 155);
+  --status-warn:    oklch(0.80 0.12 78);
+  --status-halt:    oklch(0.66 0.14 28);
+  --status-idle:    oklch(0.60 0.01 80);
+
+  /* ---------- TYPE ----------
+     Inter is the single voice across UI, body, and display — tuned by
+     weight + tracking rather than by face — keeping the whole product
+     visually coherent. Exo 2 is reserved EXCLUSIVELY for the XALTRION
+     wordmark, where its geometric, slightly futurist forms differentiate
+     the brand mark from the rest of the interface. */
+  --font-wordmark: 'Exo 2', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display:  'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif:    'Instrument Serif', 'Times New Roman', serif;
+  --font-ui:       'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:     'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Scale (1.250 modular, optical adjustments) */
+  --t-display-xl: 96px;
+  --t-display-l:  72px;
+  --t-display-m:  56px;
+  --t-display-s:  44px;
+  --t-h1: 34px;
+  --t-h2: 26px;
+  --t-h3: 20px;
+  --t-h4: 17px;
+  --t-body: 15px;
+  --t-body-s: 13px;
+  --t-caption: 11px;
+  --t-micro: 10px;
+
+  /* ---------- SPACE / RADIUS ---------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+
+  /* ---------- SEMANTIC (DARK is default) ---------- */
+  --bg:         var(--ink-900);
+  --bg-elev:    var(--ink-850);
+  --bg-elev-2:  var(--ink-800);
+  --surface:    var(--ink-800);
+  --hairline:   var(--ink-700);
+  --hairline-strong: var(--ink-600);
+  --text:       var(--ink-50);
+  --text-2:     var(--ink-200);
+  --text-3:     var(--ink-400);
+  --text-4:     var(--ink-500);
+  --accent:     var(--blue-400);
+  --accent-2:   var(--blue-300);
+  --accent-bg:  oklch(0.68 0.21 250 / 0.12);
+  --accent-glow: oklch(0.68 0.21 250 / 0.45);
+}
+
+.theme-light {
+  /* Light-mode semantic tokens. Because the marketing site authors many
+     surfaces directly against the raw ink scale (e.g. hero/cards/footer use
+     var(--ink-950) etc.), this block ALSO remaps the ink scale below so every
+     dark-authored surface flips cleanly — pages tint bone, cards go white, and
+     hierarchy/depth survive. Mirrors the app's .theme-light-inverted. */
+  --bg:         #F2F4F9;
+  --bg-elev:    #FFFFFF;
+  --bg-elev-2:  var(--bone-50);
+  --surface:    #FFFFFF;
+  --hairline:   #D8DEEA;
+  --hairline-strong: #B8C0D2;
+  --text:       #0A0E18;
+  --text-2:     #141B2C;
+  --text-3:     #4A5474;
+  --text-4:     #6E7896;
+  --accent:     var(--blue-600);
+  --accent-2:   var(--blue-500);
+  --accent-bg:  oklch(0.52 0.21 254 / 0.10);
+  --accent-glow: oklch(0.52 0.21 254 / 0.35);
+
+  /* Ink scale flipped so raw var(--ink-*) usages render light. Page washes
+     are tinted bone, cards/heroes are white, text inks darken. */
+  --ink-1000: #E2E7EF;     /* deepest tinted page */
+  --ink-950:  #ECEFF6;     /* primary page wash · hero · nav */
+  --ink-900:  #FFFFFF;     /* card / hero / most-used surface */
+  --ink-850:  #F4F6FB;     /* sub-row · non-featured card */
+  --ink-800:  #EEF1F8;     /* sunken chip · input · table head */
+  --ink-700:  #D8DEEA;     /* hairline */
+  --ink-600:  #B8C0D2;     /* strong hairline */
+  --ink-500:  #6E7896;     /* dim text */
+  --ink-400:  #4A5474;     /* secondary text */
+  --ink-300:  #2C3654;     /* primary text on light */
+  --ink-200:  #141B2C;     /* heavy text */
+  --ink-100:  #0F1422;     /* strong heading */
+  --ink-50:   #0A0E18;     /* deepest text */
+}
+
+/* Full inversion — for product views that use the raw ink scale
+   directly (var(--ink-900), var(--ink-50), etc). Remaps the scale so
+   dark-mode-authored components flip cleanly without refactoring. */
+.theme-light-inverted {
+  /* light-mode semantic */
+  --bg:         #F2F4F9;
+  --bg-elev:    #FFFFFF;
+  --bg-elev-2:  #F7F8FB;
+  --surface:    #FFFFFF;
+  --hairline:   #D8DEEA;
+  --hairline-strong: #B8C0D2;
+  --text:       #0A0E18;
+  --text-2:     #141B2C;
+  --text-3:     #4A5474;
+  --text-4:     #6E7896;
+  --accent:     var(--blue-600);
+  --accent-2:   var(--blue-500);
+  --accent-bg:  oklch(0.52 0.21 254 / 0.10);
+  --accent-glow: oklch(0.52 0.21 254 / 0.35);
+
+  /* Ink scale flipped — pages are tinted bone, cards are pure white,
+     so depth & hierarchy survive the inversion. Sub-rows / chips are
+     slightly tinted so they pop *inside* white cards. */
+  --ink-1000: #E2E7EF;     /* deepest tinted page (was darkest dark) */
+  --ink-950:  #ECEFF6;     /* primary page · top bar wash */
+  --ink-900:  #FFFFFF;     /* card / hero / page-in-some-views (most-used) */
+  --ink-850:  #F4F6FB;     /* sub-row · non-featured card */
+  --ink-800:  #EEF1F8;     /* sunken chip · search input · table thead */
+  --ink-700:  #D8DEEA;     /* hairline */
+  --ink-600:  #B8C0D2;     /* strong hairline */
+  --ink-500:  #6E7896;     /* dim text */
+  --ink-400:  #4A5474;     /* secondary text */
+  --ink-300:  #2C3654;     /* primary text on light */
+  --ink-200:  #141B2C;     /* heavy text */
+  --ink-100:  #0F1422;     /* strong heading */
+  --ink-50:   #0A0E18;     /* deepest text */
+}
+
+/* ============================================================
+   PRIMITIVES
+   ============================================================ */
+body { margin: 0; font-family: var(--font-ui); font-feature-settings: 'cv11', 'ss01', 'ss03'; }
+
+.x-tile {
+  background: var(--bg-elev);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  color: var(--text);
+}
+.x-hairline { height:1px; background: var(--hairline); border:0; margin:0; }
+
+.x-btn {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 9px 16px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex; align-items:center; gap:8px;
+  transition: all 0.15s ease;
+}
+.x-btn.primary {
+  background: var(--accent);
+  color: var(--ink-1000);
+  border-color: var(--accent);
+}
+.x-btn.primary:hover { background: var(--accent-2); }
+.x-btn.ghost {
+  background: transparent;
+  color: var(--text-2);
+  border-color: var(--hairline-strong);
+}
+.x-btn.ghost:hover { border-color: var(--text-3); color: var(--text); }
+.x-btn.danger {
+  background: var(--loss-bg);
+  color: var(--loss);
+  border-color: oklch(0.66 0.14 28 / 0.3);
+}
+
+.x-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: var(--r-xs);
+  display: inline-flex; align-items:center; gap:6px;
+  border: 1px solid var(--hairline);
+  color: var(--text-3);
+}
+.x-tag.live { color: var(--gain); border-color: oklch(0.74 0.10 155 / 0.3); background: var(--gain-bg); }
+.x-tag.warn { color: var(--status-warn); border-color: oklch(0.80 0.12 78 / 0.3); background: oklch(0.80 0.12 78 / 0.12); }
+.x-tag.halt { color: var(--loss); border-color: oklch(0.66 0.14 28 / 0.3); background: var(--loss-bg); }
+
+.x-dot { width:6px; height:6px; border-radius:50%; display:inline-block; }
+.x-dot.live { background: var(--gain); box-shadow: 0 0 0 3px oklch(0.74 0.10 155 / 0.18); }
+.x-dot.warn { background: var(--status-warn); }
+.x-dot.halt { background: var(--loss); }
+.x-dot.idle { background: var(--text-4); }
+
+.x-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.x-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.x-display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; }
+.x-display em { font-family: var(--font-serif); font-weight: 400; font-style: italic; letter-spacing: -0.02em; }
+.x-italic { font-family: var(--font-serif); font-style: italic; }
+
+/* Logotype — the XALTRION wordmark style. Exo 2 is reserved for this. */
+.x-logotype {
+  font-family: var(--font-wordmark);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Light-mode primary buttons use the darker accent — white label keeps legibility. */
+.theme-light .x-btn.primary,
+.theme-light .x-btn.primary:hover { color: #FFFFFF; }
+
+/* Pulse for "live" indicators */
+@keyframes x-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.x-pulse { animation: x-pulse 2.4s ease-in-out infinite; }
+
+/* Subtle striped placeholder for imagery */
+.x-img-ph {
+  background-image: repeating-linear-gradient(135deg,
+    var(--hairline) 0 1px, transparent 1px 14px);
+  border: 1px solid var(--hairline);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-4);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
